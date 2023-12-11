@@ -67,7 +67,6 @@ export const PaymentAllSteps = styled.div`
       border: 1px solid rgb(240, 240, 240);
       box-shadow: 2px 2px 20px rgb(240, 240, 240);
       border-radius: 5px;
-      min-height: 50vh;
 
       h5 {
         font-size: 1rem;
@@ -92,14 +91,15 @@ export const PaymentAllSteps = styled.div`
           display: flex;
           justify-content: flex-start;
           gap: 1rem;
-          width: 60%;
+          width: 70%;
           margin: 2rem 0;
           height: 100%;
 
           h1 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 300;
             margin: 0 2rem;
+            width: 70%;
             font-family: "Roboto";
           }
         }
@@ -130,17 +130,16 @@ export const PaymentAllSteps = styled.div`
       flex-direction: column;
       align-items: center;
       padding: 1rem;
+      padding: 1rem;
 
       .all-final-data {
         width: 100%;
-        padding: 1rem;
         height: auto;
       }
 
       .all-data {
         width: 100%;
         border-bottom: 1px solid rgb(230, 230, 230);
-        padding: 1rem;
         height: auto;
       }
 
@@ -148,6 +147,7 @@ export const PaymentAllSteps = styled.div`
         width: 100%;
         height: 3rem;
         display: flex;
+        margin: 1rem 0; 
         align-items: center;
         justify-content: space-between;
 
@@ -162,7 +162,6 @@ export const PaymentAllSteps = styled.div`
           justify-content: space-between;
           width: 100%;
           height: auto;
-          border: 1px solid;
           flex-direction: column;
 
           h1 {
@@ -210,13 +209,11 @@ export const ModalBox = styled.div`
   position: absolute;
   left: 55%;
   padding: 2rem;
-  border: 1px solid;
   background-color: white;
 
   .items-modal-12 {
     width: 100%;
     height: auto;
-    border: 1px solid;
   }
 `;
 

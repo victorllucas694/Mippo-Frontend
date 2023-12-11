@@ -12,6 +12,7 @@ export const OptionsPanelWrapper = styled.div`
     height: 100%;
     align-items: center;
     display: none;
+    border: 1px solid;
 
     @media (max-width: 1280px) {
       display: flex;
@@ -26,6 +27,11 @@ export const OptionsPanelWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 1280px) {
+      width: 100%;
+      display: flex;
+    }
 
     @media (max-width: 1280px) {
       display: none;

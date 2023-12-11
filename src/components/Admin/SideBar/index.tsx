@@ -47,6 +47,7 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import InventaryByCategory from "../InventoryByCategory";
 import { Badge } from "@mui/material";
+import AlertLowerStock from "../AlertLowerStock";
 
 const drawerWidth = 240;
 
@@ -200,7 +201,6 @@ function SideBar() {
       label: "Gerenciamento de clientes",
       detailPage: "AddNewUser",
     },
-
   ];
 
   const handleDrawerOpen = () => {
@@ -245,6 +245,12 @@ function SideBar() {
 
   const handleOpenListManagement = () => {
     setOpenListManagement(!openListManagement);
+  };
+
+  const [lowerStock, setLowerStock] = React.useState<string>("");
+
+  const handleOpenAlertProductStock = () => {
+    setLowerStock("lowerStock");
   };
 
   const { pageName, setPageName } = usePagesManagement();
@@ -450,8 +456,13 @@ function SideBar() {
                   }}
                 >
                   {text === "Avisos" ? (
-                    <Badge badgeContent={4} color="error">
+                    <Badge
+                      onClick={() => setPageName("lowerStock")}
+                      badgeContent={4}
+                      color="error"
+                    >
                       <ListItemIcon
+                        onClick={() => setPageName("lowerStock")}
                         sx={{
                           minWidth: 0,
                           justifyContent: "center",
@@ -551,6 +562,8 @@ function SideBar() {
               productName={categoryName}
               pageName={pageName}
             />
+          ) : pageName === "lowerStock" ? (
+            <AlertLowerStock />
           ) : (
             <AdminPagesManagement />
           )}

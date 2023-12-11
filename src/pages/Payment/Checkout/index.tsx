@@ -359,12 +359,7 @@ export default function Checkout() {
                 return (
                   <div className="item-product">
                     <h1>
-                      {products.getProductsByOrderId.Marca +
-                        " - " +
-                        products.getProductsByOrderId.Fabricante}
-                    </h1>
-                    <h1>
-                        R$ {String(products.getProductsByOrderId.Valor_a_prazo)}
+                      {products.getProductsByOrderId.Marca}
                     </h1>
                   </div>
                 );

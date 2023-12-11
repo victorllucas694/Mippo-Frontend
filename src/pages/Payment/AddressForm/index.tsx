@@ -85,7 +85,7 @@ function AddressForm() {
               required
               id="name"
               name="name"
-              label="Nome"
+              label="Endereço"
               fullWidth
               type="text"
               autoComplete="shipping address-level2"
@@ -99,7 +99,7 @@ function AddressForm() {
               name="last_name"
               type="text"
               variant="outlined"
-              label="Sobrenome"
+              label="Complemento"
               fullWidth
               onChange={handlePaymentInputChange}
             />

@@ -63,7 +63,7 @@ function OptionsHeader({ categoriesBoxProps }: ISearchPanelDataPreset) {
                 }}
                 endIcon={<KeyboardArrowDownIcon />}
               >
-                <span style={{ gap: "1rem" }}>
+                <span  style={{ gap: "1rem" }}>
                   <WidgetsIcon
                     sx={{ margin: "-.4rem .7rem", color: "rgb(80, 80, 80)" }}
                   />

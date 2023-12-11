@@ -420,21 +420,21 @@ export default function OrderTicketsTable() {
                         }}
                       />
                     </TableCell>
-                    <TableCell align="center">{row.id}</TableCell>
-                    <TableCell align="center">{row.username}</TableCell>
-                    <TableCell align="center">{row.product}</TableCell>
-                    <TableCell align="center">R$ {row.price}</TableCell>
-                    <TableCell align="center">{row.date}</TableCell>
-                    <TableCell align="center">
+                    <TableCell align="right">{row.id}</TableCell>
+                    <TableCell align="justify">{row.username}</TableCell>
+                    <TableCell align="justify">{row.product}</TableCell>
+                    <TableCell align="justify">R$ {row.price}</TableCell>
+                    <TableCell align="justify">{row.date}</TableCell>
+                    <TableCell align="justify">
                       <StatusProduct>
                         <div className="circle-button"></div>
                         <p>Ativo</p>
                       </StatusProduct>
                     </TableCell>
-                    <TableCell align="center">
+                    <TableCell align="justify">
                       <ActionsBoxWrapper>
                         <div className="buttons-actions">
-                          <div className="action">
+                          <div className="action" style={{ width: '80px' }}>
                             <BorderColorIcon
                               sx={{
                                 color: "rgb(60, 60, 60)",
@@ -443,7 +443,7 @@ export default function OrderTicketsTable() {
                               }}
                             />
                           </div>
-                          <div className="action">
+                          <div className="action" style={{ width: '80px' }}>
                             <DeleteIcon
                               sx={{
                                 color: "rgb(60, 60, 60)",

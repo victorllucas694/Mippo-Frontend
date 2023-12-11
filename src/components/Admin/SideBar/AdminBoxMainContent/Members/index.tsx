@@ -134,7 +134,7 @@ function Members() {
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(75,192,192,0.4)',
         hoverBorderColor: 'rgba(75,192,192,1)',
-        data: [45, 49, 80, 71, 86, 25, 55, 99, 10, 21, 36, 25, 40, 32, 66, 55, 65],
+        data: [12, 12, 12, 12, 12, 12, 87, 87, 87, 87, 12, 1, 1, 1, 75, 1, 1 ],
         barThickness: 15, 
       },
         {
@@ -144,7 +144,7 @@ function Members() {
           borderWidth: 1,
           hoverBackgroundColor: 'rgba(75,192,192,0.4)',
           hoverBorderColor: 'rgba(75,192,192,1)',
-          data: [65, 69, 60, 51, 56, 55, 65, 59, 80, 81, 56, 55, 80, 81, 56, 55, 65],
+          data: [12, 12, 12, 12, 12, 12, 12, 12, 60, 60, 60, 60, 12, 12, 72, 12, 99 ],
           barThickness: 15, 
         },
     ],
