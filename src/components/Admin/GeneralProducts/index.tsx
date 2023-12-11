@@ -12,6 +12,11 @@ import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import axiosInstance from "../../../providers/AxiosInstance";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { useAuth } from "../../../contexts/AuthenticateContext";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Slider from "@mui/material/Slider";
+import VolumeDown from "@mui/icons-material/VolumeDown";
+import VolumeUp from "@mui/icons-material/VolumeUp";
 
 interface CategoryProduct {
   categoryBySearchProductPage: string | null;
@@ -63,7 +68,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
   const [categoriesName, setCategoriesName] = useState<Category[] | null>(null);
 
   const { products } = useProductsContext();
-  
+
   const [categoryProp, setCategoryProp] = useState<string>("");
   type CategoryMap = {
     [key: string]: () => void;
@@ -91,7 +96,6 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
       const content = categoryMap[category]();
       setContentToRender(content);
     }
-
     return category;
   }
 
@@ -119,8 +123,10 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     }));
   };
 
+  const handleChange = () => {};
+
   const handleButton = async () => {
-    console.log(searchInput)
+    console.log(searchInput);
   };
 
   function handleComputadores(): JSX.Element {
@@ -287,6 +293,25 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
               </div>
 
               <div className="item-body">
+                <Stack
+                  spacing={2}
+                  direction="row"
+                  sx={{ mb: 1 }}
+                  alignItems="center"
+                >
+                  <VolumeDown />
+                  <Slider
+                    aria-label="Volume"
+                    value={value}
+                    onChange={handleChange}
+                  />
+                  <VolumeUp />
+                </Stack>
+                <Slider
+                  disabled
+                  defaultValue={30}
+                  aria-label="Disabled slider"
+                />
                 {items.subcategories.map((categories) => {
                   return (
                     <div key={categories.name}>
@@ -378,12 +403,12 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
           : null}
 
         <div className="pagination-data">
-            <Pagination
-              count={totalPages}
-              page={currentPage}
-              onChange={handlePageChange}
-              color="primary"
-            />
+          <Pagination
+            count={totalPages}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="primary"
+          />
         </div>
       </div>
     </MainComponentOnPage>

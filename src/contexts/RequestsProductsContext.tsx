@@ -234,20 +234,7 @@ export function RequestsProductsProvider({
 
   const computersDataCategory: Category[] = [
     {
-      name: "Informações Gerais",
-      subcategories: [
-        {
-          name: "Fabricantes",
-          valor: ["FutureTech", "InnoTech", "MegaForce", "MegaForce"],
-        },
-        {
-          name: "Formato do produto",
-          valor: ["Desktop", "Laptop"],
-        },
-      ],
-    },
-    {
-      name: "Hardware",
+      name: "Computadores",
       subcategories: [
         {
           name: "Processador",

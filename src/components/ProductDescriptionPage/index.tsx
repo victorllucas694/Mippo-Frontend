@@ -5,17 +5,30 @@ import Link from "@mui/material/Link";
 import { useProductsContext } from "../../contexts/CardContexts";
 import { ISocialsDataBoxes } from "../../Types";
 import { useRequestsProductsContext } from "../../contexts/RequestsProductsContext";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Slider from "@mui/material/Slider";
+import VolumeDown from "@mui/icons-material/VolumeDown";
+import VolumeUp from "@mui/icons-material/VolumeUp";
 
 interface Category {
-  categoryBySearchProductPage : string | null;
+  categoryBySearchProductPage: string | null;
 }
 
 function ProductDescriptionPage({ categoryBySearchProductPage }: Category) {
-
-  console.log(categoryBySearchProductPage)
+  console.log(categoryBySearchProductPage);
 
   const { socialsDataBox } = useProductsContext();
   const { productSelected } = useRequestsProductsContext();
+
+  function handleChange(
+    event: Event,
+    value: number | number[],
+    activeThumb: number
+  ): void {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <ProductDescriptionRootContainer>
@@ -39,7 +52,9 @@ function ProductDescriptionPage({ categoryBySearchProductPage }: Category) {
             Produtos
           </Link>
           <Typography color="text.primary">
-            { categoryBySearchProductPage ? categoryBySearchProductPage : productSelected?.Codigo }
+            {categoryBySearchProductPage
+              ? categoryBySearchProductPage
+              : productSelected?.Codigo}
           </Typography>
         </Breadcrumbs>
 

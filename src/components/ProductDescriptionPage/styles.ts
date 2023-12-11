@@ -5,6 +5,7 @@ export const ProductDescriptionRootContainer = styled.div`
   margin: auto;
   height: auto;
 
+
   .breadcrumb-data-product {
     width: 80%;
     margin: 1rem auto;
