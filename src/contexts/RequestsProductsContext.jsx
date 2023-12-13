@@ -6,127 +6,20 @@ import React, {
   useEffect,
 } from "react";
 import axiosInstance from "../providers/AxiosInstance";
-import { IMockProducts } from "../Types";
 
-export interface IProductSelected {
-  id: number;
-  Marca: string;
-  Fabricante: string;
-  Formato: string;
-  Marca_do_processador: string;
-  Tipo_de_processador: string;
-  Velocidade_do_processador: string;
-  Tipo_de_soquete_do_processador: string;
-  Numero_de_processadores: string;
-  Tamanho_da_memoria: string;
-  Tecnologia_da_memoria: string;
-  Tipo_de_Memoria: string;
-  Tamanho_do_HD: string;
-  Tecnologia_do_HD: string;
-  Interface_do_HD: string;
-  Marca_do_chipset_de_video: string;
-  Descricao_da_placa_de_video: string;
-  Tipo_de_conexao: string;
-  Tecnologia_de_conexao: string;
-  Plataforma_de_hardware: string;
-  Sistema_operacional: string;
-  Peso_do_produto: string;
-  Dimensoes_da_embalagem: string;
-  Codigo: string;
-  Fornecedor: string;
-  Quantidade_em_estoque: string;
-  User_Id: number;
-  Valor_a_vista: string;
-  Valor_a_prazo: string;
-  Codigo_das_Imagens: string;
-  Dimensoes_do_pacote: string;
-  Descricao_final_sobre_o_produto: string;
-  Tamanho_da_tela: string;
-  Bateria_interna: string;
-  Teclado_e_touchpad: string;
-  Conectividade_sem_fio: string;
-  Tela_sensivel_ao_toque: string;
-  Webcam_embutida: string;
-  Audio_integrado: string;
-  Leitor_de_cartoes_de_memoria: string;
-  montagem_necessaria: string;
-  bateria_pilha: string;
-  bateria_inclusa: string;
-  tipo_da_bateria: string;
-  Conectividade: string;
-  Tamanho_Fisico: string;
-  Consumo_de_Energia: string;
-  Compatibilidade: string;
-  Interfaces: string;
-  Drivers: string;
-  Outras_Caracteristicas: string;
-  Tipo_de_Hardware: string;
-  Arquitetura: string;
-  Velocidade_do_Clock: string;
-  Nucleos_e_Threads: string;
-  Capacidade_de_Armazenamento: string;
-  Tamanho_da_Memoria_RAM: string;
-}
+let rows = [];
 
-interface RequestsProductsContextType {
-  productSelected: IProductSelected | null;
-  setterProductSelected: (product: IProductSelected) => void;
-  addItemToShoppingCart: () => void;
-  shoppingCart: number | null;
-  calcPriceByShoppingCart: (priceToConvert: string) => void;
-  totalPrice: number;
-  globalCategory: string | null;
-  isUserLoggedIn: () => void;
-  verifyUserLoggedByAddProductToShoppingCart: (
-    id: number,
-    productsList: IMockProducts
-  ) => void;
-  getProductImageByCategoryAndProductId: (
-    category: string,
-    productID: string,
-    imageCode: string
-  ) => void;
-  filterArrayByProductInput: (search: string) => void;
-  setterGlobalProductCategoryByNavbar: (priceToConvert: string) => void;
-  computerCategory: Category[];
-  HardwareDataCategory: Category[];
-  accessoriesCategory: Category[];
-  NotebookDataCategory: Category[];
-  created: boolean;
-  alertlogin: string;
-  searchInput: string;
-}
+const RequestsProductsContext = createContext(undefined);
 
-export interface Category {
-  name: string;
-  subcategories: Subcategories[];
-}
+export function RequestsProductsProvider({ children }) {
+  const [productSelected, setProductSelected] = useState(null);
+  const [shoppingCart, setShoppingCart] = useState(1);
+  const [globalCategory, setGlobalCategory] = useState(null);
+  const [countdown, setCountdown] = useState(null);
+  const [priceShoppingCart, setPriceShoppingCart] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0);
 
-export interface Subcategories {
-  name: string;
-  valor: string[];
-}
-
-const RequestsProductsContext = createContext<
-  RequestsProductsContextType | undefined
->(undefined);
-
-export function RequestsProductsProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  const [productSelected, setProductSelected] =
-    useState<IProductSelected | null>(null);
-  const [shoppingCart, setShoppingCart] = useState<number>(1);
-  const [globalCategory, setGlobalCategory] = useState<string | null>(null);
-  const [countdown, setCountdown] = useState<number | null>(null);
-  const [priceShoppingCart, setPriceShoppingCart] = useState<string | null>(
-    null
-  );
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-
-  const acessoriesDataCategory: Category[] = [
+  const accessoriesDataCategory = [
     {
       name: "Informações Gerais",
       subcategories: [
@@ -160,7 +53,7 @@ export function RequestsProductsProvider({
     },
   ];
 
-  const NotebookDataCategory: Category[] = [
+  const NotebookDataCategory = [
     {
       name: "Componentes",
       subcategories: [
@@ -197,7 +90,7 @@ export function RequestsProductsProvider({
     },
   ];
 
-  const HardwareDataCategory: Category[] = [
+  const HardwareDataCategory = [
     {
       name: "Informações Gerais",
       subcategories: [
@@ -220,7 +113,7 @@ export function RequestsProductsProvider({
             "Processador",
             "Placa de video",
             "Armazenamento",
-            "Moniitores",
+            "Monitores",
             "Impressoras",
           ],
         },
@@ -232,7 +125,7 @@ export function RequestsProductsProvider({
     },
   ];
 
-  const computersDataCategory: Category[] = [
+  const computersDataCategory = [
     {
       name: "Computadores",
       subcategories: [
@@ -260,19 +153,21 @@ export function RequestsProductsProvider({
     },
   ];
 
-  const [computerCategory, setComputerCategory] = useState<Category[]>(
+  const [computerCategory, setComputerCategory] = useState(
     computersDataCategory
   );
 
-  const [accessoriesCategory, setAccessoriesCategory] = useState<Category[]>(
-    acessoriesDataCategory
+  const [accessoriesCategory, setAccessoriesCategory] = useState(
+    accessoriesDataCategory
   );
-  const setterGlobalProductCategoryByNavbar = (category: string) => {
+
+  const setterGlobalProductCategoryByNavbar = (category) => {
     window.location.href = `/${category}`;
     setGlobalCategory(category);
   };
-  const [created, setCreated] = useState<boolean>(false);
-  const [alertlogin, setAlertLogin] = useState<string>("");
+
+  const [created, setCreated] = useState(false);
+  const [alertlogin, setAlertLogin] = useState("");
 
   const isUserLoggedIn = async () => {
     const token = localStorage.getItem("c__token");
@@ -289,21 +184,21 @@ export function RequestsProductsProvider({
           setCreated(true);
         } else {
           setAlertLogin("precisa logar");
-          console.log(alertlogin)
+          console.log(alertlogin);
         }
       } catch (error) {
         setAlertLogin("precisa logar");
-        console.log(alertlogin)
+        console.log(alertlogin);
       }
     } else {
       setAlertLogin("precisa logar");
-      console.log(alertlogin)
+      console.log(alertlogin);
     }
   };
 
   const removeCurrencySymbolAndAddToTotal = (
-    price: string | null,
-    currentTotal: number
+    price,
+    currentTotal
   ) => {
     if (price) {
       const priceWithoutCurrency = price.replace("R$", "").trim();
@@ -317,13 +212,14 @@ export function RequestsProductsProvider({
 
     return currentTotal;
   };
-  const [searchInput, setSearchInput] = useState<string>('');
 
-  const filterArrayByProductInput = (search: string) => {
-    setSearchInput(search)
-  }
+  const [searchInput, setSearchInput] = useState("");
 
-  const calcPriceByShoppingCart = async (priceToConvert: string) => {
+  const filterArrayByProductInput = (search) => {
+    setSearchInput(search);
+  };
+
+  const calcPriceByShoppingCart = async (priceToConvert) => {
     const newTotalPrice = removeCurrencySymbolAndAddToTotal(
       priceToConvert,
       totalPrice
@@ -343,21 +239,11 @@ export function RequestsProductsProvider({
 
     setShoppingCart((prevCart) => prevCart + 1);
   };
-  interface IProductData {
-    imageCodes: any;
-    largeImages: any;
-    sideImages: any;
-    tableName: any;
-  }
-
-  const [productImagesObject, setProductImagesObject] = useState<
-    IProductData | null | undefined
-  >(null);
 
   const getProductImageByCategoryAndProductId = async (
-    category: string,
-    productID: string,
-    imageCode: string
+    category,
+    productID,
+    imageCode
   ) => {
     const token = localStorage.getItem("c__token");
     const foundedImages = await axiosInstance(
@@ -369,14 +255,14 @@ export function RequestsProductsProvider({
       }
     );
 
-    foundedImages.data.map((data: any) => {
+    foundedImages.data.map((data) => {
       console.log("data", data);
     });
   };
 
   const verifyUserLoggedByAddProductToShoppingCart = async (
-    id: number,
-    productsList: IMockProducts
+    id,
+    productsList
   ) => {
     const token = localStorage.getItem("c__token");
     const currentURL = window.location.pathname;
@@ -392,10 +278,9 @@ export function RequestsProductsProvider({
         },
       }
     );
-
   };
 
-  const setterProductSelected = (product: IProductSelected) => {
+  const setterProductSelected = (product) => {
     setProductSelected(product);
   };
 
@@ -420,7 +305,7 @@ export function RequestsProductsProvider({
         searchInput,
         HardwareDataCategory,
         NotebookDataCategory,
-        filterArrayByProductInput
+        filterArrayByProductInput,
       }}
     >
       {children}
@@ -428,7 +313,7 @@ export function RequestsProductsProvider({
   );
 }
 
-export function useRequestsProductsContext(): RequestsProductsContextType {
+export function useRequestsProductsContext() {
   const context = useContext(RequestsProductsContext);
   if (context === undefined) {
     throw new Error("useAuth deve ser usado dentro de um AuthProvider");
