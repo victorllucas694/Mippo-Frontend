@@ -103,7 +103,7 @@ function Goals() {
           <div className="text">
             <h1>Vendas a vista</h1>
             <h3>
-              <strong>{totalPriceData}</strong> em vendas
+              <strong>R$ {totalPriceData},00</strong> em vendas
             </h3>
             <p>R$ {totalPriceData * 0.7} em lucro</p>
           </div>

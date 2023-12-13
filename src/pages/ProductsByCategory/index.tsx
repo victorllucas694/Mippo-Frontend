@@ -78,7 +78,7 @@ function ProductByCategory() {
     },
     {
       id: 3,
-      label: "Acessorios",
+      label: "acessorios",
     },
     {
       id: 4,

@@ -253,6 +253,11 @@ function SideBar() {
     setLowerStock("lowerStock");
   };
 
+  const backToHomePage = () => {
+    localStorage.removeItem('c__token');
+    window.location.href = '/'
+  }
+
   const { pageName, setPageName } = usePagesManagement();
 
   return (
@@ -286,7 +291,7 @@ function SideBar() {
             </IconButton>
             <HeaderBoxDashboardPanel>
               <TitleAdmin>Painel administrativo</TitleAdmin>
-              <Button sx={{ height: "3rem" }} variant="outlined">
+              <Button sx={{ height: "3rem" }} onClick={backToHomePage} variant="outlined">
                 Sair da conta
               </Button>
             </HeaderBoxDashboardPanel>
