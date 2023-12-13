@@ -20,6 +20,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useState, useEffect } from "react";
 import { useAxios } from "../../../providers/AxiosProvider";
+import { useAuth } from "../../../contexts/AuthenticateContext";
 
 function ProductDescriptionPresentation() {
   const { productSelected } = useRequestsProductsContext();
@@ -84,6 +85,16 @@ function ProductDescriptionPresentation() {
   };
   
   const [imageData, setImageData] = useState<ImageData>(initialState);
+  const { id } = useAuth(); 
+
+  const purchaseItem = () => {
+    if(id) {
+      window.location.href = `/payment/${String(productSelected?.id)}`
+    }
+    if(!id) {
+      window.location.href = '/login'
+    }
+  }
 
   useEffect(() => {
     const currentURL = window.location.pathname;
@@ -209,6 +220,7 @@ function ProductDescriptionPresentation() {
                   height: "100%",
                 }}
                 variant="contained"
+                onClick={purchaseItem}
                 startIcon={<ShoppingCartIcon />}
               >
                 Comprar produto agora
