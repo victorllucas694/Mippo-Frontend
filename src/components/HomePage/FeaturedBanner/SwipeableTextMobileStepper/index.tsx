@@ -16,35 +16,35 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 const images = [
   {
     title:
-      "Potencialize seu Desempenho: Guia Definitivo de Hardware Gamer",
+      "PLACA DE VIDEO ASUS GEFORCE RTX 4070 DUAL WHITE OC EDITION, 8GB, GDDR6, 128-BIT, DUAL-RTX4060-O8G-WHITE",
     label:
       "Explore um universo de possibilidades para elevar seu PC a novos patamares de desempenho. Aumente sua imersão nos jogos com periféricos de alta precisão para suas aventuras virtuais.",
     imgPath:
-      "https://imgs.casasbahia.com.br/1546744747/1xg.jpg",
+      "https://m.media-amazon.com/images/I/81oBMA48NXL._AC_UF894,1000_QL80_.jpg",
   },
   {
     title:
-      "Além da Estética: A Revolução dos PCs Gamer Personalizados",
+      "PLACA DE VIDEO PNY GEFORCE RTX 3050, 8GB, GDDR6, 128-BIT, VCG30518DFBPB1-NAC",
     label:
       "Mergulhe no mundo dos PCs gamer personalizados, onde a estética encontra o desempenho máximo. De iluminação RGB a sistemas de refrigeração avançados.",
       imgPath:
-      "https://exitocol.vtexassets.com/arquivos/ids/13631502/computador-pc-torre-gamer-alca-amd-ryzen-7-5700g-hdd-1tb-ram-16gb-led-22-full-hd-pulgadas.jpg?v=637934998748330000",
+      "https://m.media-amazon.com/images/I/71JJi2GQIqS._AC_UF894,1000_QL80_.jpg",
   },
   {
     title:
-      "Acessórios Gamer: Elevando sua Experiência a Outro Nível",
+      "PROCESSADOR INTEL CORE I9-13900F, 24-CORE, 32-THREADS, 2.0GHZ (5.6GHZ TURBO), CACHE 36MB, LGA1700, BX8071513900F",
     label:
       "Os verdadeiros gamers sabem que os acessórios certos podem fazer toda a diferença. Descubra como cada acessório contribui para uma jogabilidade mais envolvente e competitiva.",
       imgPath:
-      "https://m.media-amazon.com/images/I/61HH9uitmTL._AC_UF894,1000_QL80_.jpg",
+      "https://www.visaovip.com/imagem/cpu-intel/processador-intel-core-i9-12900k-socket-lga-1700-3-2ghz-30mb/2/559089.jpg?pfdrid_c=true",
   },
   {
     title:
-      "Construa Seu Império Digital: O Poder dos Componentes de PC de Última Geração",
+      "PICHAU KIT UPGRADE, AMD RYZEN 9 7900X, X670 DDR5",
     label:
-      "Entre no universo da construção de PCs e desvende os segredos por trás dos componentes de última geração. Valiosos para quem busca o ápice do desempenho em suas jornadas digitais.",
+      "1 x Processador AMD Ryzen 9 7900X, 12-Core, 24-Threads, 4.7GHz (5.6GHz Turbo), Cache 76MB, AM5, 100-100000589WOF. 1 x Placa Mae Asus TUF Gaming X670E-Plus, DDR5, Socket AM5, ATX, Chipset AMD X670, TUF-GAMING-X670E-PLUS",
       imgPath:
-      "https://exitocol.vtexassets.com/arquivos/ids/11640389-800-auto?v=637786562733830000&width=800&height=auto&aspect=true",
+      "https://d30u9wim1barf6.cloudfront.net/Custom/Content/Products/98/73/987390_processador-amd-ryzen-9-3950x-64mb-3-5ghz-4-7ghz-am4-100-100000051wofnac006551_m1_637145342866581634.jpg",
   },
 ];
 
@@ -96,7 +96,7 @@ function SwipeableTextMobileStepper() {
                   </div>
                   <div className="image-container">
                     <div className="image-wrapper">
-                      <img src={step.imgPath} alt="" />
+                      <img style={{ borderRadius: '10px' }} src={step.imgPath} alt="" />
                     </div>
                   </div>
                 </StepperBodyData>

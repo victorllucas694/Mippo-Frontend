@@ -9,6 +9,7 @@ export const StepperBodyData = styled.div`
   flex-wrap: wrap;
   border-radius: 10px;
   min-height: 35rem;
+  box-shadow: 2px 2px 10px rgb(240, 240, 240);
 
   .body-container {
     width: 55%;
@@ -80,6 +81,7 @@ export const StepperBodyData = styled.div`
         object-fit: contain;
         margin: auto;
         height: 100%;
+        border-radius: 10px;
       }
     }
   }
