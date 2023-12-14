@@ -67,6 +67,7 @@ export default function Checkout() {
 
     let arrToOfferPrices: number = 0;
     let totalAmount: number = 0;
+    console.log(products)
     products.data.map((products: { getProductsByOrderId: any }) => {
       const { getProductsByOrderId } = products;
       
@@ -85,6 +86,8 @@ export default function Checkout() {
     const products = await axiosInstance.get(
       `/payment-shipping-cart/cart/${id}`
     );
+
+    console.log(products)
 
     setCartProducts(products.data);
   };
