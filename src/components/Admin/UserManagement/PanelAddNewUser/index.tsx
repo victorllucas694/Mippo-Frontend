@@ -6,9 +6,19 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SearchIcon from "@mui/icons-material/Search";
 import CategoryIcon from "@mui/icons-material/Category";
 import UsersTable from "./UsersTable";
+import React from "react";
+import ModalAddUser from "./ModalAddUser";
 
 function PanelAddNewUser() {
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+
   return (
+    <>
+    <ModalAddUser open={open} handleClose={handleClose} />
     <ContainerGeneralPackageList>
       <div className="header-table">
         <Paper
@@ -45,6 +55,7 @@ function PanelAddNewUser() {
           Filtrar por ID
         </Button>
         <Button
+          onClick={handleOpen}
           startIcon={<CategoryIcon />}
           variant="contained"
           sx={{
@@ -57,6 +68,7 @@ function PanelAddNewUser() {
 
       <UsersTable />
     </ContainerGeneralPackageList>
+    </>
   );
 }
 
