@@ -48,6 +48,7 @@ import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturi
 import InventaryByCategory from "../InventoryByCategory";
 import { Badge } from "@mui/material";
 import AlertLowerStock from "../AlertLowerStock";
+import TableEmployee from "../UserManagement/TableEmployee";
 
 const drawerWidth = 240;
 
@@ -198,8 +199,12 @@ function SideBar() {
 
   const componentManagementUsers: IComponentManagement[] = [
     {
-      label: "Gerenciamento de clientes",
+      label: "clientes",
       detailPage: "AddNewUser",
+    },
+    {
+      label: "Funcionarios",
+      detailPage: "Employee",
     },
   ];
 
@@ -254,9 +259,9 @@ function SideBar() {
   };
 
   const backToHomePage = () => {
-    localStorage.removeItem('c__token');
-    window.location.href = '/'
-  }
+    localStorage.removeItem("c__token");
+    window.location.href = "/";
+  };
 
   const { pageName, setPageName } = usePagesManagement();
 
@@ -291,7 +296,11 @@ function SideBar() {
             </IconButton>
             <HeaderBoxDashboardPanel>
               <TitleAdmin>Painel administrativo</TitleAdmin>
-              <Button sx={{ height: "3rem" }} onClick={backToHomePage} variant="outlined">
+              <Button
+                sx={{ height: "3rem" }}
+                onClick={backToHomePage}
+                variant="outlined"
+              >
                 Sair da conta
               </Button>
             </HeaderBoxDashboardPanel>
@@ -327,7 +336,7 @@ function SideBar() {
               <ListItemIcon>
                 <PeopleIcon />
               </ListItemIcon>
-              <ListItemText primary="Clientes" />
+              <ListItemText primary="Usuários" />
               {openListUsers ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
             <Collapse in={openListUsers} timeout="auto" unmountOnExit>
@@ -569,6 +578,8 @@ function SideBar() {
             />
           ) : pageName === "lowerStock" ? (
             <AlertLowerStock />
+          ) : pageName === "Employee" ? (
+            <TableEmployee />
           ) : (
             <AdminPagesManagement />
           )}

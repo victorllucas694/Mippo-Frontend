@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const ModalBoxWrapper = styled.div`
-    width: 50%;
+    width: 60%;
     position: absolute;
-    left: 50%;
+    left: 40%;
     height: 100vh;
     border: 1px solid;  
     padding: 4rem;
