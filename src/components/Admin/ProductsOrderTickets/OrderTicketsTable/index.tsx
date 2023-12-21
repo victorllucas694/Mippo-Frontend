@@ -287,6 +287,7 @@ export default function OrderTicketsTable() {
             },
           }
         );
+        
 
         const newRows = foundedAllOrders.data.map((orders: any) => {
           const { order, user, product } = orders;
