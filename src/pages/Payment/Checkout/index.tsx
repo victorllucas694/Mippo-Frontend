@@ -87,7 +87,7 @@ export default function Checkout() {
       `/payment-shipping-cart/cart/${id}`
     );
 
-    console.log(products)
+    console.log("products", products);
 
     setCartProducts(products.data);
   };
@@ -358,7 +358,7 @@ export default function Checkout() {
 
           <div className="body-cart-items">
             <div className="all-data">
-              {cartProducts.map((products) => {
+              {cartProducts.map((products: any) => {
                 return (
                   <div className="item-product">
                     <h1>

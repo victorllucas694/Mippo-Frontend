@@ -55,6 +55,7 @@ function PaymentProduct() {
       }
     );
     const { foundedOrderProduct, ordersProduct } = orderHistory.data;
+    console.log("teste" , foundedOrderProduct)
     setProductOrders(ordersProduct);
   };
 
