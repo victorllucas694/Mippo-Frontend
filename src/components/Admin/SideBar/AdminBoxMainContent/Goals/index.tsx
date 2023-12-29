@@ -103,9 +103,9 @@ function Goals() {
           <div className="text">
             <h1>Vendas a vista</h1>
             <h3>
-              <strong>R$ {totalPriceData},00</strong> em vendas
+              <strong>R$ {totalPriceData.toFixed(2)}</strong> em vendas
             </h3>
-            <p>R$ {totalPriceData * 0.7} em lucro</p>
+            <p>R$ {totalPriceData * 0.98} em lucro</p>
           </div>
           <div className="image">
             <img
@@ -119,7 +119,7 @@ function Goals() {
             <h1>Custo total de envio</h1>
             <h3>
               {" "}
-              <strong>{"R$ 8.099,00"}</strong> em vendas
+              <strong>{"R$ 8.090"}</strong> em vendas
             </h3>
             <p>{"R$ 8.099,00"} a pagar</p>
           </div>

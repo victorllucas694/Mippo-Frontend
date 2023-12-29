@@ -88,7 +88,7 @@ function Events() {
             <strong>{visits}</strong> Visitas na ultima semana!
           </h2>
           <h2>
-            <strong>R$ {total}</strong> Vendidos essa semana
+            <strong>R$ {total.toFixed(2)}</strong> Vendidos essa semana
           </h2>
         </div>
       </div>

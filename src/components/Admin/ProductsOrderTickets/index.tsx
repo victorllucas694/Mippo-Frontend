@@ -46,18 +46,20 @@ function ProductsOrderTickets() {
             },
           }
         );
-
         setTotalOrders(foundedAllOrders.data.length);
 
-        foundedAllOrders.data.map((orders: any) => {
-          if (orders.product.Valor_a_prazo) {
-            console.log(orders.product.Valor_a_prazo);
-            priceTotal += parseFloat(orders.product.Valor_a_prazo);
-          }
-        });
-
-        const formattedTotal = parseBRL(priceTotal);
-        setShippingCartTotal(formattedTotal);
+        if(foundedAllOrders.data.admin === 'true') {
+          foundedAllOrders.data.map((orders: any) => {
+            console.log(orders)
+            if (orders.product.Valor_a_prazo) {
+              console.log(orders.product.Valor_a_prazo);
+              priceTotal += parseFloat(orders.product.Valor_a_prazo);
+            }
+          });
+  
+          const formattedTotal = parseBRL(priceTotal);
+          setShippingCartTotal(formattedTotal);
+        }
       } catch (error) {
         console.error("Error fetching orders:", error);
       }

@@ -8,8 +8,8 @@ import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TablePagination from "@mui/material/TablePagination";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import DeleteIcon from '@mui/icons-material/Delete';  
-import EditNoteIcon from '@mui/icons-material/EditNote';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditNoteIcon from "@mui/icons-material/EditNote";
 import { useAxios } from "../../../../providers/AxiosProvider";
 import { useAuth } from "../../../../contexts/AuthenticateContext";
 import Box from "@mui/material/Box";
@@ -41,7 +41,7 @@ function TableEmployee() {
           }
         );
 
-        console.log(response.data)
+        console.log(response.data);
         setDataEmployee(response.data); // Assumindo que a resposta contém um array de objetos com os dados dos funcionários
       } catch (error) {
         console.error("Erro ao buscar funcionários", error);
@@ -71,6 +71,41 @@ function TableEmployee() {
   const handleClose = () => setOpen(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
+
+  const headerDataTable = [
+    {
+      id: 0,
+      label: "Nome do funcionário",
+    },
+    {
+      id: 1,
+      label: "RG",
+    },
+    {
+      id: 2,
+      label: "CPF",
+    },
+    {
+      id: 3,
+      label: "Telefone",
+    },
+    {
+      id: 4,
+      label: "Supervisor",
+    },
+    {
+      id: 5,
+      label: "Cargo",
+    },
+    {
+      id: 6,
+      label: "Código do funcionario",
+    },
+    {
+      id: 7,
+      label: "Ações",
+    },
+  ];
 
   return (
     <>
@@ -127,20 +162,15 @@ function TableEmployee() {
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>Nome do funcionário</TableCell>
-              <TableCell align="center">RG</TableCell>
-              <TableCell align="center">CPF</TableCell>
-              <TableCell align="center">Telefone</TableCell>
-              <TableCell align="center">Supervisor</TableCell>
-              <TableCell align="center">Cargo</TableCell>
-              <TableCell align="center">Código do funcionario</TableCell>
-              <TableCell align="center">Ações</TableCell>
+              {headerDataTable.map((tableHeader: any) => {
+                return <TableCell align="center">{tableHeader.label}</TableCell>;
+              })}
             </TableRow>
-          </TableHead>
+          </TableHead>  
           <TableBody>
             {employees.map((employee: any) => (
               <React.Fragment key={employee.id}>
-                <TableRow >
+                <TableRow>
                   <TableCell>
                     <IconButton
                       aria-label="expand row"
@@ -154,17 +184,33 @@ function TableEmployee() {
                       )}
                     </IconButton>
                   </TableCell>
-                  <TableCell align="center">{employee.name + ' ' + employee.last_name}</TableCell>
+                  <TableCell align="center">
+                    {employee.name + " " + employee.last_name}
+                  </TableCell>
                   <TableCell align="center">{employee.RG}</TableCell>
                   <TableCell align="center">{employee.CPF}</TableCell>
                   <TableCell align="center">{employee.phone}</TableCell>
-                  <TableCell align="center">{employee.employee_supervisor}</TableCell>
+                  <TableCell align="center">
+                    {employee.employee_supervisor}
+                  </TableCell>
                   <TableCell align="center">{employee.position}</TableCell>
                   <TableCell align="center">{employee.numberJob}</TableCell>
                   <TableCell align="center">
                     <BoxActions>
-                      <DeleteIcon sx={{ width: '25px', height: '25px', color: 'rgb(80, 80, 80)' }} />
-                      <EditNoteIcon sx={{ width: '25px', height: '25px', color: 'rgb(80, 80, 80)' }} />
+                      <DeleteIcon
+                        sx={{
+                          width: "25px",
+                          height: "25px",
+                          color: "rgb(80, 80, 80)",
+                        }}
+                      />
+                      <EditNoteIcon
+                        sx={{
+                          width: "25px",
+                          height: "25px",
+                          color: "rgb(80, 80, 80)",
+                        }}
+                      />
                     </BoxActions>
                   </TableCell>
                 </TableRow>
@@ -175,7 +221,6 @@ function TableEmployee() {
                   >
                     <Collapse in={open} timeout="auto" unmountOnExit>
                       <Box sx={{ margin: 1 }}>
-                        {/* Adicione detalhes adicionais aqui se necessário */}
                       </Box>
                     </Collapse>
                   </TableCell>

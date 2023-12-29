@@ -46,10 +46,10 @@ import PanelAddNewUser from "../UserManagement/PanelAddNewUser";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import InventaryByCategory from "../InventoryByCategory";
+import TableEmployee from "../UserManagement/TableEmployee";
 import { Badge } from "@mui/material";
 import AlertLowerStock from "../AlertLowerStock";
-import TableEmployee from "../UserManagement/TableEmployee";
-
+  
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({

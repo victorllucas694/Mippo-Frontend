@@ -356,7 +356,7 @@ export default function Checkout() {
             <h1>Seus pedidos</h1>
           </div>
 
-          <div className="body-cart-items">
+          {/* <div className="body-cart-items">
             <div className="all-data">
               {cartProducts.map((products: any) => {
                 return (
@@ -392,8 +392,8 @@ export default function Checkout() {
                 <h1>Total:</h1> <h1>R$ {totalPrice + 50.99}</h1>
               </div>
             </div>
-          </div>
-        </div>
+          </div>*/} 
+        </div> 
       </PaymentAllSteps>
     </React.Fragment>
   );
