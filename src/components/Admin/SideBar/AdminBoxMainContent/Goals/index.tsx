@@ -3,6 +3,7 @@ import { GoalsContainer } from "./styles";
 import { useAxios } from "../../../../../providers/AxiosProvider";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../../../contexts/AuthenticateContext";
+import { Doughnut } from 'react-chartjs-2';
 
 interface ITableGoals {
   goalName: string;
@@ -76,7 +77,7 @@ function Goals() {
           </div>
           <div className="image">
             <img
-              src="https://img.freepik.com/vetores-gratis/ilustracao-do-conceito-de-crescimento-do-negocio_114360-8949.jpg?w=826&t=st=1700174328~exp=1700174928~hmac=0dd166db058cb3a72982af53263bb9c1a18e8130e5e230681e21050deb05e868"
+              src="https://img.freepik.com/vetores-gratis/ilustracao-do-conceito-de-notas_114360-5640.jpg?w=826&t=st=1703865428~exp=1703866028~hmac=5bba3d12aed546240d06775751641cabc7734bee09d444161633eb46a469946f"
               alt=""
             />
           </div>

@@ -1563,6 +1563,13 @@
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.8.0.tgz"
   integrity sha512-mrfKqIHnSZRyIzBcanNJmVQELTnX+qagEDlcKO90RgRBVOZGSGvZKeDihTRfWcqoDn5N/NkUcwWTccnpN18Tfg==
 
+"@types/chart.js@^2.9.41":
+  version "2.9.41"
+  resolved "https://registry.npmjs.org/@types/chart.js/-/chart.js-2.9.41.tgz"
+  integrity sha512-3dvkDvueckY83UyUXtJMalYoH6faOLkWQoaTlJgB4Djde3oORmNP0Jw85HtzTuXyliUHcdp704s0mZFQKio/KQ==
+  dependencies:
+    moment "^2.10.2"
+
 "@types/dompurify@^3.0.5":
   version "3.0.5"
   resolved "https://registry.npmjs.org/@types/dompurify/-/dompurify-3.0.5.tgz"
@@ -2091,10 +2098,10 @@ chance@^1.1.11:
   resolved "https://registry.npmjs.org/chance/-/chance-1.1.11.tgz"
   integrity sha512-kqTg3WWywappJPqtgrdvbA380VoXO2eu9VCV895JgbyHsaErXdyHK9LOZ911OvAk6L0obK7kDk9CGs8+oBawVA==
 
-chart.js@^4.1.1, chart.js@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.npmjs.org/chart.js/-/chart.js-4.4.0.tgz"
-  integrity sha512-vQEj6d+z0dcsKLlQvbKIMYFHd3t8W/7L2vfJIbYcfyPcRx92CsHqECpueN8qVGNlKyDcr5wBrYAYKnfu/9Q1hQ==
+chart.js@^4.1.1, chart.js@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.npmjs.org/chart.js/-/chart.js-4.4.1.tgz"
+  integrity sha512-C74QN1bxwV1v2PEujhmKjOZ7iUM4w6BWs23Md/6aOZZSlwMzeCIDGuZay++rBgChYru7/+QFeoQW0fQoP534Dg==
   dependencies:
     "@kurkle/color" "^0.3.0"
 
@@ -3126,6 +3133,11 @@ minimist@^1.2.6:
   integrity sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==
   dependencies:
     minimist "^1.2.6"
+
+moment@^2.10.2:
+  version "2.30.1"
+  resolved "https://registry.npmjs.org/moment/-/moment-2.30.1.tgz"
+  integrity sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==
 
 ms@2.1.2:
   version "2.1.2"

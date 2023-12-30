@@ -285,7 +285,7 @@ function Suppliers({ foundedPackage }: ChildProps) {
           >
             <InputBase
               sx={{ ml: 1, flex: 1, height: "3rem" }}
-              placeholder="Digite o nome do fornecedor"
+              placeholder="e do fornecedor"
             />
             <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
               <SearchIcon />

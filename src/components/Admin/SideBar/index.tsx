@@ -49,6 +49,7 @@ import InventaryByCategory from "../InventoryByCategory";
 import TableEmployee from "../UserManagement/TableEmployee";
 import { Badge } from "@mui/material";
 import AlertLowerStock from "../AlertLowerStock";
+import OrderTracking from "../OrderTracking";
   
 const drawerWidth = 240;
 
@@ -159,7 +160,7 @@ function SideBar() {
     },
     {
       label: "Rastreamento dos pedidos",
-      detailPage: "AddProduct",
+      detailPage: "getLocaleProduct",
     },
     {
       label: "Etiquetas de remessa",
@@ -580,6 +581,8 @@ function SideBar() {
             <AlertLowerStock />
           ) : pageName === "Employee" ? (
             <TableEmployee />
+          ) : pageName === "getLocaleProduct" ? (
+            <OrderTracking />
           ) : (
             <AdminPagesManagement />
           )}
