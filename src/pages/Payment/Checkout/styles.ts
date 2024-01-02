@@ -139,12 +139,12 @@ export const PaymentAllSteps = styled.div`
 
       .all-data {
         width: 100%;
-        border-bottom: 1px solid rgb(230, 230, 230);
         height: auto;
       }
 
       .item-product {
         width: 100%;
+        padding: 1rem;
         height: 3rem;
         display: flex;
         margin: 1rem 0; 

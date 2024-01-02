@@ -43,7 +43,6 @@ import GeneralPackageList from "../../Global/GeneralPackageList";
 import Suppliers from "../Dashboard/Products/Suppliers";
 import ProductsOrderTickets from "../ProductsOrderTickets";
 import PanelAddNewUser from "../UserManagement/PanelAddNewUser";
-import InventoryIcon from "@mui/icons-material/Inventory";
 import PrecisionManufacturingIcon from "@mui/icons-material/PrecisionManufacturing";
 import InventaryByCategory from "../InventoryByCategory";
 import TableEmployee from "../UserManagement/TableEmployee";

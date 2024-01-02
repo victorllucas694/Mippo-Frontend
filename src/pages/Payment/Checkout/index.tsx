@@ -67,17 +67,19 @@ export default function Checkout() {
 
     let arrToOfferPrices: number = 0;
     let totalAmount: number = 0;
-    console.log(products)
+    console.log(products);
     products.data.map((products: { getProductsByOrderId: any }) => {
       const { getProductsByOrderId } = products;
-      
 
-      const cleanNumber = getProductsByOrderId.Valor_a_vista.replace(/[^\d.]/g, '').replace(',', '.');
+      const cleanNumber = getProductsByOrderId.Valor_a_vista.replace(
+        /[^\d.]/g,
+        ""
+      ).replace(",", ".");
       const number = parseFloat(cleanNumber);
 
       totalAmount += number;
 
-      setTotalPriceFiltredData(totalAmount)
+      setTotalPriceFiltredData(totalAmount);
     });
     setTotalOfferPrice(arrToOfferPrices);
   };
@@ -202,9 +204,15 @@ export default function Checkout() {
                       </div>
                     </div>
                     <div className="body-paper">
-                      <h1>{
-                      products.city + " " + products.state + " " + products.CEP + ", " + products.country
-                      }</h1>
+                      <h1>
+                        {products.city +
+                          " " +
+                          products.state +
+                          " " +
+                          products.CEP +
+                          ", " +
+                          products.country}
+                      </h1>
                     </div>
                   </PaperBox>
                 );
@@ -356,14 +364,21 @@ export default function Checkout() {
             <h1>Seus pedidos</h1>
           </div>
 
-          {/* <div className="body-cart-items">
+          <div className="body-cart-items">
             <div className="all-data">
               {cartProducts.map((products: any) => {
                 return (
-                  <div className="item-product">
+                  <div className="item-product" style={{ borderBottom: '1px solid rgb(230, 230, 230)'}}>
                     <h1>
-                      {products.getProductsByOrderId.Marca}
+                      {products.getProductsByOrderId.Fornecedor +
+                        " " +
+                        products.getProductsByOrderId.Fabricante +
+                        " " +
+                        products.getProductsByOrderId.Marca_do_processador +
+                        " " +
+                        products.getProductsByOrderId.Tipo_de_processador}
                     </h1>
+                    <DeleteIcon sx={{ color: 'rgb(80, 80, 80)', cursor: 'pointer' }} />
                   </div>
                 );
               })}
@@ -373,7 +388,8 @@ export default function Checkout() {
                 <div className="item-product" key={index}>
                   {index === 0 ? (
                     <>
-                      <h1>Total sem desconto</h1> <h1>R$ {totalPriceFiltredData}</h1>
+                      <h1>Total sem desconto</h1>{" "}
+                      <h1>R$ {totalPriceFiltredData}</h1>
                     </>
                   ) : index === 1 ? (
                     <>
@@ -392,8 +408,8 @@ export default function Checkout() {
                 <h1>Total:</h1> <h1>R$ {totalPrice + 50.99}</h1>
               </div>
             </div>
-          </div>*/} 
-        </div> 
+          </div>
+        </div>
       </PaymentAllSteps>
     </React.Fragment>
   );

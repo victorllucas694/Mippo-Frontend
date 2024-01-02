@@ -14,6 +14,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import CloseIcon from '@mui/icons-material/Close';
+import TabsOrder from "./TabsOrder";
 
 function OrderTracking() {
   const [shippingCartTotal, setShippingCartTotal] = useState<string>("");
@@ -77,6 +78,7 @@ function OrderTracking() {
 
   return (
     <>
+
       <Snackbar
         open={open}
         autoHideDuration={6000}
@@ -131,7 +133,9 @@ function OrderTracking() {
           </Button>
         </div>
       </ContainerGeneralPackageList>
-      <OrderTrackingBoxWrapper></OrderTrackingBoxWrapper>
+      <OrderTrackingBoxWrapper>
+        <TabsOrder />
+      </OrderTrackingBoxWrapper>
     </>
   );
 }
