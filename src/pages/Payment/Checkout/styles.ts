@@ -150,6 +150,8 @@ export const PaymentAllSteps = styled.div`
         margin: 1rem 0; 
         align-items: center;
         justify-content: space-between;
+        position: relative;
+
 
         h1 {
           font-size: 1rem;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Fade, TextField, makeStyles, Button } from "@mui/material";
+import { Fade, TextField, Button } from "@mui/material";
 import { Box, styled, Theme } from "@mui/system";
 import { Modal } from "@mui/base/Modal";
 import Slide from "@mui/material/Slide";
@@ -45,24 +45,24 @@ const Backdrop = React.forwardRef<HTMLDivElement, { open?: boolean }>(
   }
 );
 
-const blue = {
-  200: "#99CCF3",
-  400: "#3399FF",
-  500: "#007FFF",
-};
+// const blue = {
+//   200: "#99CCF3",
+//   400: "#3399FF",
+//   500: "#007FFF",
+// };
 
-const grey = {
-  50: "#f6f8fa",
-  100: "#eaeef2",
-  200: "#d0d7de",
-  300: "#afb8c1",
-  400: "#8c959f",
-  500: "#6e7781",
-  600: "#57606a",
-  700: "#424a53",
-  800: "#32383f",
-  900: "#24292f",
-};
+// const grey = {
+//   50: "#f6f8fa",
+//   100: "#eaeef2",
+//   200: "#d0d7de",
+//   300: "#afb8c1",
+//   400: "#8c959f",
+//   500: "#6e7781",
+//   600: "#57606a",
+//   700: "#424a53",
+//   800: "#32383f",
+//   900: "#24292f",
+// };
 
 const StyledModal = styled(Modal)`
   position: fixed;
@@ -96,33 +96,33 @@ const style = (theme: Theme) => ({
   }`,
 });
 
-const TriggerButton = styled(Button)(
-  ({ theme }) => `
-    font-family: IBM Plex Sans, sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    box-sizing: border-box;
-    min-height: calc(1.5em + 22px);
-    border-radius: 12px;
-    padding: 6px 12px;
-    line-height: 1.5;
-    background: transparent;
-    border: 1px solid ${theme.palette.mode === "dark" ? grey[800] : grey[200]};
-    color: ${theme.palette.mode === "dark" ? grey[100] : grey[900]};
+// const TriggerButton = styled(Button)(
+//   ({ theme }) => `
+//     font-family: IBM Plex Sans, sans-serif;
+//     font-size: 0.875rem;
+//     font-weight: 600;
+//     box-sizing: border-box;
+//     min-height: calc(1.5em + 22px);
+//     border-radius: 12px;
+//     padding: 6px 12px;
+//     line-height: 1.5;
+//     background: transparent;
+//     border: 1px solid ${theme.palette.mode === "dark" ? grey[800] : grey[200]};
+//     color: ${theme.palette.mode === "dark" ? grey[100] : grey[900]};
   
-    &:hover {
-      background: ${theme.palette.mode === "dark" ? grey[800] : grey[50]};
-      border-color: ${theme.palette.mode === "dark" ? grey[600] : grey[300]};
-    }
+//     &:hover {
+//       background: ${theme.palette.mode === "dark" ? grey[800] : grey[50]};
+//       border-color: ${theme.palette.mode === "dark" ? grey[600] : grey[300]};
+//     }
   
-    &:focus-visible {
-      border-color: ${blue[400]};
-      outline: 3px solid ${
-        theme.palette.mode === "dark" ? blue[500] : blue[200]
-      };
-    }
-    `
-);
+//     &:focus-visible {
+//       border-color: ${blue[400]};
+//       outline: 3px solid ${
+//         theme.palette.mode === "dark" ? blue[500] : blue[200]
+//       };
+//     }
+//     `
+// );
 
 interface ISettingsModal {
   isOpen: boolean;
@@ -136,7 +136,7 @@ interface IShippingMethods {
 }
 
 export default function ModalAddNewSupplier({
-  handleOpen,
+  // handleOpen,
   handleClose,
   isOpen,
 }: ISettingsModal) {
@@ -250,8 +250,8 @@ export default function ModalAddNewSupplier({
   };
 
   const handleCloseSnackBar = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
+    // event?: React.SyntheticEvent | Event,
+    // reason?: string
   ) => {
     setOpen(false);
   };

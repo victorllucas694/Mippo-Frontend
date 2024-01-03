@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import axios, { AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 import axiosInstance from './AxiosInstance';
 
 interface AxiosProviderProps {

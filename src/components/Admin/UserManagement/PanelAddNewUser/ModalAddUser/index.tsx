@@ -8,27 +8,23 @@ import { TextField } from "@mui/material";
 import { useAxios } from "../../../../../providers/AxiosProvider";
 import { useAuth } from "../../../../../contexts/AuthenticateContext";
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+// const style = {
+//   position: "absolute" as "absolute",
+//   top: "50%",
+//   left: "50%",
+//   transform: "translate(-50%, -50%)",
+//   width: 400,
+//   bgcolor: "background.paper",
+//   border: "2px solid #000",
+//   boxShadow: 24,
+//   p: 4,
+// };
 
 interface IModalAddUser {
   open: boolean;
   handleClose: () => void;
 }
 
-interface ITextField {
-  id?: number;
-  label?: string;
-}
 
 function ModalAddUser({ open, handleClose }: IModalAddUser) {
   const [formValues, setFormValues] = React.useState({

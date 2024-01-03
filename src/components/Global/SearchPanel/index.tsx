@@ -9,15 +9,11 @@ import {
 } from "@mui/material";
 import { SearchPanelContainer } from "./styles";
 import * as React from "react";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import DirectionsIcon from "@mui/icons-material/Directions";
 import LocalGroceryStoreOutlinedIcon from "@mui/icons-material/LocalGroceryStoreOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import Badge from "@mui/material/Badge";
-import { useRequestsProductsContext } from "../../../contexts/RequestsProductsContext";
 import { useAuth } from "../../../contexts/AuthenticateContext";
-import { IMockProducts } from "../../../Types";
 import { useAxios } from "../../../providers/AxiosProvider";
 
 interface SearchPanelDataItem {
@@ -34,6 +30,7 @@ interface ISearchPanelDataPreset {
 function SearchPanel({ searchPanelDataPreset }: ISearchPanelDataPreset) {
   const [currency, setCurrency] = React.useState<string>("dollar");
   const { id } = useAuth();
+  console.log(searchPanelDataPreset)
 
   const userid = id;
   const [search, setSearch] = React.useState<string>("");

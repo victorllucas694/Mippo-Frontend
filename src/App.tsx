@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import HomePage from "./pages/Home";
@@ -10,7 +10,7 @@ import { InputProvider } from "./contexts/UserInputOutput";
 import { AuthProvider, useAuth } from "./contexts/AuthenticateContext";
 import Dashboard from "./components/Admin/Dashboard";
 import { PagesManagementProvider } from "./contexts/PagesManagementContext";
-import { RequestsProductsProvider } from "./contexts/RequestsProductsContext";
+import { RequestsProductsProvider } from "./contexts/RequestsProductsContext";  
 import ProductByCategory from "./pages/ProductsByCategory";
 import Payment from "./pages/Payment";
 import { MyContextProvider } from "./contexts/PaymentContext";
@@ -40,7 +40,7 @@ function App() {
 
 function AppContent() {
   const { axiosInstance } = useAxios();
-  const { setUserId, id } = useAuth();
+  const { setUserId } = useAuth();
   const [userAllowed, setUserAllowed] = useState<boolean>(false);
 
   useEffect(() => {

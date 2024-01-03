@@ -1,9 +1,7 @@
-import Button from "@mui/material/Button";
 import { GoalsContainer } from "./styles";
 import { useAxios } from "../../../../../providers/AxiosProvider";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../../../contexts/AuthenticateContext";
-import { Doughnut } from 'react-chartjs-2';
 
 interface ITableGoals {
   goalName: string;
@@ -47,22 +45,22 @@ function Goals() {
     }
   };
 
-  const tableGoals: ITableGoals[] = [
-    {
-      goalName: "Ajustar para o dia das crianças",
-      status: "in progress",
-      progress: "10%",
-      dueDate: "12/10",
-      team: "Desenvolvimento",
-    },
-    {
-      goalName: "Ajustar para a black friday",
-      status: "To do",
-      progress: "0%",
-      dueDate: "24/11",
-      team: "Marketing",
-    },
-  ];
+  // const tableGoals: ITableGoals[] = [
+  //   {
+  //     goalName: "Ajustar para o dia das crianças",
+  //     status: "in progress",
+  //     progress: "10%",
+  //     dueDate: "12/10",
+  //     team: "Desenvolvimento",
+  //   },
+  //   {
+  //     goalName: "Ajustar para a black friday",
+  //     status: "To do",
+  //     progress: "0%",
+  //     dueDate: "24/11",
+  //     team: "Marketing",
+  //   },
+  // ];
 
   return (
     <GoalsContainer>

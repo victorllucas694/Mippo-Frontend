@@ -363,12 +363,14 @@ export default function Checkout() {
           <div className="header-cart-items">
             <h1>Seus pedidos</h1>
           </div>
-
           <div className="body-cart-items">
             <div className="all-data">
               {cartProducts.map((products: any) => {
                 return (
-                  <div className="item-product" style={{ borderBottom: '1px solid rgb(230, 230, 230)'}}>
+                  <div
+                    className="item-product"
+                    style={{ borderBottom: "1px solid rgb(230, 230, 230)" }}
+                  >
                     <h1>
                       {products.getProductsByOrderId.Fornecedor +
                         " " +
@@ -378,7 +380,9 @@ export default function Checkout() {
                         " " +
                         products.getProductsByOrderId.Tipo_de_processador}
                     </h1>
-                    <DeleteIcon sx={{ color: 'rgb(80, 80, 80)', cursor: 'pointer' }} />
+                    <DeleteIcon
+                      sx={{ color: "rgb(80, 80, 80)", cursor: "pointer" }}
+                    />
                   </div>
                 );
               })}
@@ -405,7 +409,13 @@ export default function Checkout() {
             </div>
             <div className="all-final-data">
               <div className="item-product">
-                <h1>Total:</h1> <h1>R$ {totalPrice + 50.99}</h1>
+                  {totalPrice === 0 ? (
+                    <div className="empty-product">
+
+                    </div>
+                  ) : (
+                    `Total: R$ ${totalPrice + 50.99}`
+                  )}
               </div>
             </div>
           </div>

@@ -2,9 +2,6 @@ import { useAuth } from "../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { HeaderPaper } from "./styles";
 import { useEffect, useState } from "react";
-import Badge from '@mui/material/Badge';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
 
 interface IHeaderButton {
   id: number;

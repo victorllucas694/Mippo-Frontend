@@ -20,15 +20,6 @@ function ProductDescription() {
   const [headerComment, setHeaderComment] = useState(
     "Código da sorte: AQFO1KJ"
   );
-  const [breadcrumb, setBreadcrumb] = useState(
-    "Faça o seu login ou registre uma conta caso ainda não possua nenhum cadastro"
-  );
-
-  const [loginBoxLabel, setLoginBoxLabel] = useState("Já tenho uma conta");
-
-  const [registerBoxLabel, setRegisterBoxLabel] = useState(
-    "Ainda não tenho uma conta"
-  );
 
   const buttonsTopHeaderData = [
     {

@@ -1,9 +1,7 @@
-import Button from "@mui/material/Button";
 import { MemberContainer } from "./styles";
 import { useState } from "react";
 import axiosInstance from "../../../../../providers/AxiosInstance";
-import { Switch } from "@mui/material";
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import {
   Chart as ChartJS,
   LinearScale,
@@ -14,8 +12,7 @@ import {
   Legend,
   Tooltip,
 } from "chart.js";
-import { Bar, Chart } from "react-chartjs-2";
-import faker from "faker";
+import { Bar } from "react-chartjs-2";
 
 interface IMembersAdministration {
   id: number;
@@ -65,7 +62,7 @@ const options = {
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
+// const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
 
 function triggerTooltip(chart: ChartJS | null) {
@@ -105,6 +102,7 @@ function Members() {
   const [admin, setAdmin] = useState<IMembersAdministration[]>([]);
 
   async function getAllUserOnDataBase() {
+    console.log(admin)
     const c_tokenData = localStorage.getItem("c__token");
     if (c_tokenData) {
       const req = await axiosInstance.get("/register-user/find-user", {
@@ -116,7 +114,7 @@ function Members() {
       setAdmin(req.data);
     }
   }
-  const [containerWidth, setContainerWidth] = useState(window.innerWidth * 0.8); // Defina a largura inicial do contêiner
+  // const [containerWidth, setContainerWidth] = useState(window.innerWidth * 0.8); // Defina a largura inicial do contêiner
 
   const chartRef = useRef<ChartJS>(null);
   useEffect(() => {
@@ -124,6 +122,7 @@ function Members() {
     triggerTooltip(chart);
     getAllUserOnDataBase();
   }, []);
+
   const data = {
     labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
     datasets: [
@@ -150,14 +149,14 @@ function Members() {
     ],
   };
 
-  const options = {
-    maintainAspectRatio: false, // Permitir ajuste da altura
-    scales: {
-      y: {
-        beginAtZero: true,
-      },
-    },
-  };
+  // const options = {
+  //   maintainAspectRatio: false, // Permitir ajuste da altura
+  //   scales: {
+  //     y: {
+  //       beginAtZero: true,
+  //     },
+  //   },
+  // };
 
   return (
     <MemberContainer>

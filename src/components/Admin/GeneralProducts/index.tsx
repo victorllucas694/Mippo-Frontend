@@ -1,4 +1,4 @@
-import { Button, Checkbox, FormControlLabel, Pagination } from "@mui/material";
+import { Button, Pagination } from "@mui/material";
 import { useRequestsProductsContext } from "../../../contexts/RequestsProductsContext";
 import { MainComponentOnPage } from "./styles";
 import { useEffect, useState } from "react";
@@ -9,10 +9,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
-import axiosInstance from "../../../providers/AxiosInstance";
-import { useAxios } from "../../../providers/AxiosProvider";
-import { useAuth } from "../../../contexts/AuthenticateContext";
-import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
 import VolumeDown from "@mui/icons-material/VolumeDown";
@@ -50,6 +46,7 @@ type SubCategory = {
 };
 
 function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
+  console.log(categoryBySearchProductPage)
   const categoryMap: Record<string, () => JSX.Element> = {
     Computadores: handleComputadores,
     Notebook: handleNotebooks,
@@ -65,16 +62,8 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     filterArrayByProductInput,
     searchInput,
   } = useRequestsProductsContext();
-  const [categoriesName, setCategoriesName] = useState<Category[] | null>(null);
 
   const { products } = useProductsContext();
-
-  const [categoryProp, setCategoryProp] = useState<string>("");
-  type CategoryMap = {
-    [key: string]: () => void;
-  };
-
-  const defaultContent: JSX.Element = <div>Conteúdo não encontrado</div>;
 
   const [contentToRender, setContentToRender] = useState<JSX.Element | null>(
     null
@@ -99,16 +88,6 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     return category;
   }
 
-  const [selectedItems, setSelectedItems] = useState<{ [key: string]: string }>(
-    {}
-  );
-  const [filter, setFilter] = useState<{ [key: string]: string }>({});
-  const [newSelectedItems, setNewSelectedItems] = useState<{
-    [key: string]: string;
-  }>({});
-
-  const { axiosInstance } = useAxios();
-  const { id } = useAuth();
   const [checkboxStates, setCheckboxStates] = useState<{
     [subcategory: string]: { [value: string]: boolean };
   }>({});
@@ -132,7 +111,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
   function handleComputadores(): JSX.Element {
     return (
       <div className="category-item">
-        {computerCategory?.map((items, index) => {
+        {computerCategory?.map((items: any, index: any) => {
           return (
             <div key={index} className="item">
               <div className="item-header">
@@ -141,11 +120,11 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
               </div>
 
               <div className="item-body">
-                {items.subcategories.map((categories) => {
+                {items.subcategories.map((categories: any) => {
                   return (
                     <div key={categories.name}>
                       <h2>{categories.name}</h2>
-                      {categories.valor.map((value) => (
+                      {categories.valor.map((value: any) => (
                         <div key={value}>
                           <p>
                             <input
@@ -190,7 +169,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
   function handleNotebooks(): JSX.Element {
     return (
       <div className="category-item">
-        {NotebookDataCategory?.map((items, index) => {
+        {NotebookDataCategory?.map((items: any, index: any) => {
           return (
             <div key={index} className="item">
               <div className="item-header">
@@ -199,11 +178,11 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
               </div>
 
               <div className="item-body">
-                {items.subcategories.map((categories) => {
+                {items.subcategories.map((categories:any) => {
                   return (
                     <div key={categories.name}>
                       <h2>{categories.name}</h2>
-                      {categories.valor.map((value) => (
+                      {categories.valor.map((value:any) => (
                         <div key={value}>
                           <p>
                             <input
@@ -237,7 +216,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
   function HandleHardware(): JSX.Element {
     return (
       <div className="category-item">
-        {HardwareDataCategory?.map((items, index) => {
+        {HardwareDataCategory?.map((items:any, index:any) => {
           return (
             <div key={index} className="item">
               <div className="item-header">
@@ -246,11 +225,11 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
               </div>
 
               <div className="item-body">
-                {items.subcategories.map((categories) => {
+                {items.subcategories.map((categories:any) => {
                   return (
                     <div key={categories.name}>
                       <h2>{categories.name}</h2>
-                      {categories.valor.map((value) => (
+                      {categories.valor.map((value:any) => (
                         <div key={value}>
                           <p>
                             <input
@@ -284,7 +263,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
   function handleAcessorios(): JSX.Element {
     return (
       <div className="category-item">
-        {accessoriesCategory?.map((items, index) => {
+        {accessoriesCategory?.map((items:any, index:any) => {
           return (
             <div key={index} className="item">
               <div className="item-header">
@@ -302,7 +281,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
                   <VolumeDown />
                   <Slider
                     aria-label="Volume"
-                    value={value}
+                    // value={value}
                     onChange={handleChange}
                   />
                   <VolumeUp />
@@ -312,11 +291,11 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
                   defaultValue={30}
                   aria-label="Disabled slider"
                 />
-                {items.subcategories.map((categories) => {
+                {items.subcategories.map((categories:any) => {
                   return (
                     <div key={categories.name}>
                       <h2>{categories.name}</h2>
-                      {categories.valor.map((value) => (
+                      {categories.valor.map((value:any) => (
                         <div key={value}>
                           <p>
                             <input
@@ -353,6 +332,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     page: number
   ) => {
     setCurrentPage(page);
+    console.log(event)
   };
   let totalPages;
   let productsToShow;
@@ -367,7 +347,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
 
   return (
     <MainComponentOnPage>
-      <div className="filters">{contentToRender}</div>
+      <div className="filters">{contentToRender}</div>  
       <div className="body-content">
         <div className="header-dody-filter">
           <h1>{category}</h1>

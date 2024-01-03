@@ -9,7 +9,7 @@ import axiosInstance from "../providers/AxiosInstance";
 
 let rows = [];
 
-const RequestsProductsContext = createContext(undefined);
+export const RequestsProductsContext = createContext(undefined);
 
 export function RequestsProductsProvider({ children }) {
   const [productSelected, setProductSelected] = useState(null);

@@ -2,8 +2,7 @@ import * as React from "react";
 import { styled } from "@mui/joy/styles";
 import Input from "@mui/joy/Input";
 import CheckCircleOutlined from "@mui/icons-material/CheckCircleOutlined";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useAxios } from "../../../providers/AxiosProvider";
+import { useState } from "react";
 
 const StyledInput = styled("input")({
   border: "none",
@@ -76,7 +75,7 @@ interface IProductCode {
 }
 
 function RealTimeInputValidate({ productCode, setProductCode } : IProductCode) {
-  const { axiosInstance } = useAxios();
+  // const { axiosInstance } = useAxios();
   const [foundedProductCode, setFoundedProductCode] = useState<boolean>(false);
 
   return (

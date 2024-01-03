@@ -8,12 +8,6 @@ import { useAxios } from "../../../providers/AxiosProvider";
 import { useAuth } from "../../../contexts/AuthenticateContext";
 import { OrderTrackingBoxWrapper } from "./styles";
 import Snackbar from '@mui/material/Snackbar';
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import CloseIcon from '@mui/icons-material/Close';
 import TabsOrder from "./TabsOrder";
 
 function OrderTracking() {
@@ -30,8 +24,10 @@ function OrderTracking() {
     return formatoDinheiro.format(valor);
   };
   const [totalOrders, setTotalOrders] = useState<number>(0);
+  
 
   useEffect(() => {
+    console.log(totalOrders)
     const token = localStorage.getItem("c__token");
     const findAllOrders = async () => {
       try {

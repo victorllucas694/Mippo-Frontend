@@ -55,7 +55,6 @@ const columns: readonly Column[] = [
     id: "actions",
     label: "Actions",
     minWidth: 100,
-    align: "center",
     format: () => "", // Empty string, as we will render custom content in TableBody
   },
 ];
@@ -88,7 +87,7 @@ export default function UsersTable() {
     }
   };
 
-  const handleViewClick = async (userId: number) => {};
+  // const handleViewClick = async (userId: number) => {};
 
   const handleDeleteClick = async (userId: number) => {
 
@@ -116,6 +115,7 @@ export default function UsersTable() {
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
+    console.log(event)
   };
 
   const handleChangeRowsPerPage = (
@@ -145,16 +145,20 @@ export default function UsersTable() {
           <TableBody>
             {userRows
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => (
+              .map((row: any) => (
                 <TableRow
                   hover
                   role="checkbox"
                   tabIndex={-1}
                   key={row.id.toString()}
                 >
-                  {columns.map((column) => {
+                  {columns.map((column: any) => {
                     const value = row[column.id];
                     if (column.id === "actions") {
+                      function handleViewClick(id: any): void {
+                        throw new Error("Function not implemented.");
+                      }
+
                       return (
                         <TableCell key={column.id} align={column.align}>
                           <RemoveRedEyeIcon

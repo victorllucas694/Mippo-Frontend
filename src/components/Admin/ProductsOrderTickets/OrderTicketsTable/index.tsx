@@ -18,10 +18,8 @@ import Tooltip from "@mui/material/Tooltip";
 import { visuallyHidden } from "@mui/utils";
 import { useAxios } from "../../../../providers/AxiosProvider";
 import { useAuth } from "../../../../contexts/AuthenticateContext";
-import { Button } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
-import DOMPurify from "dompurify";
 import { StatusProduct } from "../../InventoryByCategory/InventoryTable/styles";
 import { ActionsBoxWrapper } from "../../Dashboard/Products/Suppliers/styles";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -322,6 +320,7 @@ export default function OrderTicketsTable() {
     event: React.MouseEvent<unknown>,
     property: keyof Data
   ) => {
+    console.log(event)
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
@@ -337,6 +336,7 @@ export default function OrderTicketsTable() {
   };
 
   const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+    console.log(event)
     const selectedIndex = selected.indexOf(id);
     let newSelected: readonly number[] = [];
 
@@ -360,9 +360,9 @@ export default function OrderTicketsTable() {
     setPage(0);
   };
 
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
+  // const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   setDense(event.target.checked);
+  // };
 
   const isSelected = (id: number) => selected.indexOf(id) !== -1;
 
@@ -397,7 +397,7 @@ export default function OrderTicketsTable() {
               rowCount={rows.length}
             />
             <TableBody>
-              {visibleRows.map((row, index) => {
+              {visibleRows.map((row: any, index: number) => {
                 const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 

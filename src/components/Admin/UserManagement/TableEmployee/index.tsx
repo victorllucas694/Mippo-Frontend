@@ -54,21 +54,21 @@ function TableEmployee() {
   const { id } = useAuth();
   const token = localStorage.getItem("c__token");
 
-  const getAllEmployees = async () => {
-    const employers = await axiosInstance.get(
-      `/employer-management/find/all/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  // const getAllEmployees = async () => {
+  //   const employers = await axiosInstance.get(
+  //     `/employer-management/find/all/${id}`,
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     }
+  //   );
 
-    console.log(employers);
-  };
+  //   console.log(employers);
+  // };
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
 

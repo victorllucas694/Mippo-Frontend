@@ -33,7 +33,7 @@ function ProductsOrderTickets() {
     return formatoDinheiro.format(valor);
   };
   const [totalOrders, setTotalOrders] = useState<number>(0);
-
+  console.log(totalOrders)
   useEffect(() => {
     const token = localStorage.getItem("c__token");
     const findAllOrders = async () => {

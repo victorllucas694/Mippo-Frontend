@@ -3,7 +3,6 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import PriceChangeIcon from "@mui/icons-material/PriceChange";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
 import PrivacyTipIcon from "@mui/icons-material/PrivacyTip";
-import Slider from "react-slick";
 import SwipeableTextMobileStepper from "./SwipeableTextMobileStepper";
 
 interface IFlags {

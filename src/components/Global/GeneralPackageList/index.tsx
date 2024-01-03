@@ -7,7 +7,7 @@ import { Button } from "@mui/material";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { useAuth } from "../../../contexts/AuthenticateContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TableProducts from "../TableProducts";
 import DOMPurify from "dompurify";
 
@@ -31,7 +31,9 @@ function GeneralPackageList() {
   const { id } = useAuth();
   
   const [foundedPackage, setFoundedPackage] = useState<IPackageDataType[] | null>(null);
+
   const searchProductByInputProductCode = async () => {
+    console.log(foundedPackage);
     const token = localStorage.getItem("c__token");
     const foundedAllProductsByCategory = await axiosInstance(
       `products-management/get/all/products/${id}/${searchProductCode}`, {

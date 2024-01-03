@@ -42,28 +42,20 @@ interface Column {
   render?: (value: number, row: any) => JSX.Element;
 }
 
-interface IPackageData {
-  Nome_do_pacote: string;
-  Codigo_do_pacote: string;
-  Categoria_do_Pacote: string;
-  Modelo_do_pacote: string;
-  Distribuidor: string;
-  Estado_do_Produto: string;
-}
 
-interface IPackageDataType {
-  User_Id: number;
-  drop_brand: string;
-  drop_categories: string;
-  drop_code: string;
-  drop_description: string;
-  drop_products_state: string;
-  drop_seller: string;
-  id: number;
-  min_price: string;
-  model_product: string;
-  product_name: string;
-}
+// interface IPackageDataType {
+//   User_Id: number;
+//   drop_brand: string;
+//   drop_categories: string;
+//   drop_code: string;
+//   drop_description: string;
+//   drop_products_state: string;
+//   drop_seller: string;
+//   id: number;
+//   min_price: string;
+//   model_product: string;
+//   product_name: string;
+// }
 
 interface ISupplierTable {
   NIF: string;
@@ -75,17 +67,9 @@ interface ISupplierTable {
 
 let rows: ISupplierTable[] = [];
 
-interface ChildProps {
-  foundedPackage: IPackageDataType[] | null;
-  ISupplierTable: IPackageDataType[] | null;
-}
-
-function Suppliers({ foundedPackage }: ChildProps) {
+function  Suppliers() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(15);
-  const [renderDataPackages, setRenderDataPackages] = React.useState<
-    IPackageDataType[] | null
-  >(null);
   const [suppliersArrData, setSuppliersArrData] = React.useState<
     ISupplierTable[] | null
   >(null);
@@ -109,7 +93,9 @@ function Suppliers({ foundedPackage }: ChildProps) {
         },
       }
     );
+    console.log(deletePackageAndAllProducts)
   };
+  console.log(deleteAllProductsAndPackageByDropCode)
 
   const [activeSuppliers, setActiveSuppliers] = React.useState<number>(0);
 
@@ -170,7 +156,7 @@ function Suppliers({ foundedPackage }: ChildProps) {
       label: "status",
       minWidth: 180,
       format: (value: number) => value.toFixed(2),
-      render: (value: number, row: any) => (
+      render: () => (
         <ActionsBoxWrapper>
           <StatusProduct>
             <div className="circle-button"></div>
@@ -185,7 +171,7 @@ function Suppliers({ foundedPackage }: ChildProps) {
       minWidth: 180,
       align: "right",
       format: (value: number) => value.toString(),
-      render: (value: number, row: any) => (
+      render: () => (
         <ActionsBoxWrapper>
           <div className="buttons-actions">
             <div className="action">
@@ -222,6 +208,7 @@ function Suppliers({ foundedPackage }: ChildProps) {
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
+    console.log(event)
   };
 
   const handleChangeRowsPerPage = (
@@ -243,6 +230,7 @@ function Suppliers({ foundedPackage }: ChildProps) {
     const sendSupplierBasicDataPayload = await axiosInstance.get(
       `/suppliers-management/get/all/suppliers/${id}`
     );
+    console.log(sendSupplierBasicDataPayload)
   };
   const TicketsData: TicketsData[] = [
     {

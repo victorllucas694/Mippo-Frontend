@@ -1,4 +1,3 @@
-import { IMockProducts } from "../../../Types";
 import { IProductSelected } from "../../../contexts/RequestsProductsContext";
 import { BoxProductReview, ContainerProductListDetails } from "./styles";
 import Tabs from "@mui/material/Tabs";

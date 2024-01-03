@@ -19,7 +19,6 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { TablePagination } from "@mui/material";
 import { ActionsBoxWrapper } from "../../Dashboard/Products/Suppliers/styles";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function createData(

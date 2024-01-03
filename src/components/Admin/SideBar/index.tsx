@@ -242,9 +242,9 @@ function SideBar() {
 
   const [categoryName, setCategoryName] = React.useState<string>("");
 
-  const setProductCategory = (category: string) => {
-    setCategoryName(category);
-  };
+  // const setProductCategory = (category: string) => {
+  //   setCategoryName(category);
+  // };
 
   const [openListManagement, setOpenListManagement] = React.useState(false);
 
@@ -252,11 +252,11 @@ function SideBar() {
     setOpenListManagement(!openListManagement);
   };
 
-  const [lowerStock, setLowerStock] = React.useState<string>("");
+  // const [lowerStock, setLowerStock] = React.useState<string>("");
 
-  const handleOpenAlertProductStock = () => {
-    setLowerStock("lowerStock");
-  };
+  // const handleOpenAlertProductStock = () => {
+  //   setLowerStock("lowerStock");
+  // };
 
   const backToHomePage = () => {
     localStorage.removeItem("c__token");
@@ -547,7 +547,7 @@ function SideBar() {
               <CreateNewProduct />
             </>
           ) : pageName === "SupplierList" ? (
-            <Suppliers foundedPackage={null} ISupplierTable={null} />
+            <Suppliers />
           ) : pageName === "UpdateProduct" ? (
             <UpdateProduct />
           ) : pageName === "OpenProduct" ? (

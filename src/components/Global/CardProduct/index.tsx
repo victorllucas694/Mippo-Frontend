@@ -1,12 +1,12 @@
-import {
-  BoxCountAdd,
-  CardBox,
-  DescriptionProductCard,
-  OffBox,
-  PriceProductCard,
-} from "./styles";
+// import {
+//   BoxCountAdd,
+//   CardBox,
+//   DescriptionProductCard,
+//   OffBox,
+//   PriceProductCard,
+// } from "./styles";
 import { styled } from "@mui/material/styles";
-import CardMedia from "@mui/material/CardMedia";
+// import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Rating from "@mui/material/Rating";
@@ -19,14 +19,14 @@ import Chip from "@mui/joy/Chip";
 import Link from "@mui/joy/Link";
 import Typography from "@mui/joy/Typography";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import { useProductsContext } from "../../../contexts/CardContexts";
+// import { useProductsContext } from "../../../contexts/CardContexts";
 import { IMockProducts } from "../../../Types";
 import { useRequestsProductsContext } from "../../../contexts/RequestsProductsContext";
 import { useAuth } from "../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { useState } from "react";
-import { Alert, Snackbar } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import { Alert, Snackbar } from "@mui/material";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 interface ExpandMoreProps extends IconButtonProps {
   expand: boolean;
@@ -81,9 +81,9 @@ function CardProduct({ productsList }: IProductData) {
     verifyUserLoggedByAddProductToShoppingCart,
   } = useRequestsProductsContext();
 
-  const [productImagesObject, setProductImagesObject] = useState<
-    IProductData | null | undefined
-  >(null);
+  // const [productImagesObject, setProductImagesObject] = useState<
+  //   IProductData | null | undefined
+  // >(null);
 
   const { axiosInstance } = useAxios();
 
@@ -121,6 +121,7 @@ function CardProduct({ productsList }: IProductData) {
   const verifyInventary = () => {
     if (productsList.Quantidade_em_estoque <= 1) {
       setProductInInventory(true);
+      console.log(productInInventory)
     } else {
       setProductInInventory(false);
     }

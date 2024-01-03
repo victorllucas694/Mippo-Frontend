@@ -5,7 +5,6 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import CardProduct from "../CardProduct";
 import { IMockProducts } from "../../../Types";
 import { useProductsContext } from "../../../contexts/CardContexts";
-import { useAxios } from "../../../providers/AxiosProvider";
 
 interface IGenericListData {
   sliderProductTitle: React.ReactNode;
@@ -15,6 +14,8 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
   interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
   }
+
+  console.log(sliderProductTitle)
 
   const ExpandMore = styled((props: ExpandMoreProps) => {
     const { expand, ...other } = props;
@@ -64,12 +65,12 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
   })
   const [currentPage, setCurrentPage] = React.useState(1);
   const itemsPerPage = 8; 
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    page: number
-  ) => {
-    setCurrentPage(page);
-  };
+  // const handlePageChange = (
+  //   event: React.ChangeEvent<unknown>,
+  //   page: number
+  // ) => {
+  //   setCurrentPage(page);
+  // };
   let totalPages;
   let productsToShow;
 

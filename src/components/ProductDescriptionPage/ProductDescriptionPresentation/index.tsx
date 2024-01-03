@@ -7,12 +7,7 @@ import PaymentIcon from "@mui/icons-material/Payment";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import { useRequestsProductsContext } from "../../../contexts/RequestsProductsContext";
 import {
-  Box,
   Button,
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-  Pagination,
   Rating,
   Typography,
 } from "@mui/material";

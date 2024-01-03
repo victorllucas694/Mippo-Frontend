@@ -1,7 +1,6 @@
 import * as React from "react";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
@@ -9,8 +8,7 @@ import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { useAuth } from "../../../contexts/AuthenticateContext";
-import { Button, IconButton } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
+import { Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 interface Column {
@@ -82,6 +80,7 @@ function TableProducts() {
         },
       }
     );
+    console.log(deletePackageAndAllProducts)
   };
 
   const getListAllProductsToRender = async () => {
@@ -160,7 +159,7 @@ function TableProducts() {
       minWidth: 200,
       align: "right",
       format: (value: number) => value.toString(),
-      render: (value: number, row: any) => (
+      render: (row: any) => (
         <Button
           onClick={() => deleteAllProductsAndPackageByDropCode(row)}
           sx={{
@@ -188,7 +187,7 @@ function TableProducts() {
       minWidth: 200,
       align: "right",
       format: (value: number) => value.toString(),
-      render: (value: number, row: any) => (
+      render: (row: any) => (
         <Button
           onClick={() => deleteAllProductsAndPackageByDropCode(row)}
           startIcon={<DeleteIcon />}
@@ -230,6 +229,7 @@ function TableProducts() {
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
+    console.log(event)
   };
 
   const handleChangeRowsPerPage = (

@@ -1,13 +1,11 @@
+import { SupportRootContainer } from "./styles";
 import { useState, useEffect } from "react";
 import Header from "../../components/Global/Header";
 import SearchPanel from "../../components/Global/SearchPanel";
-import PaymentProduct from "../../components/Payment";
 import OptionsHeader from "../../components/Global/OptionsPanel";
-import Checkout from "./Checkout";
-import Footer from "../../components/Global/Footer";
 
-function Payment() {
-  const [headerComment, setHeaderComment] = useState(
+function Support() {
+  const [ headerComment ] = useState(
     "Código da sorte: AQFO1KJ"
   );
 
@@ -68,22 +66,19 @@ function Payment() {
       label: "Softwares",
     },
   ];
+
   return (
     <>
-      <Header
-        headerInitial={headerComment}
-        buttonsTopHeaderData={buttonsTopHeaderData}
-      />
-      <SearchPanel searchPanelDataPreset={searchPanelDataPreset} />
-      <OptionsHeader categoriesBoxProps={categoriesBoxProps} />
-      <Checkout />
-      <br />
-      <br />
-      <br />
-      <br />
-      <Footer />
+      <SupportRootContainer>
+        <Header
+          headerInitial={headerComment}
+          buttonsTopHeaderData={buttonsTopHeaderData}
+        />
+        <SearchPanel searchPanelDataPreset={searchPanelDataPreset} />
+        <OptionsHeader categoriesBoxProps={categoriesBoxProps} />
+      </SupportRootContainer>
     </>
   );
 }
 
-export default Payment;
+export default Support;

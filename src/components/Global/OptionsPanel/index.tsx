@@ -1,11 +1,9 @@
 import { OptionsPanelWrapper } from "./styles";
-import React, { useState } from "react";
-import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useRequestsProductsContext } from "../../../contexts/RequestsProductsContext";
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import { Button } from "@mui/material";
-import BlurOnIcon from '@mui/icons-material/BlurOn';
+import BlurOnIcon from "@mui/icons-material/BlurOn";
 
 interface categoriesBoxProps {
   id: number;
@@ -17,9 +15,7 @@ interface ISearchPanelDataPreset {
 }
 
 function OptionsHeader({ categoriesBoxProps }: ISearchPanelDataPreset) {
-  const [generalCategory, setGeneralCategory] = useState<string | null>(null);
-  const { setterGlobalProductCategoryByNavbar, globalCategory } =
-    useRequestsProductsContext();
+  const { setterGlobalProductCategoryByNavbar } = useRequestsProductsContext();
 
   return (
     <OptionsPanelWrapper>
@@ -45,7 +41,7 @@ function OptionsHeader({ categoriesBoxProps }: ISearchPanelDataPreset) {
             </span>
           </Button>
         </div>
-        <BlurOnIcon sx={{ cursor: 'pointer' }} />
+        <BlurOnIcon sx={{ cursor: "pointer" }} />
       </div>
       <div className="categories-box">
         {categoriesBoxProps.map((categoriesListData: categoriesBoxProps, _) => {
@@ -63,7 +59,7 @@ function OptionsHeader({ categoriesBoxProps }: ISearchPanelDataPreset) {
                 }}
                 endIcon={<KeyboardArrowDownIcon />}
               >
-                <span  style={{ gap: "1rem" }}>
+                <span style={{ gap: "1rem" }}>
                   <WidgetsIcon
                     sx={{ margin: "-.4rem .7rem", color: "rgb(80, 80, 80)" }}
                   />

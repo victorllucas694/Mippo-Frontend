@@ -5,12 +5,6 @@ import Link from "@mui/material/Link";
 import { useProductsContext } from "../../contexts/CardContexts";
 import { ISocialsDataBoxes } from "../../Types";
 import { useRequestsProductsContext } from "../../contexts/RequestsProductsContext";
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Slider from "@mui/material/Slider";
-import VolumeDown from "@mui/icons-material/VolumeDown";
-import VolumeUp from "@mui/icons-material/VolumeUp";
 
 interface Category {
   categoryBySearchProductPage: string | null;
@@ -27,6 +21,7 @@ function ProductDescriptionPage({ categoryBySearchProductPage }: Category) {
     value: number | number[],
     activeThumb: number
   ): void {
+    console.log(event, value, activeThumb)
     throw new Error("Function not implemented.");
   }
 

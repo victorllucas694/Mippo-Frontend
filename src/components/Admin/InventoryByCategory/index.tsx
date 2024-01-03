@@ -8,12 +8,13 @@ interface Inventary {
   pageName: string;
 }
 
-function InventaryByCategory({ productName, pageName }: Inventary) {
+function InventaryByCategory({ productName }: Inventary) {
   const { axiosInstance } = useAxios();
   const { id } = useAuth();
   const token = localStorage.getItem("c__token");
-  const [pageByVerify, setPageByVerify] = useState<string>(pageName)  
- const [invetoryProducts, setInventoryProducts] = useState<any[]>([]);
+  const [invetoryProducts, setInventoryProducts] = useState<any[]>([]);
+
+  
 
   useEffect(() => {
     getAllProductsByCategory();
@@ -29,7 +30,7 @@ function InventaryByCategory({ productName, pageName }: Inventary) {
       }
     );
 
-    setInventoryProducts(foundedProducts.data)
+    setInventoryProducts(foundedProducts.data);
   };
 
   return (

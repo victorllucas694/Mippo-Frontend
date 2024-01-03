@@ -172,6 +172,7 @@ function ModalGallery() {
           },
         }
       );
+      console.log(responseLarge)
 
       const formDataSide = new FormData();
 
@@ -208,6 +209,8 @@ function ModalGallery() {
           }
         );
 
+        console.log(responseSide)
+
       } catch (error) {
         console.error(`Erro ao enviar a solicitação POST: ${error}`);
       }
@@ -222,6 +225,7 @@ function ModalGallery() {
           },
         }
       );
+      console.log(responseCategory)
     } catch (error) {
       console.error("Erro ao enviar imagens:", error);
     }
