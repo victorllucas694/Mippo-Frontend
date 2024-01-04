@@ -17,9 +17,6 @@ function Login({setUserAllowed}: any) {
     "Já tenho uma conta"
   );
 
-  const [registerBoxLabel, setRegisterBoxLabel] = useState(
-    "Ainda não tenho uma conta"
-  );
 
   const buttonsTopHeaderData = [
     {

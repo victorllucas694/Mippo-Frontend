@@ -313,7 +313,7 @@ export default function OrderTicketsTable() {
   const [orderBy, setOrderBy] = React.useState<keyof Data>("username");
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
+  // const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleRequestSort = (
