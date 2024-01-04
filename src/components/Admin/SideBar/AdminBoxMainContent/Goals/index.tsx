@@ -3,13 +3,13 @@ import { useAxios } from "../../../../../providers/AxiosProvider";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../../../../contexts/AuthenticateContext";
 
-interface ITableGoals {
-  goalName: string;
-  status: string;
-  progress: string;
-  dueDate: string;
-  team: string;
-}
+// interface ITableGoals {
+//   goalName: string;
+//   status: string;
+//   progress: string;
+//   dueDate: string;
+//   team: string;
+// }
 
 function Goals() {
   const { axiosInstance } = useAxios();

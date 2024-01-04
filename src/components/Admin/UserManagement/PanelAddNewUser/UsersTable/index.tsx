@@ -7,7 +7,6 @@ import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TablePagination from "@mui/material/TablePagination";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAxios } from "../../../../../providers/AxiosProvider";
 import { useAuth } from "../../../../../contexts/AuthenticateContext";

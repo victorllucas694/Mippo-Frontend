@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Fade from "@mui/material/Fade";
 
 export const ModalStyle = styled(Modal)`
   display: flex;

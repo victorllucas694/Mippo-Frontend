@@ -62,6 +62,8 @@ const options = {
   },
 };
 
+console.log(options)
+
 // const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
 
