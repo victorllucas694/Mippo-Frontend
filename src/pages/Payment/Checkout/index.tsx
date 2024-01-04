@@ -1,6 +1,6 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import { ModalBox, PaperBox, PaymentAllSteps } from "./styles";
+import { ButtonSection, ModalBox, PaperBox, PaymentAllSteps } from "./styles";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { useAuth } from "../../../contexts/AuthenticateContext";
 import AddIcon from "@mui/icons-material/Add";
@@ -15,6 +15,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import AddressForm from "../AddressForm";
@@ -33,6 +34,8 @@ export default function Checkout() {
   const [cartProducts, setCartProducts] = React.useState<CartProduct[]>([]);
   const [totalPrice, setTotalPrice] = React.useState<number>(0);
   const [totalOfferPrice, setTotalOfferPrice] = React.useState<number>(0);
+  const [totalCodeOfferPrice, setTotalCodeOfferPrice] =
+    React.useState<number>(0.0);
 
   React.useEffect(() => {
     getCartProducts();
@@ -91,22 +94,22 @@ export default function Checkout() {
     setCartProducts(products.data);
   };
 
-  // const { paymentData } = useMyContext();
+  const { paymentData } = useMyContext();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const style = {
-  //   position: "absolute" as "absolute",
-  //   top: "50%",
-  //   left: "50%",
-  //   transform: "translate(-50%, -50%)",
-  //   width: 500,
-  //   bgcolor: "background.paper",
-  //   border: "2px solid #000",
-  //   boxShadow: 24,
-  //   p: 4,
-  // };
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 500,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
 
   interface IPaperProduct {
     CEP: string;

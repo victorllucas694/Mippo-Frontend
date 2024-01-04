@@ -98,7 +98,7 @@ function ProductByCategory() {
     },
   ];
 
-  const { created, alertlogin, searchInput } =
+  const { created, alertlogin, filterArrayByProductInput, searchInput } =
     useRequestsProductsContext();
   const [closed, setClosed] = useState<boolean>(true);
   const [open, setOpen] = useState(false);
@@ -106,7 +106,6 @@ function ProductByCategory() {
 
   const handleClick = () => {
     setOpen(true);
-    console.log(open, closed)
   };
 
   const handleClose = (
@@ -116,7 +115,7 @@ function ProductByCategory() {
     if (reason === "clickaway") {
       return;
     }
-      console.log(event)
+
     setOpen(false);
   };
 

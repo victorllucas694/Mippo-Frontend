@@ -32,18 +32,18 @@ export interface SubcategoriaData {
   label: string;
 }
 
-// interface Subcategory {
-//   name: string;
-//   valor: string[];
-// }
+interface Subcategory {
+  name: string;
+  valor: string[];
+}
 
-// interface Item {
-//   subcategories: Subcategory[];
-// }
-// type SubCategory = {
-//   name: string;
-//   valor: string[];
-// };
+interface Item {
+  subcategories: Subcategory[];
+}
+type SubCategory = {
+  name: string;
+  valor: string[];
+};
 
 function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
   console.log(categoryBySearchProductPage)
@@ -59,7 +59,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     accessoriesCategory,
     HardwareDataCategory,
     NotebookDataCategory,
-    // filterArrayByProductInput,
+    filterArrayByProductInput,
     searchInput,
   } = useRequestsProductsContext();
 

@@ -204,9 +204,9 @@ function  Suppliers() {
       shipping_method,
       status,
     };
-  } 
+  }
 
-  const handleChangePage = (event: any, newPage: number) => {
+  const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
     console.log(event)
   };

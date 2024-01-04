@@ -154,7 +154,6 @@ function InventoryTable({ invetoryProducts }: IProducts) {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     page: number
   ): void {
-    console.log(event, page);
     throw new Error("Function not implemented.");
   }
 
@@ -176,7 +175,7 @@ function InventoryTable({ invetoryProducts }: IProducts) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {invetoryProducts.map((product: any) => (
+            {invetoryProducts.map((product, index) => (
               <Row
                 key={product.id}
                 row={{

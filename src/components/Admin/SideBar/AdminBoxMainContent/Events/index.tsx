@@ -3,11 +3,11 @@ import { useAuth } from "../../../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../../../providers/AxiosProvider";
 import { useEffect, useState } from "react";
 
-// interface ICardProject {
-//   image: string;
-//   title: string;
-//   updatedAt: string;
-// }
+interface ICardProject {
+  image: string;
+  title: string;
+  updatedAt: string;
+}
 
 // const cardProject: ICardProject[] = [
 //   {
