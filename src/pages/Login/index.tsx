@@ -85,7 +85,7 @@ function Login({setUserAllowed}: any) {
       />
       <SearchPanel searchPanelDataPreset={searchPanelDataPreset} />
       <OptionsHeader categoriesBoxProps={categoriesBoxProps} />
-      <LoginPage breadcrumb={breadcrumb} loginBoxLabel={loginBoxLabel}  registerBoxLabel={registerBoxLabel}/>
+      <LoginPage breadcrumb={breadcrumb} loginBoxLabel={loginBoxLabel} registerBoxLabel={'Registro'}  />
       <br />
       <br />
       <br />

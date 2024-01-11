@@ -199,12 +199,8 @@ function SideBar() {
 
   const componentManagementUsers: IComponentManagement[] = [
     {
-      label: "clientes",
+      label: "Listagem de usuários",
       detailPage: "AddNewUser",
-    },
-    {
-      label: "Funcionarios",
-      detailPage: "Employee",
     },
   ];
 

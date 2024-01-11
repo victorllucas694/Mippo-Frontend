@@ -267,6 +267,9 @@ function CardProduct({ productsList }: IProductData) {
                   productsList.Quantidade_em_estoque >= 1 ? "success" : "#fff"
                 }
                 sx={{
+                  "@media (max-width: 1600px)": {
+                    fontSize: ".8rem",
+                  },
                   color:
                     productsList.Quantidade_em_estoque >= 1 ? "black" : "red",
                 }}
@@ -276,11 +279,6 @@ function CardProduct({ productsList }: IProductData) {
                   : "Indisponivel"}
               </Chip>
             }
-            sx={{
-              "@media (max-width: 1600px)": {
-                fontSize: ".8rem",
-              },
-            }}
           >
             R$ {productsList.Valor_a_prazo}
           </Typography>

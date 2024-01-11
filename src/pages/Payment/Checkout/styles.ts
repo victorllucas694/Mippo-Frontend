@@ -145,13 +145,30 @@ export const PaymentAllSteps = styled.div`
       .item-product {
         width: 100%;
         padding: 1rem;
-        height: 3rem;
+        min-height: 3rem;
         display: flex;
-        margin: 1rem 0; 
+        margin: 1rem 0;
         align-items: center;
         justify-content: space-between;
         position: relative;
+        gap: 1rem;
 
+        .products-images {
+          width: 7rem;
+          height: 7rem;
+          border: 1px solid rgb(220, 220, 220);
+          display: flex;
+          border-radius: 3px;
+          justify-content: center;
+          align-items: center;
+
+          img {
+            padding: 1rem;
+            max-width: 100%;
+            margin: auto;
+            height: auto;
+          }
+        }
 
         h1 {
           font-size: 1rem;
@@ -235,10 +252,10 @@ export const PaperBox = styled.div`
 
     h1 {
       font-weight: 400;
-      color: rgb(5  0, 50, 50);
-      font-family: 'Roboto';
+      color: rgb(5 0, 50, 50);
+      font-family: "Roboto";
       margin: 0 1rem;
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
   }
 
@@ -251,9 +268,9 @@ export const PaperBox = styled.div`
 
     h1 {
       font-weight: 400;
-      font-family: 'Roboto';
+      font-family: "Roboto";
       margin: 0 1rem;
-      font-size: .86rem;
+      font-size: 0.86rem;
     }
 
     .buttons-header {

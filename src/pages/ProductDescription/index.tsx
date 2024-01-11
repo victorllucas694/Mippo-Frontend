@@ -64,7 +64,7 @@ function ProductDescription() {
     },
     {
       id: 4,
-      label: "Área gamer",
+      label: "Area gamer",
     },
     {
       id: 5,

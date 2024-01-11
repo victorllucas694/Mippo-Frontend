@@ -88,10 +88,12 @@ export default function Checkout() {
 
     console.log("products", products);
 
+    console.log(products)
+
     setCartProducts(products.data);
   };
 
-  // const { paymentData } = useMyContext();
+  const { paymentData } = useMyContext();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -368,6 +370,10 @@ export default function Checkout() {
                     className="item-product"
                     style={{ borderBottom: "1px solid rgb(230, 230, 230)" }}
                   >
+                    {/* foundedOrderProduct */}
+                    <div className="products-images">
+                      <img src={`http://localhost:3000/${products.foundedOrderProduct.large_image}`} alt="" />
+                    </div>
                     <h1>
                       {products.getProductsByOrderId.Fornecedor +
                         " " +
@@ -408,7 +414,7 @@ export default function Checkout() {
               <div className="item-product">
                   {totalPrice === 0 ? (
                     <div className="empty-product">
-
+                      
                     </div>
                   ) : (
                     `Total: R$ ${totalPrice + 50.99}`

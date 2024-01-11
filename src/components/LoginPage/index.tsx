@@ -33,8 +33,7 @@ interface IDataLoginLayout {
 function LoginPage({
   breadcrumb,
   loginBoxLabel,
-  registerBoxLabel,
-}: IDataLoginLayout) {
+  }: IDataLoginLayout) {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const { loginInput, setLoginInput } = useInputContext();
   const { token, setAuthToken, setEmailProfile } = useAuth();
@@ -95,7 +94,6 @@ function LoginPage({
     <React.Fragment>
       <LoginBox>
         <p>
-          <span>Identificação </span>
           {breadcrumb}
         </p>
         <div className="login-register-panel">
@@ -164,7 +162,6 @@ function LoginPage({
                 <LoginIcon sx={{ color: "rgb(100, 100, 100)" }} />
               </div>
               <div className="label-header-box">
-                <h1>{registerBoxLabel}</h1>
               </div>
             </BoxHeader>
             <FormContainer>

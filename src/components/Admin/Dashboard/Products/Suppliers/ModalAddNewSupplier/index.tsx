@@ -109,12 +109,12 @@ const style = (theme: Theme) => ({
 //     background: transparent;
 //     border: 1px solid ${theme.palette.mode === "dark" ? grey[800] : grey[200]};
 //     color: ${theme.palette.mode === "dark" ? grey[100] : grey[900]};
-  
+
 //     &:hover {
 //       background: ${theme.palette.mode === "dark" ? grey[800] : grey[50]};
 //       border-color: ${theme.palette.mode === "dark" ? grey[600] : grey[300]};
 //     }
-  
+
 //     &:focus-visible {
 //       border-color: ${blue[400]};
 //       outline: 3px solid ${
@@ -249,10 +249,7 @@ export default function ModalAddNewSupplier({
     }));
   };
 
-  const handleCloseSnackBar = (
-    // event?: React.SyntheticEvent | Event,
-    // reason?: string
-  ) => {
+  const handleCloseSnackBar = () => {
     setOpen(false);
   };
 

@@ -22,17 +22,15 @@ import { ActionsBoxWrapper } from "../../Dashboard/Products/Suppliers/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function createData(
-  image: string,
   name: string,
   brand: string,
   product_dimension: string,
   product_weight: string,
   productSKU: string,
   quantity: string,
-  options: string
+  options: any
 ) {
   return {
-    image,
     name,
     brand,
     product_dimension,
@@ -65,18 +63,6 @@ function Row(props: { row: ReturnType<typeof createData> }) {
           >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
-        </TableCell>
-        <TableCell
-          sx={{
-            border: "none",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          align="center"
-        >
-          <ImageContainer></ImageContainer>
         </TableCell>
         <TableCell sx={{ border: "none" }} align="left">
           {row.name}
@@ -165,7 +151,6 @@ function InventoryTable({ invetoryProducts }: IProducts) {
           <TableHead>
             <TableRow>
               <TableCell align="left">#&nbsp;</TableCell>
-              <TableCell align="left">Imagem</TableCell>
               <TableCell align="left">Nome</TableCell>
               <TableCell align="left">Fabricante</TableCell>
               <TableCell align="left">Dimensões</TableCell>
@@ -180,7 +165,6 @@ function InventoryTable({ invetoryProducts }: IProducts) {
               <Row
                 key={product.id}
                 row={{
-                  image: "image",
                   name: product.Fabricante,
                   brand: product.Marca,
                   productSKU: product.Codigo,

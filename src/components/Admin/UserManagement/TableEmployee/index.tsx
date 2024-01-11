@@ -6,8 +6,6 @@ import TableHead from "@mui/material/TableHead";
 import TableBody from "@mui/material/TableBody";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import TablePagination from "@mui/material/TablePagination";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditNoteIcon from "@mui/icons-material/EditNote";
 import { useAxios } from "../../../../providers/AxiosProvider";
@@ -17,7 +15,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Button, InputBase, Typography } from "@mui/material";
+import { Button, InputBase } from "@mui/material";
 import { ContainerGeneralPackageList } from "../../../Global/GeneralPackageList/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
@@ -30,6 +28,7 @@ function TableEmployee() {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   useEffect(() => {
+    console.log(openModal)
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get(

@@ -54,7 +54,7 @@ const columns: readonly Column[] = [
     id: "actions",
     label: "Actions",
     minWidth: 100,
-    format: () => "", // Empty string, as we will render custom content in TableBody
+    format: () => "",
   },
 ];
 
@@ -86,11 +86,8 @@ export default function UsersTable() {
     }
   };
 
-  // const handleViewClick = async (userId: number) => {};
-
   const handleDeleteClick = async (userId: number) => {
-
-    console.log(userId)
+    console.log(userId);
     try {
       const token = localStorage.getItem("c__token");
       const response = await axiosInstance.get(
@@ -114,7 +111,7 @@ export default function UsersTable() {
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
-    console.log(event)
+    console.log(event);
   };
 
   const handleChangeRowsPerPage = (
@@ -154,25 +151,11 @@ export default function UsersTable() {
                   {columns.map((column: any) => {
                     const value = row[column.id];
                     if (column.id === "actions") {
-                      function handleViewClick(id: any): void {
-                        throw new Error("Function not implemented.");
-                      }
-
                       return (
                         <TableCell key={column.id} align={column.align}>
-                          <RemoveRedEyeIcon
-                            style={{
-                              color: "rgb(80, 80, 80)",
-                              height: "18px",
-                              width: "18px",
-                              cursor: "pointer",
-                              marginRight: 8,
-                            }}
-                            onClick={() => handleViewClick(row.id)}
-                          />
                           <DeleteIcon
                             style={{
-                              color: "rgb(80, 80, 80)",
+                              color: "rgb(15, 15, 15)",
                               height: "18px",
                               width: "18px",
                               cursor: "pointer",
