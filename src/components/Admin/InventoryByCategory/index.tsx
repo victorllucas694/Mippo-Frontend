@@ -20,6 +20,7 @@ function InventaryByCategory({ productName }: Inventary) {
     getAllProductsByCategory();
   }, [axiosInstance, id, productName]);
 
+
   const getAllProductsByCategory = async () => {
     const foundedProducts = await axiosInstance.get(
       `/inventary-management/get/all/itens/${id}/${productName}`,

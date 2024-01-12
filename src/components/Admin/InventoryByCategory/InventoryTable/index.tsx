@@ -20,6 +20,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { TablePagination } from "@mui/material";
 import { ActionsBoxWrapper } from "../../Dashboard/Products/Suppliers/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
+import axios from "axios";
+import { useAxios } from "../../../../providers/AxiosProvider";
 
 function createData(
   name: string,
@@ -144,6 +146,8 @@ function InventoryTable({ invetoryProducts }: IProducts) {
     throw new Error("Function not implemented.");
   }
 
+
+
   return (
     <InventoryTableRootContainer>
       <TableContainer component={Paper}>
@@ -173,14 +177,14 @@ function InventoryTable({ invetoryProducts }: IProducts) {
                   product_weight: product.Peso_do_produto,
                   options: (
                     <ActionsBoxWrapper>
-                        <div className="action">
-                          <DeleteIcon
-                            sx={{
-                              color: "rgb(60, 60, 60)",
-                              width: "20px",
-                              height: "20px",
-                            }}
-                          />
+                      <div className="action">
+                        <DeleteIcon
+                          sx={{
+                            color: "rgb(60, 60, 60)",
+                            width: "20px",
+                            height: "20px",
+                          }}
+                        />
                       </div>
                     </ActionsBoxWrapper>
                   ),

@@ -84,7 +84,7 @@ function ProductDescriptionPresentation() {
 
   const purchaseItem = () => {
     if(id) {
-      window.location.href = `/payment/${String(productSelected?.id)}`
+      window.location.href = `https://pt.aliexpress.com/item/1005005968791261.html?spm=a2g0o.productlist.main.1.1d7b7de8icJL7c&algo_pvid=21b1a41d-b2ac-4477-b8fb-e9c651f162fe&aem_p4p_detail=2024011114114720824030361509900008216637&algo_exp_id=21b1a41d-b2ac-4477-b8fb-e9c651f162fe-0&pdp_npi=4%40dis%21BRL%21778.65%21299.77%21%21%21151.60%2158.36%21%402103245417050111075377022eb1d9%2112000035098765126%21sea%21BR%212949080908%21AB&curPageLogUid=UHFx4hoLMbvU&utparam-url=scene%3Asearch%7Cquery_from%3A&search_p4p_id=2024011114114720824030361509900008216637_1`
     }
     if(!id) {
       window.location.href = '/login'
