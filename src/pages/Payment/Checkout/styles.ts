@@ -22,8 +22,23 @@ export const PaymentAllSteps = styled.div`
       width: 90%;
       margin: 1rem auto;
       height: auto;
-      min-height: 16rem;
-      border: 1px solid;
+      min-height: 8rem;
+      padding: 1rem;
+      border-bottom: 1px solid rgb(230, 230, 230);
+
+      .prices {
+        width: 100%;
+        height: 4rem;
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        align-items: center;
+
+        h3 {
+          font-size: 1rem;
+          color: rgb(80, 80, 80);
+        }
+      }
     }
 
     .cart-values {

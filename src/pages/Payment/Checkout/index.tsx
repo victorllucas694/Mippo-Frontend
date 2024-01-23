@@ -86,8 +86,15 @@ export default function Checkout() {
                 aplicar
               </Button>
             </div>
-            <div className="prices-values"> 
-                
+            <div className="prices-values">
+              <div className="prices">
+                <h3>Total sem desconto</h3>
+                  R$ 12.000,00
+              </div>
+              <div className="prices">
+              <h3>Total com desconto</h3>
+                  R$ 11.890,00
+              </div>
             </div>
           </div>
         </div>
