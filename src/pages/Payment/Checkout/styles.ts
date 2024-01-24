@@ -18,6 +18,12 @@ export const PaymentAllSteps = styled.div`
     height: auto;
     padding: 1rem;
 
+    .empty-products {
+      width: 100%;
+      height: 3rem;
+      border: 1px solid;
+    }
+
     .prices-values {
       width: 90%;
       margin: 1rem auto;
@@ -72,4 +78,13 @@ export const PaymentAllSteps = styled.div`
 
     }
   }
+`;
+
+
+export const PaymentDataLayout = styled.div`
+  width: 100%;
+  height: 30rem;
+  border: 1px solid;
+  position: absolute;
+  
 `;

@@ -204,7 +204,6 @@ function AddressForm() {
             </Grid>
             <Grid item xs={3}>
               <Button
-                onClick={saveUserAddress}
                 sx={{ width: "100%", height: "3rem", margin: "1rem" }}
                 variant="contained"
               >

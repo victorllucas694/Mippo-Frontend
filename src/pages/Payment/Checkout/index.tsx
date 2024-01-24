@@ -3,25 +3,16 @@ import Button from "@mui/material/Button";
 import { PaymentAllSteps } from "./styles";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { useAuth } from "../../../contexts/AuthenticateContext";
-import AddIcon from "@mui/icons-material/Add";
-import { useMyContext } from "../../../contexts/PaymentContext";
-import {
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-} from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import AddressForm from "../AddressForm";
 import { useState } from "react";
 import ProductDetails from "../../../components/Global/ProductDetails";
-import Textarea from "@mui/joy/Textarea";
-import Stack from "@mui/joy/Stack";
+import Card from "@mui/joy/Card";
+import AspectRatio from "@mui/joy/AspectRatio";
+import CardContent from "@mui/joy/CardContent";
+import Sheet from "@mui/joy/Sheet";
+import AddressForm from "../AddressForm";
 
 export default function Checkout() {
   const { id } = useAuth();
@@ -30,9 +21,13 @@ export default function Checkout() {
 
   React.useEffect(() => {
     getInventaryUserProducts(id);
+    calcTotalPriceNow();
   }, []);
 
   const [getOrderProducts, setGetOrderProducts] = useState([]);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const getInventaryUserProducts = async (id: number) => {
     const getOrderProducts = await axiosInstance.get(
@@ -44,20 +39,128 @@ export default function Checkout() {
       }
     );
     setGetOrderProducts(getOrderProducts.data);
-    console.log("getOrderProducts", getOrderProducts.data);
+    console.log("getOrderProducts", getOrderProducts.data.getProductsByOrderId);
   };
-  const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
 
-  const handleTextareaFocus = () => {
-    textareaRef.current?.focus();
+  const style = {
+    position: "absolute" as "absolute",
+    top: "50%",
+    left: "70%",
+    transform: "translate(-50%, -50%)",
+    width: "40%",
+    bgcolor: "background.paper",
+    boxShadow: 24,
+    p: 4,
   };
+
+  React.useEffect(() => {
+    calcTotalPrice();
+  }, []);
+
+  const [priceToShipping, setPriceToShipping] = useState<number>(0);
+  const [priceToShippingNow, setPriceToShippingNow] = useState<number>(0);
+
+  const calcTotalPrice = () => {
+    let valTotal: number = 0;
+    getOrderProducts.map((product: any) => {
+      valTotal += Number(product.getProductsByOrderId.Valor_a_vista);
+      console.log("product", product);
+    });
+
+    setPriceToShipping(valTotal);
+  };
+
+  const calcTotalPriceNow = () => {
+    let valTotal: number = 0;
+    getOrderProducts.map((product: any) => {
+      valTotal += Number(product.getProductsByOrderId.Valor_a_prazo);
+      console.log("product", product);
+    });
+
+    setPriceToShippingNow(valTotal);
+  };
+
   return (
     <React.Fragment>
       <PaymentAllSteps>
         <div className="body-cards">
-          {getOrderProducts.map((cards) => {
-            return <ProductDetails getOrderProducts={cards} />;
-          })}
+          {getOrderProducts.length > 0 ? (
+            getOrderProducts.map((cards) => {
+              return <ProductDetails getOrderProducts={cards} />;
+            })
+          ) : (
+            <Box
+              sx={{
+                width: "100%",
+                position: "relative",
+                overflow: { xs: "auto", sm: "initial" },
+              }}
+            >
+              <Box />
+              <Card
+                orientation="horizontal"
+                sx={{
+                  width: "100%",
+                  flexWrap: "wrap",
+                  [`& > *`]: {
+                    "--stack-point": "500px",
+                    minWidth:
+                      "clamp(0px, (calc(var(--stack-point) - 2 * var(--Card-padding) - 2 * var(--variant-borderWidth, 0px)) + 1px - 100%) * 999, 100%)",
+                  },
+                  overflow: "auto",
+                  resize: "horizontal",
+                }}
+              >
+                <AspectRatio
+                  flex
+                  ratio="1"
+                  maxHeight={182}
+                  sx={{ minWidth: 182 }}
+                >
+                  <img loading="lazy" alt="" />
+                </AspectRatio>
+                <CardContent>
+                  <Typography fontSize="xl" fontWeight="lg">
+                    Você ainda não tem produtos no carrinho
+                  </Typography>
+                  <Sheet
+                    sx={{
+                      bgcolor: "background.level1",
+                      borderRadius: "sm",
+                      p: 1.5,
+                      my: 1.5,
+                      display: "flex",
+                      gap: 2,
+                      "& > div": { flex: 1 },
+                    }}
+                  >
+                    <div>
+                      <Typography>Vendas</Typography>
+                      <Typography fontWeight="lg">0</Typography>
+                    </div>
+                    <div>
+                      <Typography>Favoritos</Typography>
+                      <Typography fontWeight="lg">0</Typography>
+                    </div>
+                    <div>
+                      <Typography>Taxa de aprovação</Typography>
+                      <Typography fontWeight="lg">0</Typography>
+                    </div>
+                  </Sheet>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      gap: 1.5,
+                      "& > button": { flex: 1 },
+                    }}
+                  >
+                    <Button variant="outlined">Cancelar</Button>
+                    <Button color="primary">Compra unica</Button>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Box>
+          )}
         </div>
         <div className="body-cards">
           <div className="cart-values">
@@ -89,13 +192,20 @@ export default function Checkout() {
             <div className="prices-values">
               <div className="prices">
                 <h3>Total sem desconto</h3>
-                  R$ 12.000,00
+                R${priceToShippingNow},00
               </div>
               <div className="prices">
-              <h3>Total com desconto</h3>
-                  R$ 11.890,00
+                <h3>Total com desconto</h3>
+                R$ {priceToShipping},00
               </div>
             </div>
+            <Button
+              onClick={handleOpen}
+              sx={{ width: "90%", height: "3rem", margin: "2rem" }}
+              variant="contained"
+            >
+              Comprar produtos
+            </Button>
           </div>
         </div>
       </PaymentAllSteps>
