@@ -75,9 +75,9 @@ export default function Checkout() {
     getOrderProducts.map((product: any) => {
       valTotal += Number(product.getProductsByOrderId.Valor_a_prazo);
       console.log("product", product);
+      setPriceToShippingNow(valTotal);
     });
 
-    setPriceToShippingNow(valTotal);
   };
 
   return (

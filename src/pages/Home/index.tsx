@@ -33,22 +33,6 @@ function HomePage() {
     },
   ];
 
-  const searchPanelDataPreset = [
-    {
-      id: 1,
-      image: "",
-    },
-    {
-      id: 2,
-      label: "search",
-    },
-    {
-      id: 3,
-      image: "",
-      label: "",
-      contact: "",
-    },
-  ];
 
   const categoriesBoxProps = [
     {
@@ -117,7 +101,7 @@ function HomePage() {
         headerInitial={headerComment}
         buttonsTopHeaderData={buttonsTopHeaderData}
       />
-      <SearchPanel searchPanelDataPreset={searchPanelDataPreset} />
+      <SearchPanel/>
       <OptionsHeader categoriesBoxProps={categoriesBoxProps} />
       <FeaturedBanner />
       <ProductsFirstSection label={gamerProductsTitle} />

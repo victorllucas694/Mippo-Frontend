@@ -14,6 +14,7 @@ import { RequestsProductsProvider } from "./contexts/RequestsProductsContext";
 import ProductByCategory from "./pages/ProductsByCategory";
 import Payment from "./pages/Payment";
 import { MyContextProvider } from "./contexts/PaymentContext";
+import PurchaseProducts from "./components/PurchaseProducts/Index";
 
 function App() {
   return (
@@ -88,6 +89,7 @@ function AppContent() {
           />
           <Route path="/:category" element={<ProductByCategory />} />
           <Route path="/payment/:id" element={<Payment />} />
+          <Route path="/purchase/:id" element={<PurchaseProducts />} />
         </Routes>
       </>
     );

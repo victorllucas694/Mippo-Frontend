@@ -58,9 +58,10 @@ export const HeaderPaper = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 30%;
+        width: 60%;
         height: 2rem;
         margin: auto;
+        gap: 3rem;
 
         a {
           text-decoration: none;
