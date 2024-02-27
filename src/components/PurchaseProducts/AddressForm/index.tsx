@@ -4,14 +4,28 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-
-interface IAddressForm {
-  id: number;
-  name: string;
-  label: string;
-}
+import { usePaymentContext } from "../../../contexts/payment";
 
 export default function AddressForm() {
+  const {
+    firstName,
+    lastName,
+    address1,
+    address2,
+    city,
+    state,
+    zip,
+    country,
+    setFirstName,
+    setLastName,
+    setAddress1,
+    setAddress2,
+    setCity,
+    setState,
+    setZip,
+    setCountry,
+  } = usePaymentContext(); 
+  
 
   return (
     <React.Fragment>
@@ -28,6 +42,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -39,6 +55,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -50,6 +68,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
+            value={address1}
+            onChange={(e) => setAddress1(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -60,6 +80,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-line2"
             variant="standard"
+            value={address2}
+            onChange={(e) => setAddress2(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -71,6 +93,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-level2"
             variant="standard"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -80,6 +104,8 @@ export default function AddressForm() {
             label="Estado/região"
             fullWidth
             variant="standard"
+            value={state}
+            onChange={(e) => setState(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -91,6 +117,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping postal-code"
             variant="standard"
+            value={zip}
+            onChange={(e) => setZip(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -102,6 +130,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping country"
             variant="standard"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>

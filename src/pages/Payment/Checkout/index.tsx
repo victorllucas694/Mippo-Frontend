@@ -26,7 +26,9 @@ export default function Checkout() {
 
   const [getOrderProducts, setGetOrderProducts] = useState([]);
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    window.location.href = `/purchase/${id}`;
+  };
   const handleClose = () => setOpen(false);
 
   const getInventaryUserProducts = async (id: number) => {

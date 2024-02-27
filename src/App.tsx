@@ -15,11 +15,13 @@ import ProductByCategory from "./pages/ProductsByCategory";
 import Payment from "./pages/Payment";
 import { MyContextProvider } from "./contexts/PaymentContext";
 import PurchaseProducts from "./components/PurchaseProducts/Index";
+import { PaymentContextProvider } from "./contexts/payment";
 
 function App() {
   return (
     <AxiosProvider>
       <MyContextProvider>
+      <PaymentContextProvider>
         <RequestsProductsProvider>
           <AuthProvider>
             <InputProvider>
@@ -34,6 +36,8 @@ function App() {
             </InputProvider>
           </AuthProvider>
         </RequestsProductsProvider>
+      </PaymentContextProvider>
+        
       </MyContextProvider>
     </AxiosProvider>
   );
