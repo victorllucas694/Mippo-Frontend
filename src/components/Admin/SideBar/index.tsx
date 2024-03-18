@@ -1,9 +1,3 @@
-import {
-  BoxDashPanel,
-  ContainerWrapperFlex,
-  HeaderBoxDashboardPanel,
-  TitleAdmin,
-} from "./styles";
 import * as React from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -49,7 +43,14 @@ import TableEmployee from "../UserManagement/TableEmployee";
 import { Badge } from "@mui/material";
 import AlertLowerStock from "../AlertLowerStock";
 import OrderTracking from "../OrderTracking";
-  
+import {
+  BoxDashPanel,
+  ContainerWrapperFlex,
+  HeaderBoxDashboardPanel,
+  TitleAdmin,
+} from "./styles";
+import BannerEdition from "../Dashboard/BannerEdition";
+
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -435,7 +436,7 @@ function SideBar() {
             <Collapse in={openList} timeout="auto" unmountOnExit>
               {componentManagement.map((component: IComponentManagement) => {
                 return (
-                  <List component="div" disablePadding>
+                  <List onClick={() => setPageName(component.detailPage)} component="div" disablePadding>
                     <ListItemButton sx={{ pl: 4 }}>
                       <ListItemText primary={component.label} />
                     </ListItemButton>
@@ -578,7 +579,9 @@ function SideBar() {
             <TableEmployee />
           ) : pageName === "getLocaleProduct" ? (
             <OrderTracking />
-          ) : (
+          ) : pageName === "Banner" ? (
+            <BannerEdition />
+          ) :(
             <AdminPagesManagement />
           )}
         </Box>

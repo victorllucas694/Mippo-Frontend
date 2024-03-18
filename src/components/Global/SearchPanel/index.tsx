@@ -27,10 +27,9 @@ interface ISearchPanelDataPreset {
   searchPanelDataPreset: SearchPanelDataItem[];
 }
 
-function SearchPanel({ searchPanelDataPreset }: ISearchPanelDataPreset) {
+function SearchPanel() {
   const [currency, setCurrency] = React.useState<string>("dollar");
   const { id } = useAuth();
-  console.log(searchPanelDataPreset)
 
   const userid = id;
   const [search, setSearch] = React.useState<string>("");
