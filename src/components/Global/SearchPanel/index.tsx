@@ -6,6 +6,8 @@ import {
   Paper,
   IconButton,
   InputBase,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import { SearchPanelContainer } from "./styles";
 import * as React from "react";
@@ -15,6 +17,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import Badge from "@mui/material/Badge";
 import { useAuth } from "../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../providers/AxiosProvider";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 interface SearchPanelDataItem {
   id: number;
@@ -101,6 +104,15 @@ function SearchPanel() {
     console.log("category", category);
     console.log(search);
   };
+  
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <SearchPanelContainer>
@@ -135,8 +147,24 @@ function SearchPanel() {
               <SearchIcon />
             </IconButton>
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-            <IconButton sx={{ p: "10px" }} aria-label="directions">
-              <LocalGroceryStoreOutlinedIcon />
+            <IconButton sx={{ p: "10px" }} id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined} onClick={handleClick} aria-label="directions">
+              <ArrowDropDownIcon />
+              <Menu
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+              >
+                <MenuItem onClick={handleClose}>Computadores</MenuItem>
+                <MenuItem onClick={handleClose}>Hardware</MenuItem>
+                <MenuItem onClick={handleClose}>Acessórios</MenuItem>
+                <MenuItem onClick={handleClose}>Notebook</MenuItem>
+              </Menu>
             </IconButton>
           </Paper>
         </div>

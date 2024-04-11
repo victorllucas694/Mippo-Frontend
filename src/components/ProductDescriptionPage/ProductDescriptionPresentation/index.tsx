@@ -56,37 +56,36 @@ function ProductDescriptionPresentation() {
   ) => {
     const token = localStorage.getItem("c__token");
     const foundedImages = await axiosInstance(
-        `/products-management-without-auth/get/all/images/${category}/${productID}/${imageCode}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      `/products-management-without-auth/get/all/images/${category}/${productID}/${imageCode}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+    );
 
-      foundedImages.data.map((data: any) => {
-        const { tableName, largeImages, sideImages, imageCodes } = data;
-        
+    foundedImages.data.map((data: any) => {
+      const { tableName, largeImages, sideImages, imageCodes } = data;
 
-        if (productSelected?.Codigo_das_Imagens === imageCodes) {
-          setImageData({
-            largeImages,
-            sideImages,
-            tableName,
-            imageCodes,
-          });
-        }
-      });
 
+      if (productSelected?.Codigo_das_Imagens === imageCodes) {
+        setImageData({
+          largeImages,
+          sideImages,
+          tableName,
+          imageCodes,
+        });
+      }
+    });
   };
-  
+
   const [imageData, setImageData] = useState<ImageData>(initialState);
-  const { id } = useAuth(); 
+  const { id } = useAuth();
 
   const purchaseItem = () => {
-    if(id) {
-      window.location.href = `https://pt.aliexpress.com/item/1005005968791261.html?spm=a2g0o.productlist.main.1.1d7b7de8icJL7c&algo_pvid=21b1a41d-b2ac-4477-b8fb-e9c651f162fe&aem_p4p_detail=2024011114114720824030361509900008216637&algo_exp_id=21b1a41d-b2ac-4477-b8fb-e9c651f162fe-0&pdp_npi=4%40dis%21BRL%21778.65%21299.77%21%21%21151.60%2158.36%21%402103245417050111075377022eb1d9%2112000035098765126%21sea%21BR%212949080908%21AB&curPageLogUid=UHFx4hoLMbvU&utparam-url=scene%3Asearch%7Cquery_from%3A&search_p4p_id=2024011114114720824030361509900008216637_1`
+    if (id) {
+      window.location.href = `payment/${id}`
     }
-    if(!id) {
+    if (!id) {
       window.location.href = '/login'
     }
   }
@@ -136,7 +135,7 @@ function ProductDescriptionPresentation() {
               />
             ))}
           </div>
-          
+
         </div>
         <div className="information-product-presentation">
           <div className="brand-product">
@@ -155,11 +154,9 @@ function ProductDescriptionPresentation() {
               <span>
                 <strong>Processador: </strong>
               </span>
-              {`${productSelected?.Marca_do_chipset_de_video || ""} ${
-                productSelected?.Tipo_de_processador || ""
-              } ${productSelected?.Velocidade_do_processador || ""} ${
-                productSelected?.Tipo_de_soquete_do_processador || ""
-              }`.trim()}
+              {`${productSelected?.Marca_do_chipset_de_video || ""} ${productSelected?.Tipo_de_processador || ""
+                } ${productSelected?.Velocidade_do_processador || ""} ${productSelected?.Tipo_de_soquete_do_processador || ""
+                }`.trim()}
               <br />
               <span>
                 <strong>Marca: </strong>

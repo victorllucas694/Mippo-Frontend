@@ -136,16 +136,8 @@ function SideBar() {
       detailPage: "Banner",
     },
     {
-      label: "Card do produto",
-      detailPage: "Card",
-    },
-    {
       label: "Logo",
       detailPage: "brand",
-    },
-    {
-      label: "Barra de navegação",
-      detailPage: "navbar",
     },
   ];
 
@@ -581,7 +573,7 @@ function SideBar() {
             <OrderTracking />
           ) : pageName === "Banner" ? (
             <BannerEdition />
-          ) :(
+          ) : (
             <AdminPagesManagement />
           )}
         </Box>

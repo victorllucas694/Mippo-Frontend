@@ -1,5 +1,6 @@
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import { BannerModifyBox } from "./styles";
+import { useState } from "react";
 
 interface imagesDefault {
   title: string;
@@ -48,6 +49,8 @@ function BannerEdition() {
     },
   ];
 
+  const [bannerImage, setBannerImage] = useState<string>('');
+
   return (
     <BannerModifyBox>
       <h1>Modifique o banner principal</h1>
@@ -73,8 +76,9 @@ function BannerEdition() {
           <TextField
             sx={{ width: "90%", margin: " 1rem " }}
             id="outlined-basic"
-            label="Conteúdo do banner"
+            label="Link da imagem do banner"
             variant="outlined"
+            onChange={(e) => setBannerImage(e.target.value)}
           />
 
           <div className="image-drag-in-drop">
@@ -83,7 +87,10 @@ function BannerEdition() {
               alt=""
             />
           </div>
-          <button>Sdas</button>
+          <Button sx={{
+            width: '30%',
+            height: '3.4rem'
+          }} variant="contained">Salvar banner</Button>
         </div>
         <div className="check-list">
           <h2>layouts padrão</h2>
