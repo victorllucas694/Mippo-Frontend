@@ -8,23 +8,29 @@ import { usePaymentContext } from "../../../contexts/payment";
 
 export default function AddressForm() {
   const {
-    firstName,
+    name,
     lastName,
-    address1,
-    address2,
+    address,
+    details,
     city,
     state,
     zip,
     country,
-    setFirstName,
+    setName,
     setLastName,
-    setAddress1,
-    setAddress2,
+    setAddress,
+    setDetails,
     setCity,
     setState,
     setZip,
     setCountry,
   } = usePaymentContext(); 
+
+  console.log(name,
+    lastName,
+    address,
+    details,
+    city)
   
 
   return (
@@ -42,8 +48,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="given-name"
             variant="standard"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -68,8 +74,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-line1"
             variant="standard"
-            value={address1}
-            onChange={(e) => setAddress1(e.target.value)}
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
           />
         </Grid>
         <Grid item xs={12}>
@@ -80,8 +86,8 @@ export default function AddressForm() {
             fullWidth
             autoComplete="shipping address-line2"
             variant="standard"
-            value={address2}
-            onChange={(e) => setAddress2(e.target.value)}
+            value={details}
+            onChange={(e) => setDetails(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>

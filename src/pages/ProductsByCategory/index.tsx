@@ -22,7 +22,7 @@ function ProductByCategory() {
   const currentURL = window.location.pathname;
   const getURLCategory = () => {
     const urlParts = currentURL.split("/");
-    const category = urlParts[1];
+    const category = urlParts[1]; 
 
     setCategoryBySearchProductPage(category);
   };

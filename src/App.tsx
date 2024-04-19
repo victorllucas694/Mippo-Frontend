@@ -37,8 +37,8 @@ function App() {
           </AuthProvider>
         </RequestsProductsProvider>
       </PaymentContextProvider>
-        
       </MyContextProvider>
+        
     </AxiosProvider>
   );
 }
@@ -93,7 +93,7 @@ function AppContent() {
           />
           <Route path="/:category" element={<ProductByCategory />} />
           <Route path="/payment/:id" element={<Payment />} />
-          <Route path="/purchase/:id" element={<PurchaseProducts />} />
+          <Route path="/product/:category/:code/payment/:id" element={<PurchaseProducts />} />
         </Routes>
       </>
     );

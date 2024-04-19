@@ -10,7 +10,11 @@ import Sheet from "@mui/joy/Sheet";
 function ProductDetails({ getOrderProducts }: any) {
 
   const redirectToPayment = () => {
-    console.log(getOrderProducts)
+    const id = getOrderProducts.getProductsByOrderId.id
+    console.log(getOrderProducts);
+
+
+    // window.location.href = `purchase/${id}`;
   }
 
   return (
@@ -32,7 +36,6 @@ function ProductDetails({ getOrderProducts }: any) {
             minWidth:
               "clamp(0px, (calc(var(--stack-point) - 2 * var(--Card-padding) - 2 * var(--variant-borderWidth, 0px)) + 1px - 100%) * 999, 100%)",
           },
-          // make the card resizable for demo
           overflow: "auto",
           resize: "horizontal",
         }}

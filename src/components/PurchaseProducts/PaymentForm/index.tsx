@@ -35,7 +35,7 @@ const MyComponent: React.FC = () => {
     setCardholder,
     setCardNumber,
     setExpirationDate,
-    setCvv,
+    setCVV,
   } = usePaymentContext();
 
   return (
@@ -85,7 +85,7 @@ const MyComponent: React.FC = () => {
           autoComplete="cc-csc"
           variant="standard"
           value={cvv}
-          onChange={(event) => setCvv(event.target.value)}
+          onChange={(event) => setCVV(event.target.value)}
         />
       </Grid>
     </Grid>

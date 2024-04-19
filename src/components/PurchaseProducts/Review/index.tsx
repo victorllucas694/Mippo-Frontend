@@ -24,26 +24,26 @@ const products = [
 const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
 
 
-export default function Review() {
-  const {
-    firstName,
-    address1,
-    address2,
-    cardNumber,
-    cardholder,
-    city,
-    country,
-    cvv,
-    expirationDate,
-    lastName,
-  } = usePaymentContext();
+export default function Review() {  
+  // const {
+  //   firstName,
+  //   address1,
+  //   address2,
+  //   cardNumber,
+  //   cardholder,
+  //   city,
+  //   country,
+  //   cvv,
+  //   expirationDate,
+  //   lastName,
+  // } = usePaymentContext();
 
-const payments = [
-  { name: "Banco", detail: "Bradesco" },
-  { name: "Titular", detail: cardholder },
-  { name: "Cartão", detail: cardNumber },
-  { name: "Expiração", detail: expirationDate },
-];
+// const payments = [
+//   { name: "Banco", detail: "Bradesco" },
+//   { name: "Titular", detail: cardholder },
+//   { name: "Cartão", detail: cardNumber },
+//   { name: "Expiração", detail: expirationDate },
+// ];
 
 
 
@@ -78,7 +78,7 @@ const payments = [
           <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
             Payment details
           </Typography>
-          <Grid container>
+          {/* <Grid container>
             {payments.map((payment) => (
               <React.Fragment key={payment.name}>
                 <Grid item xs={6}>
@@ -89,7 +89,7 @@ const payments = [
                 </Grid>
               </React.Fragment>
             ))}
-          </Grid>
+          </Grid> */}
         </Grid>
       </Grid>
     </React.Fragment>
