@@ -11,7 +11,9 @@ function FormBoxModal() {
     event: React.ChangeEvent<HTMLInputElement>,
     inputPrototype: string
   ) => {
+
     const oldKey = event.target.value;
+    
     setRegisterInput((prevValues: any) => ({
       ...prevValues,
       [inputPrototype]: oldKey,

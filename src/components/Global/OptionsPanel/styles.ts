@@ -5,7 +5,6 @@ export const OptionsPanelWrapper = styled.div`
   height: 4rem;
   border-bottom: 1px solid rgb(240, 240, 240);
   box-shadow: 0 5px 8px -3px rgba(200, 200, 200, 0.5);
-
   .all-categories {
     width: 90%;
     margin: auto;

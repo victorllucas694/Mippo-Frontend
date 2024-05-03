@@ -152,7 +152,7 @@ export function RequestsProductsProvider({ children }) {
       ],
     },
   ];
-
+  const token = localStorage.getItem("c__token");
   const [computerCategory, setComputerCategory] = useState(
     computersDataCategory
   );
@@ -170,7 +170,7 @@ export function RequestsProductsProvider({ children }) {
   const [alertlogin, setAlertLogin] = useState("");
 
   const isUserLoggedIn = async () => {
-    const token = localStorage.getItem("c__token");
+
 
     if (token) {
       try {
@@ -245,7 +245,7 @@ export function RequestsProductsProvider({ children }) {
     productID,
     imageCode
   ) => {
-    const token = localStorage.getItem("c__token");
+
     const foundedImages = await axiosInstance(
       `/products-management-without-auth/get/all/images/${category}/${productID}/${imageCode}`,
       {
@@ -264,7 +264,7 @@ export function RequestsProductsProvider({ children }) {
     id,
     productsList
   ) => {
-    const token = localStorage.getItem("c__token");
+
     const currentURL = window.location.pathname;
     const urlParts = currentURL.split("/");
     const category = urlParts[1];

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const HeaderPaper = styled.div`
   width: 100%;
   height: auto;
-  background-color: rgb(245, 245, 245);
+  background-color: rgb(240, 240, 240);
 
   .box-content {
     width: 80%;

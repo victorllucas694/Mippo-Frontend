@@ -61,7 +61,7 @@ function FeaturedBanner() {
       <div className="box-market-offers">
         <SwipeableTextMobileStepper />
       </div>
-      <div className="sub-box-offers">
+      {/* <div className="sub-box-offers">
         {flagsToHomePage.map((flagsDataBody: IFlags) => {
           return (
             <div className="flags">
@@ -74,7 +74,7 @@ function FeaturedBanner() {
             </div>
           );
         })}
-      </div>
+      </div> */}
     </FeaturedBannerComponent>
   );
 }

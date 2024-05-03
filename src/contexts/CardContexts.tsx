@@ -117,7 +117,7 @@ export function ProductContextProvider({ children }: ProductsProviderProps) {
 
 
     if (!category) {
-      category = "Computadores";
+      category = "Acessorios";
     }
 
     const token = localStorage.getItem("c__token");

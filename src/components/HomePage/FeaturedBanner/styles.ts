@@ -15,7 +15,7 @@ export const FeaturedBannerComponent = styled.div`
   }
 
   .box-market-offers {
-    width: 90%;
+    width: 100%;
     border-radius: 10px;
     margin: auto;
     overflow: hidden;
@@ -25,6 +25,21 @@ export const FeaturedBannerComponent = styled.div`
     height: auto;
     min-height: 40rem;
     border-radius: 5px;
+
+    .more-products {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      height: auto;
+      padding: 4rem;
+      border: 1px solid;
+
+      .side-products-categories {
+        width: 30%;
+        height: 100%;
+        border: 1px solid;
+      }
+    }
 
     .featured-banner-container {
       height: 300px;
