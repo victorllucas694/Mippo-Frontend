@@ -17,6 +17,7 @@ function ProductByCategory() {
   useEffect(() => {
     getURLCategory();
   }, []);
+
   const [categoryBySearchProductPage, setCategoryBySearchProductPage] =
     useState<string | null>(null);
   const currentURL = window.location.pathname;
@@ -81,20 +82,12 @@ function ProductByCategory() {
       label: "Acessorios",
     },
     {
-      id: 4,
-      label: "Área gamer",
-    },
-    {
       id: 5,
       label: "Hardware",
     },
     {
       id: 6,
       label: "Computadores",
-    },
-    {
-      id: 7,
-      label: "Softwares",
     },
   ];
 
@@ -108,6 +101,10 @@ function ProductByCategory() {
     setOpen(true);
     console.log(open, closed)
   };
+
+  const getProducstDataCallBack = () => {
+    console.log(categoryBySearchProductPage)
+  }
 
   const handleClose = (
     event: React.SyntheticEvent | Event,
@@ -158,6 +155,7 @@ function ProductByCategory() {
       <GeneralFunction
         categoryBySearchProductPage={categoryBySearchProductPage}
       />
+
       {created ? (
         <Snackbar open={created} autoHideDuration={500} onClose={handleClose}>
           <Alert

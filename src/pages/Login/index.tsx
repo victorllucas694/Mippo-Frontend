@@ -60,21 +60,13 @@ function Login({setUserAllowed}: any) {
       label: "Acessorios",
     },
     {
-      id: 4,
-      label: "Área gamer",
-    },
-    {
       id: 5,
       label: "Hardware",
     },
     {
       id: 4,
       label: "Computadores",
-    },
-    {
-      id: 5,
-      label: "Softwares",
-    },
+    }
   ];
 
   return (

@@ -50,20 +50,12 @@ function Support() {
       label: "Acessorios",
     },
     {
-      id: 4,
-      label: "Área gamer",
-    },
-    {
       id: 5,
       label: "Hardware",
     },
     {
       id: 6,
       label: "Computadores",
-    },
-    {
-      id: 7,
-      label: "Softwares",
     },
   ];
 

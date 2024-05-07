@@ -56,8 +56,24 @@ function getStepContent(step: number) {
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const { name, address, city, country, details, lastName, state, zip, cardNumber, cvv, cardholder, expirationDate,setAddress, setCVV,setCardNumber, setCardholder, } =
-    usePaymentContext();
+  const {
+    name,
+    address,
+    city,
+    country,
+    details,
+    lastName,
+    state,
+    zip,
+    cardNumber,
+    cvv,
+    cardholder,
+    expirationDate,
+    setAddress,
+    setCVV,
+    setCardNumber,
+    setCardholder,
+  } = usePaymentContext();
 
   function get() {
     console.log(cardNumber, cvv, cardholder);
@@ -84,21 +100,13 @@ export default function Checkout() {
       label: "Acessorios",
     },
     {
-      id: 4,
-      label: "Área gamer",
-    },
-    {
-      id: 5,
+      id: 6,
       label: "Hardware",
     },
     {
       id: 4,
       label: "Computadores",
-    },
-    {
-      id: 5,
-      label: "Softwares",
-    },
+    }
   ];
 
   return (

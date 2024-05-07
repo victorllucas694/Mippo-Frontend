@@ -96,7 +96,7 @@ export function RequestsProductsProvider({ children }) {
       subcategories: [
         {
           name: "Fabricante",
-          valor: ["FutureTech", "InnoTech", "MegaForce", "MegaForce"],
+          valor: ["FutureTech", "InnoTech", "MegaForce"],
         },
         {
           name: "Marca",
