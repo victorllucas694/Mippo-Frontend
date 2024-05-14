@@ -2,7 +2,6 @@ import SideBar from "../SideBar";
 
 
 function Dashboard() {
-
     return(
         <SideBar />
     )
