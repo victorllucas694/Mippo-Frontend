@@ -177,7 +177,7 @@ function CardProduct({ productsList }: IProductData) {
     <>
       <Card
         sx={{
-          minWidth: '20rem',
+          minWidth: '16rem',
           width: category ? '30%' : "21%",
           display: "flex",
           flexDirection: "column",
