@@ -101,16 +101,8 @@ function DescriptionBody() {
       category: "Hardware",
     },
     {
-      id: 3,
-      category: "Área gamer",
-    },
-    {
       id: 4,
       category: "Computadores",
-    },
-    {
-      id: 5,
-      category: "Softwares",
     },
   ];
 
