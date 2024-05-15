@@ -49,6 +49,7 @@ function SearchPanel() {
   React.useEffect(() => {
     verifyUserLoggedByAddProductToShoppingCart(id);
   }, [totalPriceFiltred]);
+
   let totalAmount = 0;
   const verifyUserLoggedByAddProductToShoppingCart = async (id: number) => {
     const token = localStorage.getItem("c__token");
@@ -84,8 +85,6 @@ function SearchPanel() {
       setTotalPriceFiltred(totalAmount)
     })
 
-
-    console.log(response.data);
 
     setBadgeShippingCartAllPages(response.data.length);
     console.log(badgeShippingCartAllPages);

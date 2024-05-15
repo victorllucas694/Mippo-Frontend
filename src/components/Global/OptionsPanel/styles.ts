@@ -5,13 +5,13 @@ export const OptionsPanelWrapper = styled.div`
   height: 4rem;
   border-bottom: 1px solid rgb(240, 240, 240);
   box-shadow: 0 5px 8px -3px rgba(200, 200, 200, 0.5);
+  
   .all-categories {
     width: 90%;
     margin: auto;
     height: 100%;
     align-items: center;
     display: none;
-    border: 1px solid;
 
     @media (max-width: 1280px) {
       display: flex;
@@ -44,7 +44,6 @@ export const OptionsPanelWrapper = styled.div`
 
     .box-item {
       max-width: 100%;
-      padding: 2rem;
       margin: auto;
       height: 4rem;
       display: flex;
