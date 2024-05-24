@@ -10,35 +10,38 @@ import { InputProvider } from "./contexts/UserInputOutput";
 import { AuthProvider, useAuth } from "./contexts/AuthenticateContext";
 import Dashboard from "./components/Admin/Dashboard";
 import { PagesManagementProvider } from "./contexts/PagesManagementContext";
-import { RequestsProductsProvider } from "./contexts/RequestsProductsContext";  
+import { RequestsProductsProvider } from "./contexts/RequestsProductsContext";
 import ProductByCategory from "./pages/ProductsByCategory";
 import Payment from "./pages/Payment";
 import { MyContextProvider } from "./contexts/PaymentContext";
 import PurchaseProducts from "./components/PurchaseProducts/Index";
 import { PaymentContextProvider } from "./contexts/payment";
+import { FilterContextProvider } from "./contexts/FilterToProducts";
 
 function App() {
   return (
     <AxiosProvider>
-      <MyContextProvider>
-      <PaymentContextProvider>
-        <RequestsProductsProvider>
-          <AuthProvider>
-            <InputProvider>
-              <PagesManagementProvider>
-                <Router>
-                  <ProductContextProvider>
-                    <GlobalStyles />
-                    <AppContent />
-                  </ProductContextProvider>
-                </Router>
-              </PagesManagementProvider>
-            </InputProvider>
-          </AuthProvider>
-        </RequestsProductsProvider>
-      </PaymentContextProvider>
-      </MyContextProvider>
-        
+      <FilterContextProvider>
+        <MyContextProvider>
+          <PaymentContextProvider>
+            <RequestsProductsProvider>
+              <AuthProvider>
+                <InputProvider>
+                  <PagesManagementProvider>
+                    <Router>
+                      <ProductContextProvider>
+                        <GlobalStyles />
+                        <AppContent />
+                      </ProductContextProvider>
+                    </Router>
+                  </PagesManagementProvider>
+                </InputProvider>
+              </AuthProvider>
+            </RequestsProductsProvider>
+          </PaymentContextProvider>
+        </MyContextProvider>
+      </FilterContextProvider>
+
     </AxiosProvider>
   );
 }

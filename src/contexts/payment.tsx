@@ -50,8 +50,12 @@ export const PaymentContextProvider: React.FC<{ children: ReactNode }> = ({ chil
     <PaymentContext.Provider
       value={{
         name,
+        cardNumber,
+        cardholder,
         lastName,
+        expirationDate,
         address,
+        cvv,
         details,
         city,
         state,

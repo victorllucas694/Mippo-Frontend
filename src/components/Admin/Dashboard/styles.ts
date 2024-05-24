@@ -12,6 +12,9 @@ export const ProductPage = styled.div`
     justify-content: space-between;
     flex-wrap: wrap;
   }
+
+  
+
 `;
 
 export const HeaderProduct = styled.div`

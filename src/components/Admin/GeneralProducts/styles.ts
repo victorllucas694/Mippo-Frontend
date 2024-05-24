@@ -94,7 +94,7 @@ export const MainComponentOnPage = styled.div`
   }
 
   .body-content {
-    width: 70%;
+    width: 100%;
     min-height: 30rem;
     display: flex;
     flex-wrap: wrap;

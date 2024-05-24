@@ -13,6 +13,7 @@ import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
 import VolumeDown from "@mui/icons-material/VolumeDown";
 import VolumeUp from "@mui/icons-material/VolumeUp";
+import { useAxios } from "../../../providers/AxiosProvider";
 
 interface CategoryProduct {
   categoryBySearchProductPage: string | null;
@@ -33,7 +34,6 @@ export interface SubcategoriaData {
 }
 
 function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
-  console.log(categoryBySearchProductPage);
   const categoryMap: Record<string, () => JSX.Element> = {
     Computadores: handleComputadores,
     Notebook: handleNotebooks,
@@ -78,7 +78,10 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     [subcategory: string]: { [value: string]: boolean };
   }>({});
 
-  const handleCheckboxChange = (subcategory: string, value: string) => {
+  const arraySelected = useState<any>([])
+  const { axiosInstance } = useAxios();
+
+  const handleCheckboxChange = async (subcategory: string, value: string) => {
     setCheckboxStates((prevStates) => ({
       ...prevStates,
       [subcategory]: {
@@ -86,6 +89,8 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
         [value]: !prevStates[subcategory]?.[value],
       },
     }));
+
+    console.log(value)
   };
 
   const handleButton = async () => {
@@ -100,7 +105,6 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
             <div key={index} className="item">
               <div className="item-header">
                 <h1>{items.name}</h1>
-                <KeyboardArrowUpIcon />
               </div>
 
               <div className="item-body">
@@ -113,10 +117,6 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
                           <p>
                             <input
                               value={value}
-                              // checked={
-                              //   checkboxStates[categories.name]?.[value] ||
-                              //   false
-                              // }
                               onChange={() =>
                                 handleCheckboxChange(categories.name, value)
                               }
@@ -297,14 +297,13 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     page: number
   ) => {
     setCurrentPage(page);
-    console.log(event);
+
   };
   let totalPages;
   let productsToShow;
 
   if (products) {
     totalPages = Math.ceil(products.length / itemsPerPage);
-
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     productsToShow = products.slice(startIndex, endIndex);
@@ -312,7 +311,10 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
 
   return (
     <MainComponentOnPage>
-      <div className="filters">{contentToRender}</div>
+      {/* <div className="filters">{contentToRender}</div> */}
+      <div className="space">
+
+      </div>
       <div className="body-content">
         <div className="header-dody-filter">
           <h1>{category}</h1>
