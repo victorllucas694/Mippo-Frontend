@@ -78,7 +78,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     [subcategory: string]: { [value: string]: boolean };
   }>({});
 
-  const arraySelected = useState<any>([])
+  const arraySelected = useState<any>([]);
   const { axiosInstance } = useAxios();
 
   const handleCheckboxChange = async (subcategory: string, value: string) => {
@@ -89,12 +89,10 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
         [value]: !prevStates[subcategory]?.[value],
       },
     }));
-
-    console.log(value)
   };
 
   const handleButton = async () => {
-    console.log(searchInput);
+    console.log(checkboxStates);
   };
 
   function handleComputadores(): JSX.Element {
@@ -297,7 +295,6 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     page: number
   ) => {
     setCurrentPage(page);
-
   };
   let totalPages;
   let productsToShow;
@@ -311,10 +308,8 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
 
   return (
     <MainComponentOnPage>
-      {/* <div className="filters">{contentToRender}</div> */}
-      <div className="space">
-
-      </div>
+      <div className="filters">{contentToRender}</div>
+      <div className="space"></div>
       <div className="body-content">
         <div className="header-dody-filter">
           <h1>{category}</h1>
