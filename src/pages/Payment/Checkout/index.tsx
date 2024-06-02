@@ -57,6 +57,7 @@ export default function Checkout() {
 
   React.useEffect(() => {
     calcTotalPrice();
+    calcTotalPriceNow();
   }, []);
 
   const [priceToShipping, setPriceToShipping] = useState<number>(0);

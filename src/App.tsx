@@ -17,6 +17,7 @@ import { MyContextProvider } from "./contexts/PaymentContext";
 import PurchaseProducts from "./components/PurchaseProducts/Index";
 import { PaymentContextProvider } from "./contexts/payment";
 import { FilterContextProvider } from "./contexts/FilterToProducts";
+import Purchase from "./pages/Purchase";
 
 function App() {
   return (
@@ -96,6 +97,7 @@ function AppContent() {
           />
           <Route path="/:category" element={<ProductByCategory />} />
           <Route path="/payment/:id" element={<Payment />} />
+          <Route path="/purchase/:id" element={<Purchase />} />
           <Route path="/product/:category/:code/payment/:id" element={<PurchaseProducts />} />
         </Routes>
       </>
