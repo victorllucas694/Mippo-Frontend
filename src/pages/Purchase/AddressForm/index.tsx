@@ -13,15 +13,28 @@ const FormGrid = styled(Grid)(() => ({
 }));
 
 export default function AddressForm() {
+
+  const [ userName, setUsername ] = React.useState<string>('');
+  const [ lastName, setLastname ] = React.useState<string>('');
+  const [ address, setAddress ] = React.useState<string>('');
+  const [ details, setDetails ] = React.useState<string>('');
+  const [ city, setCity ] = React.useState<string>('');
+  const [ state, setState ] = React.useState<string>('');
+  const [ postalCode, setPostalCode ] = React.useState<string>('');
+  const [ country, setCuntry ] = React.useState<string>('');
+
+  
+
   return (
     <Grid container spacing={3}>
       <FormGrid item xs={12} md={6}>
         <FormLabel htmlFor="first-name" required>
-          First name
+          Primeiro nome
         </FormLabel>
         <OutlinedInput
           id="first-name"
           name="first-name"
+          onChange={(e: any) => setUsername(e.target.value)}
           type="name"
           placeholder="John"
           autoComplete="first name"
@@ -30,12 +43,13 @@ export default function AddressForm() {
       </FormGrid>
       <FormGrid item xs={12} md={6}>
         <FormLabel htmlFor="last-name" required>
-          Last name
+          Sobrenome
         </FormLabel>
         <OutlinedInput
           id="last-name"
           name="last-name"
           type="last-name"
+          onChange={(e: any) => setLastname(e.target.value)}
           placeholder="Snow"
           autoComplete="last name"
           required
@@ -43,10 +57,11 @@ export default function AddressForm() {
       </FormGrid>
       <FormGrid item xs={12}>
         <FormLabel htmlFor="address1" required>
-          Address line 1
+          endereço
         </FormLabel>
         <OutlinedInput
           id="address1"
+          onChange={(e: any) => setAddress(e.target.value)}
           name="address1"
           type="address1"
           placeholder="Street name and number"
@@ -55,9 +70,10 @@ export default function AddressForm() {
         />
       </FormGrid>
       <FormGrid item xs={12}>
-        <FormLabel htmlFor="address2">Address line 2</FormLabel>
+        <FormLabel htmlFor="address2">Complemento</FormLabel>
         <OutlinedInput
           id="address2"
+          onChange={(e: any) => setDetails(e.target.value)}
           name="address2"
           type="address2"
           placeholder="Apartment, suite, unit, etc. (optional)"
@@ -67,11 +83,12 @@ export default function AddressForm() {
       </FormGrid>
       <FormGrid item xs={6}>
         <FormLabel htmlFor="city" required>
-          City
+          Cidade
         </FormLabel>
         <OutlinedInput
           id="city"
           name="city"
+          onChange={(e: any) => setCity(e.target.value)}
           type="city"
           placeholder="New York"
           autoComplete="City"
@@ -80,10 +97,11 @@ export default function AddressForm() {
       </FormGrid>
       <FormGrid item xs={6}>
         <FormLabel htmlFor="state" required>
-          State
+          Estado
         </FormLabel>
         <OutlinedInput
           id="state"
+          onChange={(e: any) => setState(e.target.value)}
           name="state"
           type="state"
           placeholder="NY"
@@ -93,10 +111,11 @@ export default function AddressForm() {
       </FormGrid>
       <FormGrid item xs={6}>
         <FormLabel htmlFor="zip" required>
-          Zip / Postal code
+          Código postal
         </FormLabel>
         <OutlinedInput
           id="zip"
+          onChange={(e: any) => setPostalCode(e.target.value)}
           name="zip"
           type="zip"
           placeholder="12345"
@@ -106,10 +125,11 @@ export default function AddressForm() {
       </FormGrid>
       <FormGrid item xs={6}>
         <FormLabel htmlFor="country" required>
-          Country
+          País
         </FormLabel>
         <OutlinedInput
           id="country"
+          onChange={(e: any) => setCuntry(e.target.value)}
           name="country"
           type="country"
           placeholder="United States"

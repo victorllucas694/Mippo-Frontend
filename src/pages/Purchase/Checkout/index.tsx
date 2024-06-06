@@ -29,6 +29,8 @@ import InfoMobile from './../InfoMobile';
 import PaymentForm from './../PaymentForm';
 import Review from './../Review';
 import ToggleColorMode from './../ToggleColorMode';
+import { useAuth } from '../../../contexts/AuthenticateContext';
+import { useAxios } from '../../../providers/AxiosProvider';
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -101,10 +103,18 @@ export default function Checkout() {
   const checkoutTheme = createTheme(getCheckoutTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
   const [activeStep, setActiveStep] = React.useState(0);
+  const { id } = useAuth();
+  const { axiosInstance } = useAxios();
 
+  const token = localStorage.getItem("c__token");
+  const [productsData, setProductData] = React.useState([{}]);
+  
   const toggleColorMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
+
+  
+
 
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
@@ -152,14 +162,7 @@ export default function Checkout() {
               href="/material-ui/getting-started/templates/landing-page/"
               sx={{ ml: '-8px' }}
             >
-              Back to
-              <img
-                src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
-                }
-                style={logoStyle}
-                alt="Sitemark's logo"
-              />
+              voltar ao inicio
             </Button>
           </Box>
           <Box
@@ -171,7 +174,7 @@ export default function Checkout() {
               maxWidth: 500,
             }}
           >
-            <Info totalPrice={activeStep >= 2 ? '$144.97' : '$134.98'} />
+            <Info />
           </Box>
         </Grid>
         <Grid

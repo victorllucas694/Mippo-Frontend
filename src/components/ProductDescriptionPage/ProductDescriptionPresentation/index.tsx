@@ -81,9 +81,11 @@ function ProductDescriptionPresentation() {
   const [imageData, setImageData] = useState<ImageData>(initialState);
   const { id } = useAuth();
 
-  const purchaseItem = () => {
+  const purchaseItem = async () => {
     if (id) {
-      window.location.href = `payment/${id}`
+      // window.location.href = `payment/${id}`
+      const addNewOrder = await axiosInstance.post(`/payment/payment-data`)
+      console.log(addNewOrder)
     }
     if (!id) {
       window.location.href = '/login'

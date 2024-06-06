@@ -1,87 +1,65 @@
-import * as React from 'react';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Typography from '@mui/material/Typography';
-import { useAuth } from '../../../contexts/AuthenticateContext';
-import { useAxios } from '../../../providers/AxiosProvider';
+import * as React from "react";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Typography from "@mui/material/Typography";
+import { useAuth } from "../../../contexts/AuthenticateContext";
+import { useAxios } from "../../../providers/AxiosProvider";
+import { ListItemButton, ListItemIcon } from "@mui/material";
 
-
-
-const products = [
-  {
-    name: 'Professional plan',
-    desc: 'Monthly subscription',
-    price: '$15.00',
-  },
-  {
-    name: 'Dedicated support',
-    desc: 'Included in the Professional plan',
-    price: 'Free',
-  },
-  {
-    name: 'Hardware',
-    desc: 'Devices needed for development',
-    price: '$69.99',
-  },
-  {
-    name: 'Landing page template',
-    desc: 'License',
-    price: '$49.99',
-  },
-];
-
-interface InfoProps {
-  totalPrice: string;
-}
-
-
-
-export default function Info({ totalPrice }: InfoProps) {
+export default function Info() {
   const { id } = useAuth();
   const { axiosInstance } = useAxios();
+  const token = localStorage.getItem("c__token");
+  const [products, setProducts] = React.useState([]);
+  const [productsCallBack, setProductsCallBack] = React.useState({});
+
+  const getProductsByUserId = async () => {
+    try {
+      const req = await axiosInstance.get(`/payment-shipping-cart/cart/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const productsData = req.data;
+      setProducts(productsData);
+      productsData.forEach((product: any) => {
+        setProductsCallBack(product.getProductsByOrderId);
+      });
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
 
   React.useEffect(() => {
     getProductsByUserId();
-  }, [])
-  const token = localStorage.getItem("c__token");
-
-  const getProductsByUserId = async () => {
-    const req = await axiosInstance.get(`/payment-shipping-cart/cart/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-
-    console.log(req.data)
-
-  }
-
-  
-
+  }, []);
   return (
-    <React.Fragment>
+    <>
       <Typography variant="subtitle2" color="text.secondary">
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>
-        {totalPrice}
+        {productsCallBack.Valor_a_prazo}
       </Typography>
-      <List disablePadding>
-        {products.map((product) => (
-          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
-            <ListItemText
-              sx={{ mr: 2 }}
-              primary={product.name}
-              secondary={product.desc}
-            />
-            <Typography variant="body1" fontWeight="medium">
-              {product.price}
-            </Typography>
-          </ListItem>
-        ))}
+      <List
+        sx={{ width: "100%", maxWidth: 450, bgcolor: "background.paper" }}
+        aria-label="contacts"
+      >
+        {products.map((getProductsByOrderId) => {
+          return (
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemText primary={productsCallBack.Marca} />
+                <Typography variant="body1" fontWeight="medium">
+                  {productsCallBack.price}
+                </Typography>
+                <ListItemText primary={productsCallBack.Valor_a_prazo} />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
       </List>
-    </React.Fragment>
+    </>
   );
 }

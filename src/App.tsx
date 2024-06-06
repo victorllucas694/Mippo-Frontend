@@ -98,7 +98,7 @@ function AppContent() {
           <Route path="/:category" element={<ProductByCategory />} />
           <Route path="/payment/:id" element={<Payment />} />
           <Route path="/purchase/:id" element={<Purchase />} />
-          <Route path="/product/:category/:code/payment/:id" element={<PurchaseProducts />} />
+          <Route path="/product/:category/:code/payment/:id" element={<Purchase />} />
         </Routes>
       </>
     );
