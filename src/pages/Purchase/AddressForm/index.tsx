@@ -23,6 +23,9 @@ export default function AddressForm() {
   const [ postalCode, setPostalCode ] = React.useState<string>('');
   const [ country, setCuntry ] = React.useState<string>('');
 
+
+  console.log(userName,lastName,address,details,city, state, postalCode, country )
+
   
 
   return (

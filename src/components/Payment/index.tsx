@@ -152,7 +152,7 @@ function PaymentProduct() {
         className="shopping-cart-values"
       >
         <div className="header-values">
-          <p>Valor Total</p>
+          <p>Valor Total</p>  
         </div>
 
         <div className="body-cart">
