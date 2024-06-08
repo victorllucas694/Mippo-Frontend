@@ -43,7 +43,7 @@ function SearchPanel() {
   const [totalPriceFiltred, setTotalPriceFiltred] = React.useState<number>(0)
 
   const navigateToShippingCart = async () => {
-    window.location.href = `http://localhost:5173/payment/${id}`;
+    window.location.href = `http://localhost:5173/purchase/${id}`;
   };
 
   React.useEffect(() => {

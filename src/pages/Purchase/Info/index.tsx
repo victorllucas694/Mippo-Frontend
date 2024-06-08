@@ -5,14 +5,28 @@ import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
 import { useAuth } from "../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../providers/AxiosProvider";
-import { ListItemButton, ListItemIcon } from "@mui/material";
+import { ListItemButton } from "@mui/material";
 
-export default function Info() {
+interface Product {
+  Marca: string;
+  price: number;
+  Valor_a_prazo: number;
+  getProductsByOrderId: ProductCallBack;
+}
+
+interface ProductCallBack {
+  Marca: string;
+  price: number;
+  Valor_a_prazo: number;
+}
+
+const Info: React.FC = () => {
   const { id } = useAuth();
   const { axiosInstance } = useAxios();
   const token = localStorage.getItem("c__token");
-  const [products, setProducts] = React.useState([]);
-  const [productsCallBack, setProductsCallBack] = React.useState({});
+  const [products, setProducts] = React.useState<Product[]>([]);
+  const [productsCallBack, setProductsCallBack] = React.useState<ProductCallBack[]>([]);
+  const [totalValue, setTotalValue] = React.useState<number>(0);
 
   const getProductsByUserId = async () => {
     try {
@@ -21,11 +35,16 @@ export default function Info() {
           Authorization: `Bearer ${token}`,
         },
       });
-      const productsData = req.data;
+      const productsData: Product[] = req.data;
       setProducts(productsData);
-      productsData.forEach((product: any) => {
-        setProductsCallBack(product.getProductsByOrderId);
-      });
+      const callBackData = productsData.map(product => product.getProductsByOrderId);
+      setProductsCallBack(callBackData);
+
+      // Calculate total value
+      const total = callBackData.reduce((acc, product) => {
+        return acc + parseFloat(product.Valor_a_prazo.toString() || '0');
+      }, 0);
+      setTotalValue(total);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -34,32 +53,33 @@ export default function Info() {
   React.useEffect(() => {
     getProductsByUserId();
   }, []);
+
   return (
     <>
       <Typography variant="subtitle2" color="text.secondary">
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>
-        {productsCallBack.Valor_a_prazo}
+        {totalValue}
       </Typography>
       <List
         sx={{ width: "100%", maxWidth: 450, bgcolor: "background.paper" }}
         aria-label="contacts"
       >
-        {products.map((getProductsByOrderId) => {
-          return (
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemText primary={productsCallBack.Marca} />
-                <Typography variant="body1" fontWeight="medium">
-                  {productsCallBack.price}
-                </Typography>
-                <ListItemText primary={productsCallBack.Valor_a_prazo} />
-              </ListItemButton>
-            </ListItem>
-          );
-        })}
+        {productsCallBack.map((product, index) => (
+          <ListItem key={index} disablePadding>
+            <ListItemButton>
+              <ListItemText primary={product.Marca} />
+              <Typography variant="body1" fontWeight="medium">
+                {product.price}
+              </Typography>
+              <ListItemText primary={product.Valor_a_prazo} />
+            </ListItemButton>
+          </ListItem>
+        ))}
       </List>
     </>
   );
 }
+
+export default Info;

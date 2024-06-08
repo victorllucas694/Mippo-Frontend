@@ -84,7 +84,7 @@ function ProductDescriptionPresentation() {
   const purchaseItem = async () => {
     if (id) {
       // window.location.href = `payment/${id}`
-      const addNewOrder = await axiosInstance.post(`/payment/payment-data`)
+      const addNewOrder = await axiosInstance.post(`payment-data`)
       console.log(addNewOrder)
     }
     if (!id) {

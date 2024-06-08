@@ -32,6 +32,8 @@ export default function PaymentForm() {
   const [cvv, setCvv] = React.useState('');
   const [expirationDate, setExpirationDate] = React.useState('');
 
+  console.log(paymentType, cardNumber, cvv, expirationDate);
+
   const handlePaymentTypeChange = (event: {
     target: { value: React.SetStateAction<string> };
   }) => {

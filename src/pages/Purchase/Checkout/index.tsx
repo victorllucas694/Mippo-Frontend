@@ -1,36 +1,34 @@
-import * as React from 'react';
+import * as React from "react";
 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Stepper from '@mui/material/Stepper';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import Typography from '@mui/material/Typography';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { PaletteMode } from "@mui/material";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
+import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
+import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { PaletteMode } from '@mui/material';
-
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
-import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
-import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-
-import AddressForm from './../AddressForm';
-import getCheckoutTheme from './../GetCheckoutTheme';
-import Info from './../Info';
-import InfoMobile from './../InfoMobile';
-import PaymentForm from './../PaymentForm';
-import Review from './../Review';
-import ToggleColorMode from './../ToggleColorMode';
-import { useAuth } from '../../../contexts/AuthenticateContext';
-import { useAxios } from '../../../providers/AxiosProvider';
+import AddressForm from "./../AddressForm";
+import getCheckoutTheme from "./../GetCheckoutTheme";
+import Info from "./../Info";
+import InfoMobile from "./../InfoMobile";
+import PaymentForm from "./../PaymentForm";
+import Review from "./../Review";
+import ToggleColorMode from "./../ToggleColorMode";
+import { useAuth } from "../../../contexts/AuthenticateContext";
+import { useAxios } from "../../../providers/AxiosProvider";
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -44,11 +42,11 @@ function ToggleCustomTheme({
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '100dvw',
-        position: 'fixed',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        width: "100dvw",
+        position: "fixed",
         bottom: 24,
       }}
     >
@@ -59,14 +57,14 @@ function ToggleCustomTheme({
         onChange={toggleCustomTheme}
         aria-label="Platform"
         sx={{
-          backgroundColor: 'background.default',
-          '& .Mui-selected': {
-            pointerEvents: 'none',
+          backgroundColor: "background.default",
+          "& .Mui-selected": {
+            pointerEvents: "none",
           },
         }}
       >
         <ToggleButton value>
-          <AutoAwesomeRoundedIcon sx={{ fontSize: '20px', mr: 1 }} />
+          <AutoAwesomeRoundedIcon sx={{ fontSize: "20px", mr: 1 }} />
           Custom theme
         </ToggleButton>
         <ToggleButton value={false}>Material Design 2</ToggleButton>
@@ -75,13 +73,13 @@ function ToggleCustomTheme({
   );
 }
 
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+const steps = ["Shipping address", "Payment details", "Review your order"];
 
 const logoStyle = {
-  width: '140px',
-  height: '56px',
-  marginLeft: '-4px',
-  marginRight: '-8px',
+  width: "140px",
+  height: "56px",
+  marginLeft: "-4px",
+  marginRight: "-8px",
 };
 
 function getStepContent(step: number) {
@@ -93,12 +91,12 @@ function getStepContent(step: number) {
     case 2:
       return <Review />;
     default:
-      throw new Error('Unknown step');
+      throw new Error("Unknown step");
   }
 }
 
 export default function Checkout() {
-  const [mode, setMode] = React.useState<PaletteMode>('light');
+  const [mode, setMode] = React.useState<PaletteMode>("light");
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const checkoutTheme = createTheme(getCheckoutTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
@@ -108,13 +106,10 @@ export default function Checkout() {
 
   const token = localStorage.getItem("c__token");
   const [productsData, setProductData] = React.useState([{}]);
-  
+
   const toggleColorMode = () => {
-    setMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    setMode((prev) => (prev === "dark" ? "light" : "dark"));
   };
-
-  
-
 
   const toggleCustomTheme = () => {
     setShowCustomTheme((prev) => !prev);
@@ -131,19 +126,19 @@ export default function Checkout() {
   return (
     <ThemeProvider theme={showCustomTheme ? checkoutTheme : defaultTheme}>
       <CssBaseline />
-      <Grid container sx={{ height: { xs: '100%', sm: '100dvh' } }}>
+      <Grid container sx={{ height: { xs: "100%", sm: "100dvh" } }}>
         <Grid
           item
           xs={12}
           sm={5}
           lg={4}
           sx={{
-            display: { xs: 'none', md: 'flex' },
-            flexDirection: 'column',
-            backgroundColor: 'background.paper',
-            borderRight: { sm: 'none', md: '1px solid' },
-            borderColor: { sm: 'none', md: 'divider' },
-            alignItems: 'start',
+            display: { xs: "none", md: "flex" },
+            flexDirection: "column",
+            backgroundColor: "background.paper",
+            borderRight: { sm: "none", md: "1px solid" },
+            borderColor: { sm: "none", md: "divider" },
+            alignItems: "start",
             pt: 4,
             px: 10,
             gap: 4,
@@ -151,26 +146,26 @@ export default function Checkout() {
         >
           <Box
             sx={{
-              display: 'flex',
-              alignItems: 'end',
+              display: "flex",
+              alignItems: "end",
               height: 150,
             }}
           >
             <Button
               startIcon={<ArrowBackRoundedIcon />}
               component="a"
-              href="/material-ui/getting-started/templates/landing-page/"
-              sx={{ ml: '-8px' }}
+              href="/"
+              sx={{ ml: "-8px" }}
             >
               voltar ao inicio
             </Button>
           </Box>
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
+              display: "flex",
+              flexDirection: "column",
               flexGrow: 1,
-              width: '100%',
+              width: "100%",
               maxWidth: 500,
             }}
           >
@@ -183,12 +178,12 @@ export default function Checkout() {
           md={7}
           lg={8}
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            maxWidth: '100%',
-            width: '100%',
-            backgroundColor: { xs: 'transparent', sm: 'background.default' },
-            alignItems: 'start',
+            display: "flex",
+            flexDirection: "column",
+            maxWidth: "100%",
+            width: "100%",
+            backgroundColor: { xs: "transparent", sm: "background.default" },
+            alignItems: "start",
             pt: { xs: 2, sm: 4 },
             px: { xs: 2, sm: 10 },
             gap: { xs: 4, md: 8 },
@@ -196,31 +191,31 @@ export default function Checkout() {
         >
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: { sm: 'space-between', md: 'flex-end' },
-              alignItems: 'center',
-              width: '100%',
-              maxWidth: { sm: '100%', md: 600 },
+              display: "flex",
+              justifyContent: { sm: "space-between", md: "flex-end" },
+              alignItems: "center",
+              width: "100%",
+              maxWidth: { sm: "100%", md: 600 },
             }}
           >
             <Box
               sx={{
-                display: { xs: 'flex', md: 'none' },
-                flexDirection: 'row',
-                width: '100%',
-                justifyContent: 'space-between',
+                display: { xs: "flex", md: "none" },
+                flexDirection: "row",
+                width: "100%",
+                justifyContent: "space-between",
               }}
             >
               <Button
                 startIcon={<ArrowBackRoundedIcon />}
                 component="a"
                 href="/material-ui/getting-started/templates/landing-page/"
-                sx={{ alignSelf: 'start' }}
+                sx={{ alignSelf: "start" }}
               >
                 Back to
                 <img
                   src={
-                    'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                    "https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg"
                   }
                   style={logoStyle}
                   alt="Sitemark's logo"
@@ -230,10 +225,10 @@ export default function Checkout() {
             </Box>
             <Box
               sx={{
-                display: { xs: 'none', md: 'flex' },
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                alignItems: 'flex-end',
+                display: { xs: "none", md: "flex" },
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "flex-end",
                 flexGrow: 1,
                 height: 150,
               }}
@@ -243,15 +238,15 @@ export default function Checkout() {
                 id="desktop-stepper"
                 activeStep={activeStep}
                 sx={{
-                  width: '100%',
+                  width: "100%",
                   height: 40,
                 }}
               >
                 {steps.map((label) => (
                   <Step
                     sx={{
-                      ':first-child': { pl: 0 },
-                      ':last-child': { pr: 0 },
+                      ":first-child": { pl: 0 },
+                      ":last-child": { pr: 0 },
                     }}
                     key={label}
                   >
@@ -263,17 +258,17 @@ export default function Checkout() {
           </Box>
           <Card
             sx={{
-              display: { xs: 'flex', md: 'none' },
-              width: '100%',
+              display: { xs: "flex", md: "none" },
+              width: "100%",
             }}
           >
             <CardContent
               sx={{
-                display: 'flex',
-                width: '100%',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                ':last-child': { pb: 2 },
+                display: "flex",
+                width: "100%",
+                alignItems: "center",
+                justifyContent: "space-between",
+                ":last-child": { pb: 2 },
               }}
             >
               <div>
@@ -281,40 +276,44 @@ export default function Checkout() {
                   Selected products
                 </Typography>
                 <Typography variant="body1">
-                  {activeStep >= 2 ? '$144.97' : '$134.98'}
+                  {activeStep >= 2 ? "$144.97" : "$134.98"}
                 </Typography>
               </div>
-              <InfoMobile totalPrice={activeStep >= 2 ? '$144.97' : '$134.98'} />
+              <InfoMobile
+                totalPrice={activeStep >= 2 ? "$144.97" : "$134.98"}
+              />
             </CardContent>
           </Card>
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
+              display: "flex",
+              flexDirection: "column",
               flexGrow: 1,
-              width: '100%',
-              maxWidth: { sm: '100%', md: 600 },
-              maxHeight: '720px',
-              gap: { xs: 5, md: 'none' },
+              width: "100%",
+              maxWidth: { sm: "100%", md: 600 },
+              maxHeight: "720px",
+              gap: { xs: 5, md: "none" },
             }}
           >
             <Stepper
               id="mobile-stepper"
               activeStep={activeStep}
               alternativeLabel
-              sx={{ display: { sm: 'flex', md: 'none' } }}
+              sx={{ display: { sm: "flex", md: "none" } }}
             >
               {steps.map((label) => (
                 <Step
                   sx={{
-                    ':first-child': { pl: 0 },
-                    ':last-child': { pr: 0 },
-                    '& .MuiStepConnector-root': { top: { xs: 6, sm: 12 } },
+                    ":first-child": { pl: 0 },
+                    ":last-child": { pr: 0 },
+                    "& .MuiStepConnector-root": { top: { xs: 6, sm: 12 } },
                   }}
                   key={label}
                 >
                   <StepLabel
-                    sx={{ '.MuiStepLabel-labelContainer': { maxWidth: '70px' } }}
+                    sx={{
+                      ".MuiStepLabel-labelContainer": { maxWidth: "70px" },
+                    }}
                   >
                     {label}
                   </StepLabel>
@@ -333,8 +332,8 @@ export default function Checkout() {
                 <Button
                   variant="contained"
                   sx={{
-                    alignSelf: 'start',
-                    width: { xs: '100%', sm: 'auto' },
+                    alignSelf: "start",
+                    width: { xs: "100%", sm: "auto" },
                   }}
                 >
                   Go to my orders
@@ -345,15 +344,16 @@ export default function Checkout() {
                 {getStepContent(activeStep)}
                 <Box
                   sx={{
-                    display: 'flex',
-                    flexDirection: { xs: 'column-reverse', sm: 'row' },
-                    justifyContent: activeStep !== 0 ? 'space-between' : 'flex-end',
-                    alignItems: 'end',
+                    display: "flex",
+                    flexDirection: { xs: "column-reverse", sm: "row" },
+                    justifyContent:
+                      activeStep !== 0 ? "space-between" : "flex-end",
+                    alignItems: "end",
                     flexGrow: 1,
                     gap: 1,
                     pb: { xs: 12, sm: 0 },
                     mt: { xs: 2, sm: 0 },
-                    mb: '60px',
+                    mb: "60px",
                   }}
                 >
                   {activeStep !== 0 && (
@@ -362,7 +362,7 @@ export default function Checkout() {
                       onClick={handleBack}
                       variant="text"
                       sx={{
-                        display: { xs: 'none', sm: 'flex' },
+                        display: { xs: "none", sm: "flex" },
                       }}
                     >
                       Previous
@@ -375,7 +375,7 @@ export default function Checkout() {
                       variant="outlined"
                       fullWidth
                       sx={{
-                        display: { xs: 'flex', sm: 'none' },
+                        display: { xs: "flex", sm: "none" },
                       }}
                     >
                       Previous
@@ -386,10 +386,10 @@ export default function Checkout() {
                     endIcon={<ChevronRightRoundedIcon />}
                     onClick={handleNext}
                     sx={{
-                      width: { xs: '100%', sm: 'fit-content' },
+                      width: { xs: "100%", sm: "fit-content" },
                     }}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? "Place order" : "Avançar"}
                   </Button>
                 </Box>
               </React.Fragment>
