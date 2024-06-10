@@ -37,7 +37,7 @@ export default function AddressForm() {
           name="first-name"
           onChange={(e: any) => setUsername(e.target.value)}
           type="name"
-          placeholder="John"
+          placeholder="Victor"
           autoComplete="first name"
           required
         />
@@ -51,7 +51,7 @@ export default function AddressForm() {
           name="last-name"
           type="last-name"
           onChange={(e: any) => setLastname(e.target.value)}
-          placeholder="Snow"
+          placeholder="Lucas da Silva"
           autoComplete="last name"
           required
         />
@@ -65,7 +65,7 @@ export default function AddressForm() {
           onChange={(e: any) => setAddress(e.target.value)}
           name="address1"
           type="address1"
-          placeholder="Street name and number"
+          placeholder="Rua duque de caxias 1203"
           autoComplete="shipping address-line1"
           required
         />
@@ -77,7 +77,7 @@ export default function AddressForm() {
           onChange={(e: any) => setDetails(e.target.value)}
           name="address2"
           type="address2"
-          placeholder="Apartment, suite, unit, etc. (optional)"
+          placeholder="Apartamento, Hotel, casas, etc. (Não obrigatorio)"
           autoComplete="shipping address-line2"
           required
         />
@@ -91,7 +91,7 @@ export default function AddressForm() {
           name="city"
           onChange={(e: any) => setCity(e.target.value)}
           type="city"
-          placeholder="New York"
+          placeholder="Campinas"
           autoComplete="City"
           required
         />
@@ -105,7 +105,7 @@ export default function AddressForm() {
           onChange={(e: any) => setState(e.target.value)}
           name="state"
           type="state"
-          placeholder="NY"
+          placeholder="SP"
           autoComplete="State"
           required
         />
@@ -133,7 +133,7 @@ export default function AddressForm() {
           onChange={(e: any) => setCuntry(e.target.value)}
           name="country"
           type="country"
-          placeholder="United States"
+          placeholder="Brasil"
           autoComplete="shipping country"
           required
         />
