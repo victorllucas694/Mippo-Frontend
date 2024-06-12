@@ -5,46 +5,15 @@ import SearchPanel from "../../components/Global/SearchPanel";
 import LoginPage from "../../components/LoginPage";
 import Footer from "../../components/Global/Footer";
 
-function Login({setUserAllowed}: any) {
-  const [headerComment, setHeaderComment] = useState(
-    "Código da sorte: AQFO1KJ"
-  );
-  const [breadcrumb, setBreadcrumb] = useState(
+function Login() {
+  
+  const [breadcrumb, __setBreadcrumb] = useState(
     "Faça o seu login ou registre uma conta caso ainda não possua nenhum cadastro"
   );
 
-  const [loginBoxLabel, setLoginBoxLabel] = useState(
+  const [loginBoxLabel, __setLoginBoxLabel] = useState(
     "Já tenho uma conta"
   );
-
-
-  const buttonsTopHeaderData = [
-    {
-      id: 1,
-      label: "Entrar",
-    },
-    {
-      id: 2,
-      label: "Registre-se",
-    },
-  ];
-
-  const searchPanelDataPreset = [
-    {
-      id: 1,
-      image: "",
-    },
-    {
-      id: 2,
-      label: "search",
-    },
-    {
-      id: 3,
-      image: "",
-      label: "",
-      contact: "",
-    },
-  ];
 
   const categoriesBoxProps = [
     {
@@ -72,10 +41,8 @@ function Login({setUserAllowed}: any) {
   return (
     <>
       <Header
-        headerInitial={headerComment}
-        buttonsTopHeaderData={buttonsTopHeaderData}
       />
-      <SearchPanel searchPanelDataPreset={searchPanelDataPreset} />
+      <SearchPanel />
       <OptionsHeader categoriesBoxProps={categoriesBoxProps} />
       <LoginPage breadcrumb={breadcrumb} loginBoxLabel={loginBoxLabel} registerBoxLabel={'Registro'}  />
       <br />

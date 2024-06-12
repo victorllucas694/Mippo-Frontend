@@ -1,4 +1,3 @@
-import { IProductSelected } from "../../../contexts/RequestsProductsContext";
 import { BoxProductReview, ContainerProductListDetails } from "./styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -6,10 +5,6 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState } from "react";
 import { Rating } from "@mui/material";
-
-interface FoundedProduct {
-  product: IProductSelected | null;
-}
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -58,10 +53,10 @@ interface IRating {
   reviewsTotalUser: string;
 }
 
-function ProductDetails({ product }: FoundedProduct) {
+function ProductDetails({ product }: any) {
   const [value, setValue] = useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleChange = (__event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 

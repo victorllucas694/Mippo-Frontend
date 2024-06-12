@@ -75,8 +75,7 @@ interface IProductCode {
 }
 
 function RealTimeInputValidate({ productCode, setProductCode } : IProductCode) {
-  // const { axiosInstance } = useAxios();
-  const [foundedProductCode, setFoundedProductCode] = useState<boolean>(false);
+  const [foundedProductCode, _setFoundedProductCode] = useState<boolean>(false);
 
   return (
     <Input

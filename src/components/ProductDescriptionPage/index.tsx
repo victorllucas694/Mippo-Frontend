@@ -3,7 +3,6 @@ import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import { useProductsContext } from "../../contexts/CardContexts";
-import { ISocialsDataBoxes } from "../../Types";
 import { useRequestsProductsContext } from "../../contexts/RequestsProductsContext";
 
 interface Category {
@@ -16,14 +15,14 @@ function ProductDescriptionPage({ categoryBySearchProductPage }: Category) {
   const { socialsDataBox } = useProductsContext();
   const { productSelected } = useRequestsProductsContext();
 
-  function handleChange(
-    event: Event,
-    value: number | number[],
-    activeThumb: number
-  ): void {
-    console.log(event, value, activeThumb)
-    throw new Error("Function not implemented.");
-  }
+  // function handleChange(
+  //   event: Event,
+  //   value: number | number[],
+  //   activeThumb: number
+  // ): void {
+  //   console.log(event, value, activeThumb)
+  //   throw new Error("Function not implemented.");
+  // }
 
   return (
     <ProductDescriptionRootContainer>
@@ -55,7 +54,7 @@ function ProductDescriptionPage({ categoryBySearchProductPage }: Category) {
 
         <div className="socials-content">
           <div className="initial-label"></div>
-          {socialsDataBox.map((socials: ISocialsDataBoxes) => {
+          {socialsDataBox.map(() => {
             return (
               <div className="img-social-box">
                 <p></p>

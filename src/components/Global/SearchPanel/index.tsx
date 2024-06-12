@@ -1,8 +1,5 @@
 import {
   Divider,
-  Input,
-  Select,
-  TextField,
   Paper,
   IconButton,
   InputBase,
@@ -19,22 +16,19 @@ import { useAuth } from "../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../providers/AxiosProvider";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-interface SearchPanelDataItem {
-  id: number;
-  image?: string;
-  label?: string;
-  contact?: string;
-}
+// interface SearchPanelDataItem {
+//   id: number;
+//   image?: string;
+//   label?: string;
+//   contact?: string;
+// }
 
-interface ISearchPanelDataPreset {
-  searchPanelDataPreset: SearchPanelDataItem[];
-}
 
 function SearchPanel() {
-  const [currency, setCurrency] = React.useState<string>("dollar");
+  // const [currency, setCurrency] = React.useState<string>("dollar");
   const { id } = useAuth();
 
-  const userid = id;
+  // const userid = id;
   const [search, setSearch] = React.useState<string>("");
   const { axiosInstance } = useAxios();
   const [badgeShippingCartAllPages, setBadgeShippingCartAllPages] =

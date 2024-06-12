@@ -35,9 +35,7 @@ export default function Review() {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(req.data);
     setProducts(req.data);
-    let value = 0;
     products.map((getProductsByOrderId: any) => {
       setProductsCallBack(getProductsByOrderId.getProductsByOrderId);
       console.log(productsCallBack);
@@ -52,7 +50,7 @@ export default function Review() {
             <ListItem sx={{ py: 1, px: 0 }}>
               <ListItemText primary="Products" secondary="4 selected" />
               <Typography variant="body2">
-                {productsCallBack.Valor_a_prazo}
+                {getProductsByOrderId.Valor_a_prazo}
               </Typography>
             </ListItem>
           );

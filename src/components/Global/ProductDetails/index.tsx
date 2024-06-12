@@ -1,4 +1,3 @@
-import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import Button from "@mui/joy/Button";
@@ -8,14 +7,6 @@ import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 
 function ProductDetails({ getOrderProducts }: any) {
-
-  const redirectToPayment = () => {
-    const id = getOrderProducts.getProductsByOrderId.id
-    console.log(getOrderProducts);
-
-
-    // window.location.href = `purchase/${id}`;
-  }
 
   return (
     <Box
@@ -89,7 +80,7 @@ function ProductDetails({ getOrderProducts }: any) {
             <Button variant="outlined" color="neutral">
               Cancelar
             </Button>
-            <Button onClick={redirectToPayment} variant="solid" color="primary">
+            <Button variant="solid" color="primary">
               Compra unica
             </Button>
           </Box>

@@ -9,7 +9,6 @@ function ProductDescriptionDetails() {
             <h1>Descrição</h1>
           </div>
         </HeaderProductDetail>
-        
       </div>
     </ProductDetails>
   );

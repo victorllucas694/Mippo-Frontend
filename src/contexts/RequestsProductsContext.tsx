@@ -1,25 +1,78 @@
-import React, {
+import {
   createContext,
   useContext,
   useState,
   ReactNode,
-  useEffect,
 } from "react";
 import axiosInstance from "../providers/AxiosInstance";
 
-let rows = [];
+// Definindo interfaces para os dados
+interface Subcategory {
+  name: string;
+  valor: string[];
+}
 
-export const RequestsProductsContext = createContext(undefined);
+interface Category {
+  name: string;
+  subcategories: Subcategory[];
+}
 
-export function RequestsProductsProvider({ children }) {
-  const [productSelected, setProductSelected] = useState(null);
-  const [shoppingCart, setShoppingCart] = useState(1);
-  const [globalCategory, setGlobalCategory] = useState(null);
-  const [countdown, setCountdown] = useState(null);
-  const [priceShoppingCart, setPriceShoppingCart] = useState(null);
-  const [totalPrice, setTotalPrice] = useState(0);
+interface Product {
+  Fabricante: string;
+  Marca: string;
+  Descricao_final_sobre_o_produto: string;
+  Codigo: string;
+  Codigo_das_Imagens: string;
+  Quantidade_em_estoque: number;
+  Valor_a_prazo: string;
+  Valor_a_vista: string;
+  id: number;
+}
 
-  const accessoriesDataCategory = [
+interface RequestsProductsContextType {
+  productSelected: any;
+  setterProductSelected: (product: Product) => void;
+  addItemToShoppingCart: () => void;
+  shoppingCart: number;
+  alertlogin: string;
+  calcPriceByShoppingCart: (price: string) => void;
+  totalPrice: number;
+  globalCategory: string | null;
+  computerCategory: Category[];
+  isUserLoggedIn: () => Promise<void>;
+  verifyUserLoggedByAddProductToShoppingCart: (
+    id: number,
+    productsList: Product
+  ) => Promise<void>;
+  setterGlobalProductCategoryByNavbar: (category: string) => void;
+  getProductImageByCategoryAndProductId: (
+    category: string,
+    productID: string,
+    imageCode: string
+  ) => Promise<void>;
+  accessoriesCategory: Category[];
+  created: boolean;
+  searchInput: string;
+  HardwareDataCategory: Category[];
+  NotebookDataCategory: Category[];
+  filterArrayByProductInput: (search: string) => void;
+}
+
+// Tipando o contexto
+const RequestsProductsContext = createContext<RequestsProductsContextType | undefined>(undefined);
+
+interface RequestsProductsProviderProps {
+  children: ReactNode;
+}
+
+export function RequestsProductsProvider({ children }: RequestsProductsProviderProps) {
+  const [productSelected, setProductSelected] = useState<Product | null>(null);
+  const [shoppingCart, setShoppingCart] = useState<number>(1);
+  const [globalCategory, setGlobalCategory] = useState<string | null>(null);
+  const [_countdown, setCountdown] = useState<number | null>(null);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+
+  const accessoriesDataCategory: Category[] = [
     {
       name: "Informações Gerais",
       subcategories: [
@@ -53,7 +106,7 @@ export function RequestsProductsProvider({ children }) {
     },
   ];
 
-  const NotebookDataCategory = [
+  const NotebookDataCategory: Category[] = [
     {
       name: "Componentes",
       subcategories: [
@@ -90,7 +143,7 @@ export function RequestsProductsProvider({ children }) {
     },
   ];
 
-  const HardwareDataCategory = [
+  const HardwareDataCategory: Category[] = [
     {
       name: "Informações Gerais",
       subcategories: [
@@ -125,7 +178,7 @@ export function RequestsProductsProvider({ children }) {
     },
   ];
 
-  const computersDataCategory = [
+  const computersDataCategory: Category[] = [
     {
       name: "Computadores",
       subcategories: [
@@ -152,26 +205,25 @@ export function RequestsProductsProvider({ children }) {
       ],
     },
   ];
+
   const token = localStorage.getItem("c__token");
-  const [computerCategory, setComputerCategory] = useState(
+  const [computerCategory, __setComputerCategory] = useState<Category[]>(
     computersDataCategory
   );
 
-  const [accessoriesCategory, setAccessoriesCategory] = useState(
+  const [accessoriesCategory, __setAccessoriesCategory] = useState<Category[]>(
     accessoriesDataCategory
   );
 
-  const setterGlobalProductCategoryByNavbar = (category) => {
+  const setterGlobalProductCategoryByNavbar = (category: string) => {
     window.location.href = `/${category}`;
     setGlobalCategory(category);
   };
 
-  const [created, setCreated] = useState(false);
-  const [alertlogin, setAlertLogin] = useState("");
+  const [created, setCreated] = useState<boolean>(false);
+  const [alertlogin, setAlertLogin] = useState<string>("");
 
   const isUserLoggedIn = async () => {
-
-
     if (token) {
       try {
         const response = await axiosInstance.get("/authenticate/token-verify", {
@@ -197,9 +249,9 @@ export function RequestsProductsProvider({ children }) {
   };
 
   const removeCurrencySymbolAndAddToTotal = (
-    price,
-    currentTotal
-  ) => {
+    price: string,
+    currentTotal: number
+  ): number => {
     if (price) {
       const priceWithoutCurrency = price.replace("R$", "").trim();
       const priceValue = parseFloat(priceWithoutCurrency);
@@ -213,13 +265,13 @@ export function RequestsProductsProvider({ children }) {
     return currentTotal;
   };
 
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState<string>("");
 
-  const filterArrayByProductInput = (search) => {
+  const filterArrayByProductInput = (search: string) => {
     setSearchInput(search);
   };
 
-  const calcPriceByShoppingCart = async (priceToConvert) => {
+  const calcPriceByShoppingCart = async (priceToConvert: string) => {
     const newTotalPrice = removeCurrencySymbolAndAddToTotal(
       priceToConvert,
       totalPrice
@@ -241,11 +293,10 @@ export function RequestsProductsProvider({ children }) {
   };
 
   const getProductImageByCategoryAndProductId = async (
-    category,
-    productID,
-    imageCode
+    category: string,
+    productID: string,
+    imageCode: string
   ) => {
-
     const foundedImages = await axiosInstance(
       `/products-management-without-auth/get/all/images/${category}/${productID}/${imageCode}`,
       {
@@ -255,16 +306,15 @@ export function RequestsProductsProvider({ children }) {
       }
     );
 
-    foundedImages.data.map((data) => {
+    foundedImages.data.map((data: any) => {
       console.log("data", data);
     });
   };
 
   const verifyUserLoggedByAddProductToShoppingCart = async (
-    id,
-    productsList
+    id: number,
+    productsList: Product
   ) => {
-
     const currentURL = window.location.pathname;
     const urlParts = currentURL.split("/");
     const category = urlParts[1];
@@ -278,9 +328,10 @@ export function RequestsProductsProvider({ children }) {
         },
       }
     );
+    console.log(response)
   };
 
-  const setterProductSelected = (product) => {
+  const setterProductSelected = (product: Product) => {
     setProductSelected(product);
   };
 

@@ -1,7 +1,5 @@
 import { SpecificProductsListBoxWrapper } from "./styles";
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import CardProduct from "../CardProduct";
 import { IMockProducts } from "../../../Types";
 import { useProductsContext } from "../../../contexts/CardContexts";
@@ -11,26 +9,26 @@ interface IGenericListData {
 }
 
 function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
-  interface ExpandMoreProps extends IconButtonProps {
-    expand: boolean;
-  }
+    // interface ExpandMoreProps extends IconButtonProps {
+    //   expand: boolean;
+    // }
 
   console.log(sliderProductTitle)
 
-  const ExpandMore = styled((props: ExpandMoreProps) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  }));
+  // const ExpandMore = styled((props: ExpandMoreProps) => {
+  //   const { expand, ...other } = props;
+  //   return <IconButton {...other} />;
+  // })(({ theme, expand }) => ({
+  //   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+  //   marginLeft: "auto",
+  //   transition: theme.transitions.create("transform", {
+  //     duration: theme.transitions.duration.shortest,
+  //   }),
+  // }));
 
-  const [expanded, setExpanded] = React.useState(false);
+  // const [expanded, setExpanded] = React.useState(false);
   const { products } = useProductsContext();
-  const [emptyProducts, setEmptyProducts] = React.useState<IMockProducts>({
+  const [emptyProducts, __setEmptyProducts] = React.useState<IMockProducts>({
       "id": 4,
       "Marca": "Adicionar",
       "Fabricante": "Voce não possui produtos",
@@ -63,7 +61,7 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
       "Valor_a_vista": "R$ 00,00",
       "Valor_a_prazo": "R$ 00,00",
   })
-  const [currentPage, setCurrentPage] = React.useState(1);
+  const [currentPage, __setCurrentPage] = React.useState(1);
   const itemsPerPage = 8; 
   // const handlePageChange = (
   //   event: React.ChangeEvent<unknown>,
@@ -71,12 +69,9 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
   // ) => {
   //   setCurrentPage(page);
   // };
-  let totalPages;
   let productsToShow;
-
+  
   if (products) {
-    totalPages = Math.ceil(products.length / itemsPerPage);
-
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     productsToShow = products.slice(startIndex, endIndex);

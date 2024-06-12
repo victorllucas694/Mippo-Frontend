@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import axiosInstance from "../providers/AxiosInstance";
+import { createContext, useContext, useState, ReactNode } from "react";
 
 interface AuthContextType {
   token: string;
@@ -15,6 +14,10 @@ interface AuthContextType {
   setId: (userId: number) => void;
   setUserId: (userId: number) => void;
   setEmailProfile: (email: string) => void;
+  setName: (name: string) => void
+  setLastName: (name: string) => void
+  setPhone: (name: string) => void
+  setEmail: (name: string) => void
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -58,6 +61,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         setId,
         removeAuthToken,
         userAllowed,
+        setName,
+        setLastName,
+        setPhone,
+        setEmail,
         id,
         name,
         lastName,

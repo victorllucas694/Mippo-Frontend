@@ -48,13 +48,11 @@ function TabsOrder() {
     setValue(newValue);
     console.log(event);
   };
-  let rows;
   // /order-management/get/all/orders/:id
   const { axiosInstance } = useAxios();
   const { id } = useAuth();
   React.useEffect(() => {
     getAllOrder();
-    rows = allOrders;
   }, []);
   const token = localStorage.getItem("c__token");
 
@@ -104,14 +102,14 @@ function TabsOrder() {
 
   const currentDateCustomFormat = getCurrentDate();
 
-  const currentDateBrFormat = getCurrentDate();
+  // const currentDateBrFormat = getCurrentDate()
 
-  const columns = [
-    { field: "id", headerName: "ID", width: 90 },
-    { field: "firstName", headerName: "First name", width: 150 },
-    { field: "lastName", headerName: "Last name", width: 150 },
-    { field: "age", headerName: "Age", type: "number", width: 110 },
-  ];
+  // const columns = [
+  //   { field: "id", headerName: "ID", width: 90 },
+  //   { field: "firstName", headerName: "First name", width: 150 },
+  //   { field: "lastName", headerName: "Last name", width: 150 },
+  //   { field: "age", headerName: "Age", type: "number", width: 110 },
+  // ];
 
   return (
     <Box sx={{ width: "100%" }}>

@@ -103,10 +103,10 @@ export function ProductContextProvider({ children }: ProductsProviderProps) {
   const [products, setProducts] = useState<IMockProducts[] | undefined>(
     undefined
   );
-  const [socialsDataBox, setSocialDataBox] = useState(socialsDataBoxes);
-  const [registerIOModal, setRegisterIOModal] =
+  const [socialsDataBox, __setSocialDataBox] = useState(socialsDataBoxes);
+  const [registerIOModal, __setRegisterIOModal] =
     useState<IRegisterIO[]>(registerIO);
-  const [offersCheckBoxes, setOffersCheckBoxes] = useState(offersCheckBoxesIO);
+  const [offersCheckBoxes, __setOffersCheckBoxes] = useState(offersCheckBoxesIO);
   const [packageCode, setPackageCode] = useState<string | null>(null);
   const [badgeNumber, setBadgeNumber] = useState<number>(0);
 

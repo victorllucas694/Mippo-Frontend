@@ -24,7 +24,7 @@ const Info: React.FC = () => {
   const { id } = useAuth();
   const { axiosInstance } = useAxios();
   const token = localStorage.getItem("c__token");
-  const [products, setProducts] = React.useState<Product[]>([]);
+  const [__products, setProducts] = React.useState<Product[]>([]);
   const [productsCallBack, setProductsCallBack] = React.useState<ProductCallBack[]>([]);
   const [totalValue, setTotalValue] = React.useState<number>(0);
 

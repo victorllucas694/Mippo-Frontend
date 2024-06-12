@@ -8,7 +8,6 @@ import ModalRegister from "./ModalRegister";
 import { useInputContext } from "../../contexts/UserInputOutput";
 import axiosInstance from "../../providers/AxiosInstance";
 import { useAuth } from "../../contexts/AuthenticateContext";
-import { useNavigate } from "react-router-dom";
 import DOMPurify from "dompurify";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -36,7 +35,7 @@ function LoginPage({
   }: IDataLoginLayout) {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const { loginInput, setLoginInput } = useInputContext();
-  const { token, setAuthToken, setEmailProfile } = useAuth();
+  const { setAuthToken, setEmailProfile } = useAuth();
   // const navigate = useNavigate();
 
   const handleInputChange = (

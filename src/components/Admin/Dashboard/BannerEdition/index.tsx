@@ -1,6 +1,5 @@
 import { Button, TextField } from "@mui/material";
 import { BannerModifyBox } from "./styles";
-import { useState } from "react";
 
 interface imagesDefault {
   title: string;
@@ -49,7 +48,6 @@ function BannerEdition() {
     },
   ];
 
-  const [bannerImage, setBannerImage] = useState<string>('');
 
   return (
     <BannerModifyBox>
@@ -78,7 +76,6 @@ function BannerEdition() {
             id="outlined-basic"
             label="Link da imagem do banner"
             variant="outlined"
-            onChange={(e) => setBannerImage(e.target.value)}
           />
 
           <div className="image-drag-in-drop">

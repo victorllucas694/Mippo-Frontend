@@ -19,7 +19,7 @@ function FilterProducts() {
     return formatoDinheiro.format(valor);
   };
   const [totalOrders, setTotalOrders] = useState<number>(0);
-  const [orderTracking, setOrderTracking] = useState<any[]>([])
+  const [__orderTracking, setOrderTracking] = useState<any[]>([])
 
   useEffect(() => {
     const token = localStorage.getItem("c__token");
@@ -61,7 +61,7 @@ function FilterProducts() {
 
   return (
     <HeaderProducts>
-      <RowsDataSide orderTracking={orderTracking} />
+      <RowsDataSide />
     </HeaderProducts>
   );
 }

@@ -19,7 +19,6 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
-
 import AddressForm from "./../AddressForm";
 import getCheckoutTheme from "./../GetCheckoutTheme";
 import Info from "./../Info";
@@ -27,8 +26,6 @@ import InfoMobile from "./../InfoMobile";
 import PaymentForm from "./../PaymentForm";
 import Review from "./../Review";
 import ToggleColorMode from "./../ToggleColorMode";
-import { useAuth } from "../../../contexts/AuthenticateContext";
-import { useAxios } from "../../../providers/AxiosProvider";
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -101,11 +98,6 @@ export default function Checkout() {
   const checkoutTheme = createTheme(getCheckoutTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
   const [activeStep, setActiveStep] = React.useState(0);
-  const { id } = useAuth();
-  const { axiosInstance } = useAxios();
-
-  const token = localStorage.getItem("c__token");
-  const [productsData, setProductData] = React.useState([{}]);
 
   const toggleColorMode = () => {
     setMode((prev) => (prev === "dark" ? "light" : "dark"));
@@ -279,9 +271,7 @@ export default function Checkout() {
                   {activeStep >= 2 ? "$144.97" : "$134.98"}
                 </Typography>
               </div>
-              <InfoMobile
-                totalPrice={activeStep >= 2 ? "$144.97" : "$134.98"}
-              />
+              <InfoMobile />
             </CardContent>
           </Card>
           <Box

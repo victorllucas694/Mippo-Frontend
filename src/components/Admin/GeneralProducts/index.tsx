@@ -9,15 +9,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
-import Stack from "@mui/material/Stack";
-import Slider from "@mui/material/Slider";
-import VolumeDown from "@mui/icons-material/VolumeDown";
-import VolumeUp from "@mui/icons-material/VolumeUp";
-import { useAxios } from "../../../providers/AxiosProvider";
-
-interface CategoryProduct {
-  categoryBySearchProductPage: string | null;
-}
 
 export interface Category {
   name: string;
@@ -33,7 +24,7 @@ export interface SubcategoriaData {
   label: string;
 }
 
-function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
+function GeneralFunction() {
   const categoryMap: Record<string, () => JSX.Element> = {
     Computadores: handleComputadores,
     Notebook: handleNotebooks,
@@ -46,7 +37,6 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     accessoriesCategory,
     HardwareDataCategory,
     NotebookDataCategory,
-    searchInput,
   } = useRequestsProductsContext();
 
   const { products } = useProductsContext();
@@ -78,8 +68,6 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
     [subcategory: string]: { [value: string]: boolean };
   }>({});
 
-  const arraySelected = useState<any>([]);
-  const { axiosInstance } = useAxios();
 
   const handleCheckboxChange = async (subcategory: string, value: string) => {
     setCheckboxStates((prevStates) => ({
@@ -291,7 +279,7 @@ function GeneralFunction({ categoryBySearchProductPage }: CategoryProduct) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 9;
   const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
+    _event: React.ChangeEvent<unknown>,
     page: number
   ) => {
     setCurrentPage(page);

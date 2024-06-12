@@ -5,10 +5,8 @@
 //   OffBox,
 //   PriceProductCard,
 // } from "./styles";
-import { styled } from "@mui/material/styles";
 // import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
-import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import Rating from "@mui/material/Rating";
 import * as React from "react";
 import AspectRatio from "@mui/joy/AspectRatio";
@@ -28,20 +26,20 @@ import { useState } from "react";
 // import { Alert, Snackbar } from "@mui/material";
 // import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
+// interface ExpandMoreProps extends IconButtonProps {
+//   expand: boolean;
+// }
 
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+// const ExpandMore = styled((props: ExpandMoreProps) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+//   marginLeft: "auto",
+//   transition: theme.transitions.create("transform", {
+//     duration: theme.transitions.duration.shortest,
+//   }),
+// }));
 
 interface IProductData {
   productsList: IMockProducts;
@@ -50,11 +48,11 @@ interface IProductData {
 function CardProduct({ productsList }: IProductData) {
   const { id } = useAuth();
 
-  const [productCode, setProductCode] = React.useState<string | null>(
+  const [productCode] = React.useState<string | null>(
     productsList.Codigo
   );
   const [productId, setProductId] = React.useState<number | null>(0);
-  const [productCategory, setProductCategory] = React.useState<string | null>();
+  // const [productCategory, setProductCategory] = React.useState<string | null>();
 
   const currentURL = window.location.pathname;
   const urlParts = currentURL.split("/");
@@ -264,9 +262,6 @@ function CardProduct({ productsList }: IProductData) {
                 component="span"
                 size="md"
                 variant="soft"
-                color={
-                  productsList.Quantidade_em_estoque >= 1 ? "success" : "#fff"
-                }
                 sx={{
                   "@media (max-width: 1600px)": {
                     fontSize: ".8rem",

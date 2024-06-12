@@ -136,7 +136,6 @@ interface IShippingMethods {
 }
 
 export default function ModalAddNewSupplier({
-  // handleOpen,
   handleClose,
   isOpen,
 }: ISettingsModal) {

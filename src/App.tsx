@@ -12,9 +12,7 @@ import Dashboard from "./components/Admin/Dashboard";
 import { PagesManagementProvider } from "./contexts/PagesManagementContext";
 import { RequestsProductsProvider } from "./contexts/RequestsProductsContext";
 import ProductByCategory from "./pages/ProductsByCategory";
-import Payment from "./pages/Payment";
 import { MyContextProvider } from "./contexts/PaymentContext";
-import PurchaseProducts from "./components/PurchaseProducts/Index";
 import { PaymentContextProvider } from "./contexts/payment";
 import { FilterContextProvider } from "./contexts/FilterToProducts";
 import Purchase from "./pages/Purchase";
@@ -94,7 +92,7 @@ function AppContent() {
           <Route
             path="/product/:category/:code/:id"
             element={<ProductDescription />}
-          />
+          />  
           <Route path="/:category" element={<ProductByCategory />} />
           <Route path="/purchase/:id" element={<Purchase />} />
           <Route path="/product/:category/:code/payment/:id" element={<Purchase />} />

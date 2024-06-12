@@ -34,38 +34,33 @@ ChartJS.register(
   Tooltip
 );
 
-const options = {
-  plugins: {
-    legend: {
-      labels: {
-        font: {
-          size: "1rem",
-        },
-      },
-    },
-  },
-  scales: {
-    x: {
-      ticks: {
-        font: {
-          size: "1rem",
-        },
-      },
-    },
-    y: {
-      ticks: {
-        font: {
-          size: "1rem",
-        },
-      },
-    },
-  },
-};
-
-console.log(options)
-
-// const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
+// const options = {
+//   plugins: {
+//     legend: {
+//       labels: {
+//         font: {
+//           size: "1rem",
+//         },
+//       },
+//     },
+//   },
+//   scales: {
+//     x: {
+//       ticks: {
+//         font: {
+//           size: "1rem",
+//         },
+//       },
+//     },
+//     y: {
+//       ticks: {
+//         font: {
+//           size: "1rem",
+//         },
+//       },
+//     },
+//   },
+// };
 
 function triggerTooltip(chart: ChartJS | null) {
   const tooltip = chart?.tooltip;

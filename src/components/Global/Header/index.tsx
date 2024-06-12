@@ -1,11 +1,9 @@
 import { useAuth } from "../../../contexts/AuthenticateContext";
-import { useAxios } from "../../../providers/AxiosProvider";
 import { HeaderPaper } from "./styles";
-import { useEffect, useState } from "react";
 
 function Header() {
   
-  const { id, name } = useAuth()
+  const { id } = useAuth()
   
   return (
     <HeaderPaper>

@@ -1,5 +1,4 @@
 import {
-  ImageContainer,
   InventoryTableRootContainer,
   StatusProduct,
 } from "./styles";
@@ -20,8 +19,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { TablePagination } from "@mui/material";
 import { ActionsBoxWrapper } from "../../Dashboard/Products/Suppliers/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
-import axios from "axios";
-import { useAxios } from "../../../../providers/AxiosProvider";
 
 function createData(
   name: string,

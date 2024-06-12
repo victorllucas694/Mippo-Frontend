@@ -1,10 +1,7 @@
 import { RowsData } from "./styles";
 
-interface IRows {
-  orderTracking: any[];
-}
 
-function RowsDataSide({ orderTracking }: IRows) {
+function RowsDataSide() {
   return (
     <>
       <RowsData>
