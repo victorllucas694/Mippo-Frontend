@@ -9,11 +9,11 @@ interface IGenericListData {
 }
 
 function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
-    // interface ExpandMoreProps extends IconButtonProps {
-    //   expand: boolean;
-    // }
+  // interface ExpandMoreProps extends IconButtonProps {
+  //   expand: boolean;
+  // }
 
-  console.log(sliderProductTitle)
+  console.log(sliderProductTitle);
 
   // const ExpandMore = styled((props: ExpandMoreProps) => {
   //   const { expand, ...other } = props;
@@ -29,40 +29,42 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
   // const [expanded, setExpanded] = React.useState(false);
   const { products } = useProductsContext();
   const [emptyProducts, __setEmptyProducts] = React.useState<IMockProducts>({
-      "id": 4,
-      "Marca": "Adicionar",
-      "Fabricante": "Voce não possui produtos",
-      "Formato": "",
-      "Marca_do_processador": "Intel",
-      "Tipo_de_processador": "",
-      "Velocidade_do_processador": "4.0 GHz",
-      "Tipo_de_soquete_do_processador": "LGA 1200",
-      "Numero_de_processadores": "4",
-      "Tamanho_da_memoria": "32 GB",
-      "Tecnologia_da_memoria": "DDR4",
-      "Tipo_de_Memoria": "DDR4 SDRAM",
-      "Tamanho_do_HD": "1.5 TB",
-      "Tecnologia_do_HD": "SSD",
-      "Interface_do_HD": "NVMe",
-      "Marca_do_chipset_de_video": "NVIDIA",
-      "Descricao_da_placa_de_video": "NVIDIA GeForce RTX 3080",
-      "Tipo_de_conexao": "Wi-Fi",
-      "Tecnologia_de_conexao": "Bluetooth",
-      "Plataforma_de_hardware": "PC",
-      "Sistema_operacional": "Windows 11",
-      "Peso_do_produto": "11 Kilograms",
-      "Dimensoes_da_embalagem": "60 x 58 x 35 cm",
-      "Codigo": "C123123",
-      "Fornecedor": "Thelema",
-      "Quantidade_em_estoque": 8,
-      "User_Id": 1,      "Codigo_das_Imagens": "D456456",
-      "Dimensoes_do_pacote": "60 x 58 x 35 centímetros",
-      "Descricao_final_sobre_o_produto": "Adicione Produtos a sua plataforma e será exibido aqui",
-      "Valor_a_vista": "R$ 00,00",
-      "Valor_a_prazo": "R$ 00,00",
-  })
+    id: 4,
+    Marca: "Adicionar",
+    Fabricante: "Voce não possui produtos",
+    Formato: "",
+    Marca_do_processador: "Intel",
+    Tipo_de_processador: "",
+    Velocidade_do_processador: "4.0 GHz",
+    Tipo_de_soquete_do_processador: "LGA 1200",
+    Numero_de_processadores: "4",
+    Tamanho_da_memoria: "32 GB",
+    Tecnologia_da_memoria: "DDR4",
+    Tipo_de_Memoria: "DDR4 SDRAM",
+    Tamanho_do_HD: "1.5 TB",
+    Tecnologia_do_HD: "SSD",
+    Interface_do_HD: "NVMe",
+    Marca_do_chipset_de_video: "NVIDIA",
+    Descricao_da_placa_de_video: "NVIDIA GeForce RTX 3080",
+    Tipo_de_conexao: "Wi-Fi",
+    Tecnologia_de_conexao: "Bluetooth",
+    Plataforma_de_hardware: "PC",
+    Sistema_operacional: "Windows 11",
+    Peso_do_produto: "11 Kilograms",
+    Dimensoes_da_embalagem: "60 x 58 x 35 cm",
+    Codigo: "C123123",
+    Fornecedor: "Thelema",
+    Quantidade_em_estoque: 8,
+    User_Id: 1,
+    Codigo_das_Imagens: "D456456",
+    Dimensoes_do_pacote: "60 x 58 x 35 centímetros",
+    Descricao_final_sobre_o_produto:
+      "Adicione Produtos a sua plataforma e será exibido aqui",
+    Valor_a_vista: "R$ 00,00",
+    Valor_a_prazo: "R$ 00,00",
+  });
   const [currentPage, __setCurrentPage] = React.useState(1);
-  const itemsPerPage = 8; 
+  const itemsPerPage = 8;
   // const handlePageChange = (
   //   event: React.ChangeEvent<unknown>,
   //   page: number
@@ -70,7 +72,7 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
   //   setCurrentPage(page);
   // };
   let productsToShow;
-  
+
   if (products) {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -80,9 +82,18 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
   return (
     <SpecificProductsListBoxWrapper>
       <div className="body-product">
-        { products ? productsToShow?.map((productsList: IMockProducts) => {
-          return <CardProduct productsList={productsList}/>;
-        }) : <CardProduct productsList={emptyProducts}/>}
+        {products ? (
+          productsToShow?.map((productsList: IMockProducts) => {
+            return <CardProduct productsList={productsList} />;
+          })
+        ) : (
+          <>
+            <CardProduct productsList={emptyProducts} />
+            <CardProduct productsList={emptyProducts} />
+            <CardProduct productsList={emptyProducts} />
+            <CardProduct productsList={emptyProducts} />
+          </>
+        )}
       </div>
     </SpecificProductsListBoxWrapper>
   );
