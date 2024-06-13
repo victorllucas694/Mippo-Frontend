@@ -10,19 +10,8 @@ interface Category {
 }
 
 function ProductDescriptionPage({ categoryBySearchProductPage }: Category) {
-  console.log(categoryBySearchProductPage);
-
   const { socialsDataBox } = useProductsContext();
   const { productSelected } = useRequestsProductsContext();
-
-  // function handleChange(
-  //   event: Event,
-  //   value: number | number[],
-  //   activeThumb: number
-  // ): void {
-  //   console.log(event, value, activeThumb)
-  //   throw new Error("Function not implemented.");
-  // }
 
   return (
     <ProductDescriptionRootContainer>

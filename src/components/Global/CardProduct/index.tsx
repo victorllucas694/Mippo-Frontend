@@ -1,11 +1,3 @@
-// import {
-//   BoxCountAdd,
-//   CardBox,
-//   DescriptionProductCard,
-//   OffBox,
-//   PriceProductCard,
-// } from "./styles";
-// import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Rating from "@mui/material/Rating";
 import * as React from "react";
@@ -17,29 +9,11 @@ import Chip from "@mui/joy/Chip";
 import Link from "@mui/joy/Link";
 import Typography from "@mui/joy/Typography";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-// import { useProductsContext } from "../../../contexts/CardContexts";
 import { IMockProducts } from "../../../Types";
 import { useRequestsProductsContext } from "../../../contexts/RequestsProductsContext";
 import { useAuth } from "../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { useState } from "react";
-// import { Alert, Snackbar } from "@mui/material";
-// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-
-// interface ExpandMoreProps extends IconButtonProps {
-//   expand: boolean;
-// }
-
-// const ExpandMore = styled((props: ExpandMoreProps) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-//   marginLeft: "auto",
-//   transition: theme.transitions.create("transform", {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
 
 interface IProductData {
   productsList: IMockProducts;
@@ -52,7 +26,6 @@ function CardProduct({ productsList }: IProductData) {
     productsList.Codigo
   );
   const [productId, setProductId] = React.useState<number | null>(0);
-  // const [productCategory, setProductCategory] = React.useState<string | null>();
 
   const currentURL = window.location.pathname;
   const urlParts = currentURL.split("/");
@@ -78,10 +51,6 @@ function CardProduct({ productsList }: IProductData) {
     calcPriceByShoppingCart,
     verifyUserLoggedByAddProductToShoppingCart,
   } = useRequestsProductsContext();
-
-  // const [productImagesObject, setProductImagesObject] = useState<
-  //   IProductData | null | undefined
-  // >(null);
 
   const { axiosInstance } = useAxios();
 
