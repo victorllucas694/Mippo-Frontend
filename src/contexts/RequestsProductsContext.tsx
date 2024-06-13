@@ -6,7 +6,6 @@ import {
 } from "react";
 import axiosInstance from "../providers/AxiosInstance";
 
-// Definindo interfaces para os dados
 interface Subcategory {
   name: string;
   valor: string[];
@@ -58,7 +57,6 @@ interface RequestsProductsContextType {
   filterArrayByProductInput: (search: string) => void;
 }
 
-// Tipando o contexto
 const RequestsProductsContext = createContext<RequestsProductsContextType | undefined>(undefined);
 
 interface RequestsProductsProviderProps {
