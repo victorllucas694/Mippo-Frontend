@@ -75,17 +75,8 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
       name: "Informações Gerais",
       subcategories: [
         {
-          name: "Fabricante",
-          valor: ["FutureTech", "InnoTech", "MegaForce", "MegaForce"],
-        },
-        {
-          name: "Marca",
-          valor: [
-            "Logitech MX Master 3",
-            "Bose QuietComfort 35 II",
-            "Belkin Thunderbolt 3 Dock",
-            "Samsung EVO 970",
-          ],
+          name: "Fornecedores",
+          valor: ["FutureTech", "InnoTech", "MegaForce"],
         },
       ],
     },
