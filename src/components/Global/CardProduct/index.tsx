@@ -226,24 +226,6 @@ function CardProduct({ productsList }: IProductData) {
                 fontSize: ".8rem",
               },
             }}
-            endDecorator={
-              <Chip
-                component="span"
-                size="md"
-                variant="soft"
-                sx={{
-                  "@media (max-width: 1600px)": {
-                    fontSize: ".8rem",
-                  },
-                  color:
-                    productsList.Quantidade_em_estoque >= 1 ? "black" : "red",
-                }}
-              >
-                {productsList.Quantidade_em_estoque >= 1
-                  ? "disponivel"
-                  : "Indisponivel"}
-              </Chip>
-            }
           >
             R$ {productsList.Valor_a_prazo}
           </Typography>
