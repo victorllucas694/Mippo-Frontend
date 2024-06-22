@@ -6,11 +6,7 @@ import {
 import PaymentIcon from "@mui/icons-material/Payment";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import { useRequestsProductsContext } from "../../../contexts/RequestsProductsContext";
-import {
-  Button,
-  Rating,
-  Typography,
-} from "@mui/material";
+import { Button, Rating, Typography } from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useState, useEffect } from "react";
@@ -56,16 +52,16 @@ function ProductDescriptionPresentation() {
   ) => {
     const token = localStorage.getItem("c__token");
     const foundedImages = await axiosInstance(
-      `/products-management-without-auth/get/all/images/${category}/${productID}/${imageCode}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+      `/products-management-without-auth/get/all/images/${category}/${productID}/${imageCode}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     foundedImages.data.map((data: any) => {
       const { tableName, largeImages, sideImages, imageCodes } = data;
-
 
       if (productSelected?.Codigo_das_Imagens === imageCodes) {
         setImageData({
@@ -83,13 +79,13 @@ function ProductDescriptionPresentation() {
 
   const purchaseItem = async () => {
     if (id) {
-      const addNewOrder = await axiosInstance.post(`payment-data`)
-      console.log(addNewOrder)
+      const addNewOrder = await axiosInstance.post(`payment-data`);
+      console.log(addNewOrder);
     }
     if (!id) {
-      window.location.href = '/login'
+      window.location.href = "/login";
     }
-  }
+  };
 
   useEffect(() => {
     const currentURL = window.location.pathname;
@@ -108,7 +104,6 @@ function ProductDescriptionPresentation() {
       );
     }
   }, [productSelected]);
-
 
   return (
     <PresentationBox>
@@ -136,7 +131,6 @@ function ProductDescriptionPresentation() {
               />
             ))}
           </div>
-
         </div>
         <div className="information-product-presentation">
           <div className="brand-product">
@@ -155,28 +149,38 @@ function ProductDescriptionPresentation() {
               <span>
                 <strong>Processador: </strong>
               </span>
-              {`${productSelected?.Marca_do_chipset_de_video || ""} ${productSelected?.Tipo_de_processador || ""
-                } ${productSelected?.Velocidade_do_processador || ""} ${productSelected?.Tipo_de_soquete_do_processador || ""
-                }`.trim()}
+              {`${productSelected?.Marca_do_chipset_de_video || ""} ${
+                productSelected?.Tipo_de_processador || ""
+              } ${productSelected?.Velocidade_do_processador || ""} ${
+                productSelected?.Tipo_de_soquete_do_processador || ""
+              }`.trim() &&
+              productSelected?.Marca_do_chipset_de_video &&
+              productSelected?.Tipo_de_processador &&
+              productSelected?.Velocidade_do_processador &&
+              productSelected?.Tipo_de_soquete_do_processador
+                ? `${productSelected.Marca_do_chipset_de_video} ${productSelected.Tipo_de_processador} ${productSelected.Velocidade_do_processador} ${productSelected.Tipo_de_soquete_do_processador}`
+                : "Informações do processador não disponíveis"}
               <br />
               <span>
                 <strong>Marca: </strong>
               </span>
-              {productSelected?.Marca}
+              {productSelected?.Marca || "Marca não disponível"}
               <br />
               <span>
                 <strong>Numero de núclos: </strong>
               </span>
-              {productSelected?.Numero_de_processadores} Núcleo(s)
+              {productSelected?.Numero_de_processadores
+                ? `${productSelected.Numero_de_processadores} Núcleo(s)`
+                : "Número de núcleos não disponível"}
               <br />
               <span>
                 <strong>Memória RAM: </strong>
               </span>
-              {productSelected?.Tamanho_da_memoria +
-                " " +
-                productSelected?.Tipo_de_Memoria}
+              {productSelected?.Tamanho_da_memoria &&
+              productSelected?.Tipo_de_Memoria
+                ? `${productSelected.Tamanho_da_memoria} ${productSelected.Tipo_de_Memoria}`
+                : "Informações da memória RAM não disponíveis"}
             </Typography>
-            <p>Código: <span><strong>{productSelected?.Codigo}</strong></span></p>
           </div>
           <PurchaseInstallment>
             <p>

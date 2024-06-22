@@ -333,7 +333,6 @@ function GeneralFunction() {
       <div className="body-content">
         <div className="header-dody-filter">
           <h1>{category}</h1>
-
           <div className="filter-by">
             <p>Ordenar por </p>
             <Select
