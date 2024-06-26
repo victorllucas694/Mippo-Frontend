@@ -13,18 +13,17 @@ const FormGrid = styled(Grid)(() => ({
 }));
 
 export default function AddressForm() {
+  const [userName, setUsername] = React.useState<string>('');
+  const [lastName, setLastname] = React.useState<string>('');
+  const [address, setAddress] = React.useState<string>('');
+  const [details, setDetails] = React.useState<string>('');
+  const [city, setCity] = React.useState<string>('');
+  const [state, setState] = React.useState<string>('');
+  const [postalCode, setPostalCode] = React.useState<string>('');
+  const [country, setCuntry] = React.useState<string>('');
 
-  const [ userName, setUsername ] = React.useState<string>('');
-  const [ lastName, setLastname ] = React.useState<string>('');
-  const [ address, setAddress ] = React.useState<string>('');
-  const [ details, setDetails ] = React.useState<string>('');
-  const [ city, setCity ] = React.useState<string>('');
-  const [ state, setState ] = React.useState<string>('');
-  const [ postalCode, setPostalCode ] = React.useState<string>('');
-  const [ country, setCuntry ] = React.useState<string>('');
 
-
-  console.log(userName,lastName,address,details,city, state, postalCode, country )
+  console.log(userName, lastName, address, details, city, state, postalCode, country)
 
   return (
     <Grid container spacing={3}>

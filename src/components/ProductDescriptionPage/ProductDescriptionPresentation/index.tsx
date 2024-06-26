@@ -180,7 +180,7 @@ function ProductDescriptionPresentation() {
               productSelected?.Tipo_de_Memoria
                 ? `${productSelected.Tamanho_da_memoria} ${productSelected.Tipo_de_Memoria}`
                 : "Informações da memória RAM não disponíveis"}
-            </Typography>
+            </Typography> 
           </div>
           <PurchaseInstallment>
             <p>
