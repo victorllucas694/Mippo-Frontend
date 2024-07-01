@@ -9,55 +9,39 @@ interface IGenericListData {
 }
 
 function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
-  // interface ExpandMoreProps extends IconButtonProps {
-  //   expand: boolean;
-  // }
-
   console.log(sliderProductTitle);
 
-  // const ExpandMore = styled((props: ExpandMoreProps) => {
-  //   const { expand, ...other } = props;
-  //   return <IconButton {...other} />;
-  // })(({ theme, expand }) => ({
-  //   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  //   marginLeft: "auto",
-  //   transition: theme.transitions.create("transform", {
-  //     duration: theme.transitions.duration.shortest,
-  //   }),
-  // }));
-
-  // const [expanded, setExpanded] = React.useState(false);
   const { products } = useProductsContext();
   const [emptyProducts, __setEmptyProducts] = React.useState<IMockProducts>({
     id: 4,
     Marca: "Adicionar",
     Fabricante: "Voce não possui produtos",
-    Formato: "",
-    Marca_do_processador: "Intel",
-    Tipo_de_processador: "",
-    Velocidade_do_processador: "4.0 GHz",
-    Tipo_de_soquete_do_processador: "LGA 1200",
-    Numero_de_processadores: "4",
-    Tamanho_da_memoria: "32 GB",
-    Tecnologia_da_memoria: "DDR4",
-    Tipo_de_Memoria: "DDR4 SDRAM",
-    Tamanho_do_HD: "1.5 TB",
-    Tecnologia_do_HD: "SSD",
-    Interface_do_HD: "NVMe",
-    Marca_do_chipset_de_video: "NVIDIA",
-    Descricao_da_placa_de_video: "NVIDIA GeForce RTX 3080",
-    Tipo_de_conexao: "Wi-Fi",
-    Tecnologia_de_conexao: "Bluetooth",
-    Plataforma_de_hardware: "PC",
-    Sistema_operacional: "Windows 11",
-    Peso_do_produto: "11 Kilograms",
-    Dimensoes_da_embalagem: "60 x 58 x 35 cm",
-    Codigo: "C123123",
-    Fornecedor: "Thelema",
+    Formato: "N/A",
+    Marca_do_processador: "N/A",
+    Tipo_de_processador: "N/A",
+    Velocidade_do_processador: "N/A",
+    Tipo_de_soquete_do_processador: "N/A",
+    Numero_de_processadores: "N/A",
+    Tamanho_da_memoria: "N/A",
+    Tecnologia_da_memoria: "N/A",
+    Tipo_de_Memoria: "N/A",
+    Tamanho_do_HD: "N/A",
+    Tecnologia_do_HD: "N/A",
+    Interface_do_HD: "N/A",
+    Marca_do_chipset_de_video: "N/A",
+    Descricao_da_placa_de_video: "N/A",
+    Tipo_de_conexao: "N/A",
+    Tecnologia_de_conexao: "N/A",
+    Plataforma_de_hardware: "N/A",
+    Sistema_operacional: "N/A",
+    Peso_do_produto: "N/A",
+    Dimensoes_da_embalagem: "N/A",
+    Codigo: "N/A",
+    Fornecedor: "N/A",
     Quantidade_em_estoque: 8,
     User_Id: 1,
-    Codigo_das_Imagens: "D456456",
-    Dimensoes_do_pacote: "60 x 58 x 35 centímetros",
+    Codigo_das_Imagens: "N/A",
+    Dimensoes_do_pacote: "N/A",
     Descricao_final_sobre_o_produto:
       "Adicione Produtos a sua plataforma e será exibido aqui",
     Valor_a_vista: "R$ 00,00",
@@ -65,12 +49,6 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
   });
   const [currentPage, __setCurrentPage] = React.useState(1);
   const itemsPerPage = 8;
-  // const handlePageChange = (
-  //   event: React.ChangeEvent<unknown>,
-  //   page: number
-  // ) => {
-  //   setCurrentPage(page);
-  // };
   let productsToShow;
 
   if (products) {
