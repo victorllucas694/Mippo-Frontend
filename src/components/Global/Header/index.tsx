@@ -3,7 +3,7 @@ import { HeaderPaper } from "./styles";
 
 function Header() {
   
-  const { id } = useAuth()
+  const { id } = useAuth();
   
   return (
     <HeaderPaper>

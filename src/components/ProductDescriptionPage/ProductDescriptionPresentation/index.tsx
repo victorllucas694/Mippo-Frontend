@@ -76,15 +76,40 @@ function ProductDescriptionPresentation() {
 
   const [imageData, setImageData] = useState<ImageData>(initialState);
   const { id } = useAuth();
+  const token = localStorage.getItem("c__token");
 
   const purchaseItem = async () => {
+    const currentURL = window.location.pathname;
+    const urlParts = currentURL.split("/");
+    const category = urlParts[2];
+  
+    console.log(productSelected)
+
+    const sendData  = {
+      id_pedido: productSelected.id,
+      categoria_pedido: category,
+      codigo_do_pedido: productSelected.Codigo,
+      User_Id: id
+    }
+
+    axiosInstance.post(`/payment-shipping-cart/purchase/products/${category}/${id}`, sendData)
+    
     if (id) {
-      const addNewOrder = await axiosInstance.post(`payment-data`);
-      console.log(addNewOrder);
+      console.log(productSelected)
+      window.location.href = `/purchase/${id}`
     }
     if (!id) {
       window.location.href = "/login";
     }
+    // console.log(productSelected.Codigo_das_Imagens)
+    // console.log(productSelected.User_Id)
+    // console.log(productSelected.categoria_do_pedido)
+    // console.log(productSelected.id_pedido)
+    // console.log(productSelected.codigo_do_pedido)
+    
+
+
+
   };
 
   useEffect(() => {

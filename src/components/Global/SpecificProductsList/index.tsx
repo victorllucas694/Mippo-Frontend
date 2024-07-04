@@ -38,7 +38,7 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
     Dimensoes_da_embalagem: "N/A",
     Codigo: "N/A",
     Fornecedor: "N/A",
-    Quantidade_em_estoque: 8,
+    Quantidade_em_estoque: 0,
     User_Id: 1,
     Codigo_das_Imagens: "N/A",
     Dimensoes_do_pacote: "N/A",
