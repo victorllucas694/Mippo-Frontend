@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
@@ -9,6 +8,8 @@ import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { useAuth } from "../../../contexts/AuthenticateContext";
+import { usePaymentContext } from "../../../contexts/payment";
+// import { usePaymentContext } from "../../../contexts/payment";
 
 const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
 const payments = [
@@ -25,22 +26,33 @@ export default function Review() {
   const [products, setProducts] = React.useState([]);
   const [productsCallBack, setProductsCallBack] = React.useState([]);
 
-  React.useEffect(() => {
-    getProductsByUserId();
-  }, []);
+  const {
+    addressBody,
+    cardNumber,
+    cardholder,
+    cityBody,
+    countryBody,
+    cvv,
+    detailsBody,
+    expirationDate,
+    lastNameBody,
+    nameBody,
+    paymentType,
+  } = usePaymentContext();
 
-  const getProductsByUserId = async () => {
-    const req = await axiosInstance.get(`/payment-shipping-cart/cart/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    setProducts(req.data);
-    products.map((getProductsByOrderId: any) => {
-      setProductsCallBack(getProductsByOrderId.getProductsByOrderId);
-      console.log(productsCallBack);
-    });
-  };
+  console.log(
+    addressBody,
+    cardNumber,
+    cardholder,
+    cityBody,
+    countryBody,
+    cvv,
+    detailsBody,
+    expirationDate,
+    lastNameBody,
+    nameBody,
+    paymentType
+  );
 
   return (
     <Stack spacing={2}>
@@ -71,7 +83,7 @@ export default function Review() {
       >
         <div>
           <Typography variant="subtitle2" gutterBottom>
-            Shipment details
+            detalhes de pagamento
           </Typography>
           <Typography gutterBottom>John Smith</Typography>
           <Typography color="text.secondary" gutterBottom>

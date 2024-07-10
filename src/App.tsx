@@ -40,7 +40,6 @@ function App() {
           </PaymentContextProvider>
         </MyContextProvider>
       </FilterContextProvider>
-
     </AxiosProvider>
   );
 }

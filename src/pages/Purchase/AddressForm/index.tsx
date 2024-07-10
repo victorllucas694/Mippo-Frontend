@@ -1,29 +1,27 @@
-import * as React from 'react';
-
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import Grid from '@mui/material/Grid';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { styled } from '@mui/system';
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormLabel from "@mui/material/FormLabel";
+import Grid from "@mui/material/Grid";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import { styled } from "@mui/system";
+import { usePaymentContext } from "../../../contexts/payment";
 
 const FormGrid = styled(Grid)(() => ({
-  display: 'flex',
-  flexDirection: 'column',
+  display: "flex",
+  flexDirection: "column",
 }));
 
 export default function AddressForm() {
-  const [userName, setUsername] = React.useState<string>('');
-  const [lastName, setLastname] = React.useState<string>('');
-  const [address, setAddress] = React.useState<string>('');
-  const [details, setDetails] = React.useState<string>('');
-  const [city, setCity] = React.useState<string>('');
-  const [state, setState] = React.useState<string>('');
-  const [postalCode, setPostalCode] = React.useState<string>('');
-  const [country, setCuntry] = React.useState<string>('');
-
-
-  console.log(userName, lastName, address, details, city, state, postalCode, country)
+  const {
+    setCityBody,
+    setNameBody,
+    setLastNameBody,
+    setDetailsBody,
+    setStateBody,
+    setZipBody,
+    setAddressBody,
+    setCountryBody,
+  } = usePaymentContext();
 
   return (
     <Grid container spacing={3}>
@@ -34,7 +32,7 @@ export default function AddressForm() {
         <OutlinedInput
           id="first-name"
           name="first-name"
-          onChange={(e: any) => setUsername(e.target.value)}
+          onChange={(e: any) => setNameBody(e.target.value)}
           type="name"
           placeholder="Victor"
           autoComplete="first name"
@@ -49,7 +47,7 @@ export default function AddressForm() {
           id="last-name"
           name="last-name"
           type="last-name"
-          onChange={(e: any) => setLastname(e.target.value)}
+          onChange={(e: any) => setLastNameBody(e.target.value)}
           placeholder="Lucas da Silva"
           autoComplete="last name"
           required
@@ -61,7 +59,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="address1"
-          onChange={(e: any) => setAddress(e.target.value)}
+          onChange={(e: any) => setAddressBody(e.target.value)}
           name="address1"
           type="address1"
           placeholder="Rua duque de caxias 1203"
@@ -73,7 +71,7 @@ export default function AddressForm() {
         <FormLabel htmlFor="address2">Complemento</FormLabel>
         <OutlinedInput
           id="address2"
-          onChange={(e: any) => setDetails(e.target.value)}
+          onChange={(e: any) => setDetailsBody(e.target.value)}
           name="address2"
           type="address2"
           placeholder="Apartamento, Hotel, casas, etc. (Não obrigatorio)"
@@ -88,7 +86,7 @@ export default function AddressForm() {
         <OutlinedInput
           id="city"
           name="city"
-          onChange={(e: any) => setCity(e.target.value)}
+          onChange={(e: any) => setCityBody(e.target.value)}
           type="city"
           placeholder="Campinas"
           autoComplete="City"
@@ -101,7 +99,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="state"
-          onChange={(e: any) => setState(e.target.value)}
+          onChange={(e: any) => setStateBody(e.target.value)}
           name="state"
           type="state"
           placeholder="SP"
@@ -115,7 +113,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="zip"
-          onChange={(e: any) => setPostalCode(e.target.value)}
+          onChange={(e: any) => setZipBody(e.target.value)}
           name="zip"
           type="zip"
           placeholder="12345"
@@ -129,7 +127,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="country"
-          onChange={(e: any) => setCuntry(e.target.value)}
+          onChange={(e: any) => setCountryBody(e.target.value)}
           name="country"
           type="country"
           placeholder="Brasil"

@@ -1,78 +1,82 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface PaymentContext {
-  name: string;
-  lastName: string;
-  address: string;
-  details: string;
-  city: string;
-  state: string;
-  zip: string;
-  country: string;
+  nameBody: string;
+  lastNameBody: string;
+  addressBody: string;
+  detailsBody: string;
+  cityBody: string;
+  stateBody: string;
+  zipBody: string;
+  countryBody: string;
   cardholder: String;
   cardNumber: String;
   expirationDate: String;
   cvv: String;
+  paymentType: string;
+  setPaymentType: (value: string) => void;
   setCardholder: (value: string) => void;
   setCardNumber: (value: string) => void;
   setExpirationDate: (value: string) => void;
-  setCVV: (value: string) => void;
-  setName: (value: string) => void;
-  setLastName: (value: string) => void;
-  setAddress: (value: string) => void;
-  setDetails: (value: string) => void;
-  setCity: (value: string) => void;
-  setState: (value: string) => void;
-  setZip: (value: string) => void;
-  setCountry: (value: string) => void;
+  setCvv: (value: string) => void;
+  setNameBody: (value: string) => void;
+  setLastNameBody: (value: string) => void;
+  setAddressBody: (value: string) => void;
+  setDetailsBody: (value: string) => void;
+  setCityBody: (value: string) => void;
+  setStateBody: (value: string) => void;
+  setZipBody: (value: string) => void;
+  setCountryBody: (value: string) => void;
 }
 
 
 const PaymentContext = createContext<PaymentContext | undefined>(undefined);
 
-export const PaymentContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [name, setName] = useState<string>('');
-  const [lastName, setLastName] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
-  const [details, setDetails] = useState<string>('');
-  const [city, setCity] = useState<string>('');
-  const [state, setState] = useState<string>('');
-  const [zip, setZip] = useState<string>('');
-  const [country, setCountry] = useState<string>('');
+export const PaymentContextProvider: React.FC<{ children:ReactNode  }> = ({ children }) => {
+  const [nameBody, setNameBody] = useState<string>('');
+  const [lastNameBody, setLastNameBody] = useState<string>('');
+  const [addressBody, setAddressBody] = useState<string>('');
+  const [detailsBody, setDetailsBody] = useState<string>('');
+  const [cityBody, setCityBody] = useState<string>('');
+  const [stateBody, setStateBody] = useState<string>('');
+  const [zipBody, setZipBody] = useState<string>('');
+  const [countryBody, setCountryBody] = useState<string>('');
 
+  const [ paymentType, setPaymentType] = useState<string>("creditCard");
   const [ cardholder, setCardholder ] = useState<string>('');
   const [ cardNumber, setCardNumber ] = useState<string>('');
   const [ expirationDate, setExpirationDate ] = useState<string>('');
-  const [ cvv, setCVV ] = useState<string>('');
-
+  const [ cvv, setCvv ] = useState<string>('');
 
   return (
     <PaymentContext.Provider
       value={{
-        name,
+        nameBody,
         cardNumber,
+        setPaymentType,
+        paymentType,
         cardholder,
-        lastName,
+        lastNameBody,
         expirationDate,
-        address,
+        addressBody,
         cvv,
-        details,
-        city,
-        state,
-        zip,
-        country,
-        setName,
-        setLastName,
-        setAddress,
-        setDetails,
-        setCity,
-        setState,
-        setZip,
-        setCountry,
+        detailsBody,
+        cityBody,
+        stateBody,
+        zipBody,
+        countryBody,
+        setNameBody,
+        setLastNameBody,
+        setAddressBody,
+        setDetailsBody,
+        setCityBody,
+        setStateBody,
+        setZipBody,
+        setCountryBody,
         setCardholder,
         setCardNumber,
         setExpirationDate,
-        setCVV
+        setCvv
       }}
     >
       {children}
