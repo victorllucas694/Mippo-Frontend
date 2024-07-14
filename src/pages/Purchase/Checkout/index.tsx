@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -70,7 +69,7 @@ function ToggleCustomTheme({
   );
 }
 
-const steps = ["Shipping address", "Payment details", "Review your order"];
+const steps = ["Endereço de entrega", "Detalhes de pagamento", "Review pagamento"];
 
 const logoStyle = {
   width: "140px",

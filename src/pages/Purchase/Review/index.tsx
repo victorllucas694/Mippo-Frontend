@@ -6,25 +6,13 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { usePaymentContext } from "../../../contexts/payment";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { useAuth } from "../../../contexts/AuthenticateContext";
-import { usePaymentContext } from "../../../contexts/payment";
-// import { usePaymentContext } from "../../../contexts/payment";
 
-const addresses = ["1 MUI Drive", "Reactville", "Anytown", "99999", "USA"];
-const payments = [
-  { name: "Card type:", detail: "Visa" },
-  { name: "Card holder:", detail: "Mr. John Smith" },
-  { name: "Card number:", detail: "xxxx-xxxx-xxxx-1234" },
-  { name: "Expiry date:", detail: "04/2024" },
-];
 
 export default function Review() {
-  const { id } = useAuth();
-  const { axiosInstance } = useAxios();
-  const token = localStorage.getItem("c__token");
-  const [products, setProducts] = React.useState([]);
-  const [productsCallBack, setProductsCallBack] = React.useState([]);
+  const [products, __setProducts] = React.useState([]);
 
   const {
     addressBody,
@@ -39,7 +27,13 @@ export default function Review() {
     nameBody,
     paymentType,
   } = usePaymentContext();
-
+  
+const payments = [
+  { name: "Card type:", detail: "Visa" },
+  { name: "Card holder:", detail: nameBody },
+  { name: "Card number:", detail: cardNumber },
+  { name: "Expiry date:", detail: expirationDate },
+];
   console.log(
     addressBody,
     cardNumber,
@@ -53,6 +47,29 @@ export default function Review() {
     nameBody,
     paymentType
   );
+
+  const { axiosInstance } = useAxios();
+  const { id } = useAuth();
+  
+  const [total, setTotal] = React.useState<number>(0);
+  
+  const getAllPriceData = async () => {
+    try {
+      const req = await axiosInstance(`/payment-shipping-cart/cart/${id}`);
+      let valTotal = 0; 
+      req.data.forEach((products: any) => {
+        const { getProductsByOrderId } = products;
+        valTotal += Number(getProductsByOrderId.Valor_a_prazo);
+      });
+      setTotal(valTotal);
+    } catch (error) {
+      console.error('Erro ao obter dados de preço:', error);
+    }
+  };
+  
+  React.useEffect(() => {
+    getAllPriceData();
+  }, [axiosInstance, id]);
 
   return (
     <Stack spacing={2}>
@@ -70,7 +87,7 @@ export default function Review() {
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-            $144.97
+            R${total}
           </Typography>
         </ListItem>
       </List>
@@ -85,9 +102,9 @@ export default function Review() {
           <Typography variant="subtitle2" gutterBottom>
             detalhes de pagamento
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
+          <Typography gutterBottom>{addressBody}</Typography>
           <Typography color="text.secondary" gutterBottom>
-            {addresses.join(", ")}
+            {cityBody + " " + countryBody}
           </Typography>
         </div>
         <div>

@@ -231,21 +231,11 @@ function SideBar() {
 
   const [categoryName, setCategoryName] = React.useState<string>("");
 
-  // const setProductCategory = (category: string) => {
-  //   setCategoryName(category);
-  // };
-
   const [openListManagement, setOpenListManagement] = React.useState(false);
 
   const handleOpenListManagement = () => {
     setOpenListManagement(!openListManagement);
   };
-
-  // const [lowerStock, setLowerStock] = React.useState<string>("");
-
-  // const handleOpenAlertProductStock = () => {
-  //   setLowerStock("lowerStock");
-  // };
 
   const backToHomePage = () => {
     localStorage.removeItem("c__token");
