@@ -9,20 +9,21 @@ import { Alert, Snackbar } from "@mui/material";
 import * as React from "react";
 import Footer from "../../components/Global/Footer";
 import { usePagesManagement } from "../../contexts/PagesManagementContext";
+import ProductsFoundedFiltred from "../../components/ProductsFoundedFiltred";
 
-function ProductByCategory() {
+function ProductsFiltred() {
   useEffect(() => {
     getURLCategory();
   }, []);
 
+  const { PageData } = usePagesManagement();
+
   const [categoryBySearchProductPage, setCategoryBySearchProductPage] =
     useState<string | null>(null);
   const currentURL = window.location.pathname;
-  const getURLCategory = () => {
-    const urlParts = currentURL.split("/");
-    const category = urlParts[1];
 
-    setCategoryBySearchProductPage(category);
+  const getURLCategory = () => {
+    console.log(PageData);
   };
 
   const categoriesBoxProps = [
@@ -51,8 +52,6 @@ function ProductByCategory() {
   const { created, alertlogin } = useRequestsProductsContext();
   console.log(alertlogin);
 
-  const { PageData } = usePagesManagement();
-
   const handleClose = (
     __event: React.SyntheticEvent | Event,
     reason?: string
@@ -62,6 +61,7 @@ function ProductByCategory() {
     }
   };
 
+
   return (
     <>
       <Header />
@@ -70,7 +70,7 @@ function ProductByCategory() {
       <ProductDescriptionPage
         categoryBySearchProductPage={categoryBySearchProductPage}
       />
-      <GeneralFunction />
+      <ProductsFoundedFiltred />
 
       {created ? (
         <Snackbar open={created} autoHideDuration={500} onClose={handleClose}>
@@ -101,4 +101,4 @@ function ProductByCategory() {
   );
 }
 
-export default ProductByCategory;
+export default ProductsFiltred;

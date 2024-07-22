@@ -9,6 +9,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
+import { useAxios } from "../../../providers/AxiosProvider";
+import { usePagesManagement } from "../../../contexts/PagesManagementContext";
 
 export interface Category {
   name: string;
@@ -45,8 +47,9 @@ function GeneralFunction() {
     null
   );
   const [category, setCategory] = useState<string | null>("");
-
+const { PageData  } = usePagesManagement()
   useEffect(() => {
+    console.log(PageData)
     const category = getCategory();
     setCategory(category);
   }, []);
@@ -64,10 +67,16 @@ function GeneralFunction() {
     return category;
   }
 
+  const { axiosInstance } = useAxios();
+
+  async function filterByItems() {
+    const req = await axiosInstance.post(`/inventary-management/Intel`);
+    console.log(req);
+  }
+
   const [checkboxStates, setCheckboxStates] = useState<{
     [subcategory: string]: { [value: string]: boolean };
   }>({});
-
 
   const handleCheckboxChange = async (subcategory: string, value: string) => {
     setCheckboxStates((prevStates) => ({
@@ -125,9 +134,9 @@ function GeneralFunction() {
             Limpar
           </Button>
           <Button
+            onClick={filterByItems}
             sx={{ width: "300px" }}
             variant="contained"
-            onClick={handleButton}
           >
             Aplicar filtro
           </Button>
@@ -287,38 +296,40 @@ function GeneralFunction() {
   let totalPages;
   let productsToShow;
   const [emptyProducts, __setEmptyProducts] = useState<IMockProducts>({
-    "id": 4,
-    "Marca": "Adicionar",
-    "Fabricante": "Voce não possui produtos",
-    "Formato": "",
-    "Marca_do_processador": "Intel",
-    "Tipo_de_processador": "",
-    "Velocidade_do_processador": "4.0 GHz",
-    "Tipo_de_soquete_do_processador": "LGA 1200",
-    "Numero_de_processadores": "4",
-    "Tamanho_da_memoria": "32 GB",
-    "Tecnologia_da_memoria": "DDR4",
-    "Tipo_de_Memoria": "DDR4 SDRAM",
-    "Tamanho_do_HD": "1.5 TB",
-    "Tecnologia_do_HD": "SSD",
-    "Interface_do_HD": "NVMe",
-    "Marca_do_chipset_de_video": "NVIDIA",
-    "Descricao_da_placa_de_video": "NVIDIA GeForce RTX 3080",
-    "Tipo_de_conexao": "Wi-Fi",
-    "Tecnologia_de_conexao": "Bluetooth",
-    "Plataforma_de_hardware": "PC",
-    "Sistema_operacional": "Windows 11",
-    "Peso_do_produto": "11 Kilograms",
-    "Dimensoes_da_embalagem": "60 x 58 x 35 cm",
-    "Codigo": "C123123",
-    "Fornecedor": "Thelema",
-    "Quantidade_em_estoque": 8,
-    "User_Id": 1,      "Codigo_das_Imagens": "D456456",
-    "Dimensoes_do_pacote": "60 x 58 x 35 centímetros",
-    "Descricao_final_sobre_o_produto": "Adicione Produtos a sua plataforma e será exibido aqui",
-    "Valor_a_vista": "R$ 00,00",
-    "Valor_a_prazo": "R$ 00,00",
-})
+    id: 4,
+    Marca: "Adicionar",
+    Fabricante: "Voce não possui produtos",
+    Formato: "",
+    Marca_do_processador: "Intel",
+    Tipo_de_processador: "",
+    Velocidade_do_processador: "4.0 GHz",
+    Tipo_de_soquete_do_processador: "LGA 1200",
+    Numero_de_processadores: "4",
+    Tamanho_da_memoria: "32 GB",
+    Tecnologia_da_memoria: "DDR4",
+    Tipo_de_Memoria: "DDR4 SDRAM",
+    Tamanho_do_HD: "1.5 TB",
+    Tecnologia_do_HD: "SSD",
+    Interface_do_HD: "NVMe",
+    Marca_do_chipset_de_video: "NVIDIA",
+    Descricao_da_placa_de_video: "NVIDIA GeForce RTX 3080",
+    Tipo_de_conexao: "Wi-Fi",
+    Tecnologia_de_conexao: "Bluetooth",
+    Plataforma_de_hardware: "PC",
+    Sistema_operacional: "Windows 11",
+    Peso_do_produto: "11 Kilograms",
+    Dimensoes_da_embalagem: "60 x 58 x 35 cm",
+    Codigo: "C123123",
+    Fornecedor: "Thelema",
+    Quantidade_em_estoque: 8,
+    User_Id: 1,
+    Codigo_das_Imagens: "D456456",
+    Dimensoes_do_pacote: "60 x 58 x 35 centímetros",
+    Descricao_final_sobre_o_produto:
+      "Adicione Produtos a sua plataforma e será exibido aqui",
+    Valor_a_vista: "R$ 00,00",
+    Valor_a_prazo: "R$ 00,00",
+  });
   if (products) {
     totalPages = Math.ceil(products.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -357,11 +368,13 @@ function GeneralFunction() {
             </Select>
           </div>
         </div>
-        {products
-          ? productsToShow?.map((productsList: IMockProducts) => {
-              return <CardProduct productsList={productsList} />;
-            })
-          : <CardProduct productsList={emptyProducts} />}
+        {products ? (
+          productsToShow?.map((productsList: IMockProducts) => {
+            return <CardProduct productsList={productsList} />;
+          })
+        ) : (
+          <CardProduct productsList={emptyProducts} />
+        )}
 
         <div className="pagination-data">
           <Pagination

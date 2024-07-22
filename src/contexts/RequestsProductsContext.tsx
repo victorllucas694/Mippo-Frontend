@@ -97,7 +97,7 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
 
   const NotebookDataCategory: Category[] = [
     {
-      name: "Componentes",
+      name: "Componentes", 
       subcategories: [
         {
           name: "Processador",

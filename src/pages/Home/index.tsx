@@ -9,12 +9,14 @@ import ProductsFirstSection from "../../components/HomePage/ProductsFirstSection
 import GridBannersData from "../../components/HomePage/GridBannersData";
 import Footer from "../../components/Global/Footer";
 import { useAxios } from "../../providers/AxiosProvider";
+import { usePagesManagement } from "../../contexts/PagesManagementContext";
+import CardProduct from "../../components/Global/CardProduct";
+import { ProductsFiltred } from "./styles";
 
 function HomePage() {
   const [sliderProductTitle, __setSliderProductTitle] = useState<any>(
     "Smartphones e telefones"
   );
-
 
   const categoriesBoxProps = [
     {
@@ -45,11 +47,9 @@ function HomePage() {
     "Computadores para trabalho e jogos"
   );
 
-
   useEffect(() => {
     saveCookiesInformationUser();
   }, []);
-
 
   const { axiosInstance } = useAxios();
 
@@ -61,23 +61,41 @@ function HomePage() {
     console.log(save.data.saveAdvancedUserInfoBySecurity);
   };
 
+  
+  const { PageData } = usePagesManagement();
+  console.log(PageData);
+
   return (
+
     <React.Fragment>
-      <Header
-      />
-      <SearchPanel/>
+      <Header />
+      <SearchPanel />
       <OptionsHeader categoriesBoxProps={categoriesBoxProps} />
-      <FeaturedBanner />
-      <ProductsFirstSection label={gamerProductsTitle} />
-      <SpecificProductsList sliderProductTitle={sliderProductTitle} />
-      <GridBannersData />
-      <ProductsFirstSection label={notebookProductsTitle} />
-      <SpecificProductsList sliderProductTitle={sliderProductTitle} />
-      <br />
-      <br />
-      <br />
-      <br />
-      <Footer />
+      {PageData.length > 0 ? (
+        <>        
+        <ProductsFiltred>
+          {PageData.map((pro) => {
+            return <CardProduct productsList={pro} />;
+          })}
+        </ProductsFiltred>
+        <Footer />
+        </>
+
+      ) : (
+        <>
+          <FeaturedBanner />
+          <ProductsFirstSection label={gamerProductsTitle} />
+          <SpecificProductsList sliderProductTitle={sliderProductTitle} />
+          <GridBannersData />
+          <ProductsFirstSection label={notebookProductsTitle} />
+          <SpecificProductsList sliderProductTitle={sliderProductTitle} />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Footer />
+        </>
+      )}
     </React.Fragment>
   );
 }

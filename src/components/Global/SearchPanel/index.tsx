@@ -5,6 +5,7 @@ import {
   InputBase,
   Menu,
   MenuItem,
+  TextField,
 } from "@mui/material";
 import { SearchPanelContainer } from "./styles";
 import * as React from "react";
@@ -14,27 +15,18 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import Badge from "@mui/material/Badge";
 import { useAuth } from "../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../providers/AxiosProvider";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-
-// interface SearchPanelDataItem {
-//   id: number;
-//   image?: string;
-//   label?: string;
-//   contact?: string;
-// }
-
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { usePagesManagement } from "../../../contexts/PagesManagementContext";
 
 function SearchPanel() {
-  // const [currency, setCurrency] = React.useState<string>("dollar");
   const { id } = useAuth();
 
-  // const userid = id;
   const [search, setSearch] = React.useState<string>("");
   const { axiosInstance } = useAxios();
   const [badgeShippingCartAllPages, setBadgeShippingCartAllPages] =
     React.useState<number>(0);
 
-  const [totalPriceFiltred, setTotalPriceFiltred] = React.useState<number>(0)
+  const [totalPriceFiltred, setTotalPriceFiltred] = React.useState<number>(0);
 
   const navigateToShippingCart = async () => {
     window.location.href = `http://localhost:5173/purchase/${id}`;
@@ -42,12 +34,12 @@ function SearchPanel() {
 
   React.useEffect(() => {
     verifyUserLoggedByAddProductToShoppingCart(id);
+    
   }, [totalPriceFiltred]);
 
+  const token = localStorage.getItem("c__token");
   let totalAmount = 0;
   const verifyUserLoggedByAddProductToShoppingCart = async (id: number) => {
-    const token = localStorage.getItem("c__token");
-
     const response = await axiosInstance.get(
       `/order-management/get/all/user/orders/${id}`,
       {
@@ -71,14 +63,16 @@ function SearchPanel() {
 
       const { product } = getProducts;
 
-      const cleanNumber = product.Valor_a_prazo.replace(/[^\d,]/g, '').replace(',', '.');
+      const cleanNumber = product.Valor_a_prazo.replace(/[^\d,]/g, "").replace(
+        ",",
+        "."
+      );
       const number = parseFloat(cleanNumber);
 
       totalAmount += number;
 
-      setTotalPriceFiltred(totalAmount)
-    })
-
+      setTotalPriceFiltred(totalAmount);
+    });
 
     setBadgeShippingCartAllPages(response.data.length);
     console.log(badgeShippingCartAllPages);
@@ -88,7 +82,6 @@ function SearchPanel() {
     window.location.href = `http://localhost:5173/`;
   };
 
-
   const searchPanel = () => {
     const currentURL = window.location.pathname;
     const urlParts = currentURL.split("/");
@@ -97,7 +90,22 @@ function SearchPanel() {
     console.log("category", category);
     console.log(search);
   };
+
+  const [panelData, setPanelData] = React.useState<string>("");
+  const { setPageData, PageData } = usePagesManagement();
+
+  const findPanel = async () => {
+    const req = await axiosInstance.post(`/inventary-management/${panelData}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setPageData(req.data);
+  };
   
+  
+  console.log(PageData)
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -127,12 +135,12 @@ function SearchPanel() {
           >
             <InputBase
               sx={{ ml: 1, flex: 1 }}
-              placeholder="Como podemos ajudar?"
-              inputProps={{ "aria-label": "Como podemos ajudar?" }}
-              onChange={(e: any) => setSearch(e.target.value)}
+              onChange={(e) => setPanelData(e.target.value)}
+              placeholder="Digite a marca do produto"
+              inputProps={{ "aria-label": "search google maps" }}
             />
             <IconButton
-              onClick={searchPanel}
+              onClick={findPanel}
               type="button"
               sx={{ p: "10px", height: "3rem" }}
               aria-label="search"
@@ -140,17 +148,22 @@ function SearchPanel() {
               <SearchIcon />
             </IconButton>
             <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-            <IconButton sx={{ p: "10px" }} id="basic-button"
-              aria-controls={open ? 'basic-menu' : undefined}
+            <IconButton
+              sx={{ p: "10px" }}
+              id="basic-button"
+              aria-controls={open ? "basic-menu" : undefined}
               aria-haspopup="true"
-              aria-expanded={open ? 'true' : undefined} onClick={handleClick} aria-label="directions">
+              aria-expanded={open ? "true" : undefined}
+              onClick={handleClick}
+              aria-label="directions"
+            >
               <ArrowDropDownIcon />
               <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}
                 open={open}
                 MenuListProps={{
-                  'aria-labelledby': 'basic-button',
+                  "aria-labelledby": "basic-button",
                 }}
               >
                 <MenuItem onClick={handleClose}>Computadores</MenuItem>
