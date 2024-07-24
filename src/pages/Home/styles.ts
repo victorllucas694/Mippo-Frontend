@@ -4,8 +4,9 @@ export const ProductsFiltred = styled.div`
     width: 70%;
     margin: auto;
     height: auto;
+    flex-wrap: wrap;
     display: flex;
     justify-content: center;
-    gap: 5rem;
-    padding: 3rem;
+    gap: 3rem;
+    padding: 2rem;
 `

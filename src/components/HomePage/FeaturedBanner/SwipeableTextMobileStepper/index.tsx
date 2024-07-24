@@ -35,7 +35,7 @@ const images = [
     label:
       "Os verdadeiros gamers sabem que os acessórios certos podem fazer toda a diferença. Descubra como cada acessório contribui para uma jogabilidade mais envolvente e competitiva.",
       imgPath:
-      "https://www.visaovip.com/imagem/cpu-intel/processador-intel-core-i9-12900k-socket-lga-1700-3-2ghz-30mb/2/559089.jpg?pfdrid_c=true",
+      "https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/x/bx8071512900kf2121.jpg",
   },
   {
     title:

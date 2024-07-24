@@ -80,7 +80,6 @@ function HomePage() {
         </ProductsFiltred>
         <Footer />
         </>
-
       ) : (
         <>
           <FeaturedBanner />

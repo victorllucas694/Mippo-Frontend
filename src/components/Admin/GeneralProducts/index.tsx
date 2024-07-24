@@ -77,6 +77,7 @@ const { PageData  } = usePagesManagement()
   const [checkboxStates, setCheckboxStates] = useState<{
     [subcategory: string]: { [value: string]: boolean };
   }>({});
+  console.log(checkboxStates)
 
   const handleCheckboxChange = async (subcategory: string, value: string) => {
     setCheckboxStates((prevStates) => ({
@@ -86,10 +87,6 @@ const { PageData  } = usePagesManagement()
         [value]: !prevStates[subcategory]?.[value],
       },
     }));
-  };
-
-  const handleButton = async () => {
-    console.log(checkboxStates);
   };
 
   function handleComputadores(): JSX.Element {

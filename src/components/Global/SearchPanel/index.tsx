@@ -21,7 +21,7 @@ import { usePagesManagement } from "../../../contexts/PagesManagementContext";
 function SearchPanel() {
   const { id } = useAuth();
 
-  const [search, setSearch] = React.useState<string>("");
+  // const [search, setSearch] = React.useState<string>("");
   const { axiosInstance } = useAxios();
   const [badgeShippingCartAllPages, setBadgeShippingCartAllPages] =
     React.useState<number>(0);
@@ -82,14 +82,14 @@ function SearchPanel() {
     window.location.href = `http://localhost:5173/`;
   };
 
-  const searchPanel = () => {
-    const currentURL = window.location.pathname;
-    const urlParts = currentURL.split("/");
-    const category = urlParts[1];
+  // const searchPanel = () => {
+  //   const currentURL = window.location.pathname;
+  //   const urlParts = currentURL.split("/");
+  //   const category = urlParts[1];
 
-    console.log("category", category);
-    console.log(search);
-  };
+  //   console.log("category", category);
+  //   console.log(search);
+  // };
 
   const [panelData, setPanelData] = React.useState<string>("");
   const { setPageData, PageData } = usePagesManagement();
