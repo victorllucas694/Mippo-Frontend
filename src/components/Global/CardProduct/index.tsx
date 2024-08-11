@@ -87,7 +87,7 @@ function CardProduct({ productsList }: IProductData) {
   const verifyInventary = () => {
     if (productsList.Quantidade_em_estoque <= 1) {
       setProductInInventory(true);
-      console.log(productInInventory)
+      console.log(productInInventory);
     } else {
       setProductInInventory(false);
     }

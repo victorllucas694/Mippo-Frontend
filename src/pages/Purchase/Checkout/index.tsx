@@ -9,13 +9,11 @@ import Stack from "@mui/material/Stack";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
-import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { PaletteMode } from "@mui/material";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import AutoAwesomeRoundedIcon from "@mui/icons-material/AutoAwesomeRounded";
 import ChevronLeftRoundedIcon from "@mui/icons-material/ChevronLeftRounded";
 import ChevronRightRoundedIcon from "@mui/icons-material/ChevronRightRounded";
 import AddressForm from "./../AddressForm";
@@ -59,11 +57,6 @@ function ToggleCustomTheme({
           },
         }}
       >
-        <ToggleButton value>
-          <AutoAwesomeRoundedIcon sx={{ fontSize: "20px", mr: 1 }} />
-          Custom theme
-        </ToggleButton>
-        <ToggleButton value={false}>Material Design 2</ToggleButton>
       </ToggleButtonGroup>
     </Box>
   );
@@ -78,7 +71,7 @@ const logoStyle = {
   marginRight: "-8px",
 };
 
-function getStepContent(step: number) {
+function getStepContent (step: number) {
   switch (step) {
     case 0:
       return <AddressForm />;
@@ -312,11 +305,10 @@ export default function Checkout() {
             {activeStep === steps.length ? (
               <Stack spacing={2} useFlexGap>
                 <Typography variant="h1">📦</Typography>
-                <Typography variant="h5">Thank you for your order!</Typography>
+                <Typography variant="h5">Comentarios sobre o produto</Typography>
                 <Typography variant="body1" color="text.secondary">
-                  Your order number is
-                  <strong>&nbsp;#140396</strong>. We have emailed your order
-                  confirmation and will update you once its shipped.
+                  Seu código de projeto é:
+                  <strong>&nbsp;#140396</strong>. Agradecemos pela compra e esperamos que tenha gostado da plataforma.
                 </Typography>
                 <Button
                   variant="contained"
@@ -325,7 +317,7 @@ export default function Checkout() {
                     width: { xs: "100%", sm: "auto" },
                   }}
                 >
-                  Go to my orders
+                  Voltar ao inicio
                 </Button>
               </Stack>
             ) : (

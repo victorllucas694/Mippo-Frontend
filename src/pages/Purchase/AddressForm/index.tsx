@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled } from "@mui/system";
 import { usePaymentContext } from "../../../contexts/payment";
+import { useAxios } from "../../../providers/AxiosProvider";
 
 const FormGrid = styled(Grid)(() => ({
   display: "flex",
@@ -22,6 +23,7 @@ export default function AddressForm() {
     setAddressBody,
     setCountryBody,
   } = usePaymentContext();
+
 
   return (
     <Grid container spacing={3}>
@@ -138,7 +140,7 @@ export default function AddressForm() {
       <FormGrid item xs={12}>
         <FormControlLabel
           control={<Checkbox name="saveAddress" value="yes" />}
-          label="Use this address for payment details"
+          label="Usar os meus dados para compras futuras"
         />
       </FormGrid>
     </Grid>

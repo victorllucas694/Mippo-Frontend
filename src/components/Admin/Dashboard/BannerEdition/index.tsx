@@ -74,7 +74,7 @@ function BannerEdition() {
           <TextField
             sx={{ width: "90%", margin: " 1rem " }}
             id="outlined-basic"
-            label="Link da imagem do banner"
+            label="texto do banner"
             variant="outlined"
           />
 

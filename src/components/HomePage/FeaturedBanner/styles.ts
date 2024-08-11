@@ -21,10 +21,22 @@ export const FeaturedBannerComponent = styled.div`
     overflow: hidden;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     height: auto;
     min-height: 40rem;
     border-radius: 5px;
+
+    .first-line{
+      width: 100%;
+      height: 100%;
+      border: 1px solid black;
+    }
+
+    .boxes {
+      width:40%;
+      height: 30vh;
+      border: 1px solid black;
+    }
 
     .more-products {
       width: 100%;
@@ -50,7 +62,7 @@ export const FeaturedBannerComponent = styled.div`
       object-fit: contain;
       height: auto;
       align-items: center;
-      width: 100%;
+      max-width: 100%;
     }
 
     @media (max-width: 1280px) {

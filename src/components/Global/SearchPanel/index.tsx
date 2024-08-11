@@ -5,7 +5,6 @@ import {
   InputBase,
   Menu,
   MenuItem,
-  TextField,
 } from "@mui/material";
 import { SearchPanelContainer } from "./styles";
 import * as React from "react";
@@ -21,7 +20,6 @@ import { usePagesManagement } from "../../../contexts/PagesManagementContext";
 function SearchPanel() {
   const { id } = useAuth();
 
-  // const [search, setSearch] = React.useState<string>("");
   const { axiosInstance } = useAxios();
   const [badgeShippingCartAllPages, setBadgeShippingCartAllPages] =
     React.useState<number>(0);

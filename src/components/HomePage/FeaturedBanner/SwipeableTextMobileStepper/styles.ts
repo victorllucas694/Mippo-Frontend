@@ -13,7 +13,7 @@ export const StepperBodyData = styled.div`
 
   .body-container {
     width: 55%;
-    height: 35rem;
+    height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +24,7 @@ export const StepperBodyData = styled.div`
     }
 
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-family: "Open Sans";
 
       @media (max-width: 480px) {
@@ -33,7 +33,8 @@ export const StepperBodyData = styled.div`
     }
 
     p {
-      font-size: 1rem;
+      font-size: 1.2rem;
+      color: rgb(120, 120, 120);
       margin: 2rem 0rem;
       font-family: "Open Sans";
 

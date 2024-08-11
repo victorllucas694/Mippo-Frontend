@@ -57,11 +57,15 @@ const payments = [
     try {
       const req = await axiosInstance(`/payment-shipping-cart/cart/${id}`);
       let valTotal = 0; 
+
       req.data.forEach((products: any) => {
         const { getProductsByOrderId } = products;
         valTotal += Number(getProductsByOrderId.Valor_a_prazo);
       });
+      
       setTotal(valTotal);
+      
+
     } catch (error) {
       console.error('Erro ao obter dados de preço:', error);
     }
@@ -100,7 +104,7 @@ const payments = [
       >
         <div>
           <Typography variant="subtitle2" gutterBottom>
-            detalhes de pagamento
+            detalhes da entrega
           </Typography>
           <Typography gutterBottom>{addressBody}</Typography>
           <Typography color="text.secondary" gutterBottom>
@@ -109,7 +113,7 @@ const payments = [
         </div>
         <div>
           <Typography variant="subtitle2" gutterBottom>
-            Payment details
+            Informações de pagamento
           </Typography>
           <Grid container>
             {payments.map((payment) => (
