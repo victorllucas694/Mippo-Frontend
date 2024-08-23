@@ -70,7 +70,7 @@ const { PageData  } = usePagesManagement()
   const { axiosInstance } = useAxios();
 
   async function filterByItems() {
-    const req = await axiosInstance.post(`/inventary-management/Intel`);
+    const req = await axiosInstance.post(`/inventary-management/`);
     console.log(req);
   }
 
@@ -88,6 +88,8 @@ const { PageData  } = usePagesManagement()
       },
     }));
   };
+  
+  const [selectedItems, setSelectedItems] = useState<{ [key: string]: string[] }>({});
 
   function handleComputadores(): JSX.Element {
     return (
