@@ -12,6 +12,7 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
   console.log(sliderProductTitle);
 
   const { products } = useProductsContext();
+  console.log("products", products);
   const [emptyProducts, __setEmptyProducts] = React.useState<IMockProducts>({
     id: 4,
     Marca: "Adicionar",
@@ -60,16 +61,18 @@ function SpecificProductsList({ sliderProductTitle }: IGenericListData) {
   return (
     <SpecificProductsListBoxWrapper>
       <div className="body-product">
-        {products ? (
+        {Array.isArray(products) && products.length > 0 ? (
           productsToShow?.map((productsList: IMockProducts) => {
-            return <CardProduct productsList={productsList} />;
+            return (
+              <CardProduct key={productsList.id} productsList={productsList} />
+            );
           })
         ) : (
           <>
-            <CardProduct productsList={emptyProducts} />
-            <CardProduct productsList={emptyProducts} />
-            <CardProduct productsList={emptyProducts} />
-            <CardProduct productsList={emptyProducts} />
+            <CardProduct key="empty-1" productsList={emptyProducts} />
+            <CardProduct key="empty-2" productsList={emptyProducts} />
+            <CardProduct key="empty-3" productsList={emptyProducts} />
+            <CardProduct key="empty-4" productsList={emptyProducts} />
           </>
         )}
       </div>

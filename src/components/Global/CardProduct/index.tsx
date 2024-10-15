@@ -185,7 +185,8 @@ function CardProduct({ productsList }: IProductData) {
             href={
               category !== ""
                 ? `/product/${category}/${productCode}/${productId}`
-                : `/product/Hardware/${productCode}/${productId}`
+                // : `/product/Hardware/${productCode}/${productId}`
+                : `/`
             }
             fontWeight="md"
             color="neutral"

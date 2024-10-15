@@ -367,12 +367,21 @@ const { PageData  } = usePagesManagement()
             </Select>
           </div>
         </div>
-        {products ? (
+        {Array.isArray(products) && products.length > 0 ? (
           productsToShow?.map((productsList: IMockProducts) => {
-            return <CardProduct productsList={productsList} />;
+            return (
+              <CardProduct key={productsList.id} productsList={productsList} />
+            );
           })
         ) : (
-          <CardProduct productsList={emptyProducts} />
+          <>
+            <CardProduct key="empty-1" productsList={emptyProducts} />
+            <CardProduct key="empty-2" productsList={emptyProducts} />
+            <CardProduct key="empty-3" productsList={emptyProducts} />
+            <CardProduct key="empty-4" productsList={emptyProducts} />
+            <CardProduct key="empty-4" productsList={emptyProducts} />
+            <CardProduct key="empty-4" productsList={emptyProducts} />
+          </>
         )}
 
         <div className="pagination-data">
