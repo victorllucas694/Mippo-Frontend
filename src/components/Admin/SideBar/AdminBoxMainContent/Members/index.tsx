@@ -34,34 +34,6 @@ ChartJS.register(
   Tooltip
 );
 
-// const options = {
-//   plugins: {
-//     legend: {
-//       labels: {
-//         font: {
-//           size: "1rem",
-//         },
-//       },
-//     },
-//   },
-//   scales: {
-//     x: {
-//       ticks: {
-//         font: {
-//           size: "1rem",
-//         },
-//       },
-//     },
-//     y: {
-//       ticks: {
-//         font: {
-//           size: "1rem",
-//         },
-//       },
-//     },
-//   },
-// };
-
 function triggerTooltip(chart: ChartJS | null) {
   const tooltip = chart?.tooltip;
 
@@ -111,7 +83,6 @@ function Members() {
       setAdmin(req.data);
     }
   }
-  // const [containerWidth, setContainerWidth] = useState(window.innerWidth * 0.8); // Defina a largura inicial do contêiner
 
   const chartRef = useRef<ChartJS>(null);
   useEffect(() => {
@@ -145,15 +116,6 @@ function Members() {
         },
     ],
   };
-
-  // const options = {
-  //   maintainAspectRatio: false, // Permitir ajuste da altura
-  //   scales: {
-  //     y: {
-  //       beginAtZero: true,
-  //     },
-  //   },
-  // };
 
   return (
     <MemberContainer>

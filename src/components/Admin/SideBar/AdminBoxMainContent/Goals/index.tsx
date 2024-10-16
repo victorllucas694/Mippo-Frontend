@@ -45,22 +45,6 @@ function Goals() {
     }
   };
 
-  // const tableGoals: ITableGoals[] = [
-  //   {
-  //     goalName: "Ajustar para o dia das crianças",
-  //     status: "in progress",
-  //     progress: "10%",
-  //     dueDate: "12/10",
-  //     team: "Desenvolvimento",
-  //   },
-  //   {
-  //     goalName: "Ajustar para a black friday",
-  //     status: "To do",
-  //     progress: "0%",
-  //     dueDate: "24/11",
-  //     team: "Marketing",
-  //   },
-  // ];
 
   return (
     <GoalsContainer>

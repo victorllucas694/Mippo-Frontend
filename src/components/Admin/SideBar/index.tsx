@@ -151,10 +151,6 @@ function SideBar() {
       detailPage: "SupplierList",
     },
     {
-      label: "Rastreamento dos pedidos",
-      detailPage: "getLocaleProduct",
-    },
-    {
       label: "Etiquetas de remessa",
       detailPage: "ProductTicket",
     },

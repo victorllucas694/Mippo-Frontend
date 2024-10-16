@@ -72,9 +72,7 @@ function Footer() {
           <div className="brand-company">
             <div className="brand"></div>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non, sed
-              harum. Perferendis assumenda ipsam recusandae nostrum iure
-              consequuntur soluta sequi.
+              Faça parte da nossa equipe e conquiste o selo de cliente do ano! Aqui você é importante.
             </p>
             <div className="buttons-socials">
               <div className="buttons-layer">
@@ -114,9 +112,9 @@ function Footer() {
         <div className="contact-us">
           <h1>Entre em contato</h1>
 
-          <a href="">90 Washington Square South, New York, United States</a>
-          <a href="">Email: emailexemplo@gmail.com</a>
-          <a href="">Phone: +19 91245-6780</a>
+          <a href="">Endereço: Rua campo grande, 1353, planalto do sol, Santa Barbara D'Oeste</a>
+          <a href="">Email: victorllucas.silva01@gmail.com</a>
+          <a href="">Telefone: +19 98427-7203</a>
         </div>
       </div>
     </FooterConteiner>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import HomePage from "./pages/Home";
 import { ProductContextProvider } from "./contexts/CardContexts";
@@ -49,11 +49,13 @@ function AppContent() {
   const { axiosInstance } = useAxios();
   const { setUserId } = useAuth();
   const [userAllowed, setUserAllowed] = useState<boolean>(false);
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     async function callEndpointToVerifyJwt() {
       const c_tokenData = localStorage.getItem("c__token");
       if (c_tokenData) {
+       try {
         const req = await axiosInstance.get("/authenticate/token-verify", {
           headers: {
             Authorization: `Bearer ${c_tokenData}`,
@@ -67,7 +69,14 @@ function AppContent() {
         }
 
         setUserId(req.data.id);
+      } catch (error) {
+        // Se houver um erro, remover o token do localStorage
+        console.error("Token inválido, removendo do localStorage.", error);
+        localStorage.removeItem("c__token");
+        setUserAllowed(false);
+        navigate('/');
       }
+    }
     }
 
     callEndpointToVerifyJwt();

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MemberContainer = styled.div`
-  width: 100%;  
+  width: auto;  
   height: 100%;
   box-shadow: 3px 3px 16px -8px rgb(220, 220, 220);
   border: 1px solid rgb(230, 230, 230);

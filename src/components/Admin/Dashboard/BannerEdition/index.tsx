@@ -54,10 +54,7 @@ function BannerEdition() {
       <h1>Modifique o banner principal</h1>
       <div className="header-banner-modify">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-          consequatur dolores vel blanditiis perspiciatis sint earum. Sint saepe
-          deleniti fugiat? Temporibus voluptatem error rem facere, adipisci
-          earum impedit praesentium et!
+          Transforme o banner da paǵina principal sobre a forma que desejar. 
         </p>
       </div>
 

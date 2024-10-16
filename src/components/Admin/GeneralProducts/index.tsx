@@ -47,11 +47,11 @@ function GeneralFunction() {
     null
   );
   const [category, setCategory] = useState<string | null>("");
-const { PageData  } = usePagesManagement()
+  const { PageData } = usePagesManagement();
   useEffect(() => {
-    console.log(PageData)
     const category = getCategory();
     setCategory(category);
+    console.log(products);
   }, []);
 
   function getCategory(): string {
@@ -77,7 +77,7 @@ const { PageData  } = usePagesManagement()
   const [checkboxStates, setCheckboxStates] = useState<{
     [subcategory: string]: { [value: string]: boolean };
   }>({});
-  console.log(checkboxStates)
+  console.log(checkboxStates);
 
   const handleCheckboxChange = async (subcategory: string, value: string) => {
     setCheckboxStates((prevStates) => ({
@@ -88,8 +88,10 @@ const { PageData  } = usePagesManagement()
       },
     }));
   };
-  
-  const [selectedItems, setSelectedItems] = useState<{ [key: string]: string[] }>({});
+
+  const [selectedItems, setSelectedItems] = useState<{
+    [key: string]: string[];
+  }>({});
 
   function handleComputadores(): JSX.Element {
     return (
@@ -367,7 +369,7 @@ const { PageData  } = usePagesManagement()
             </Select>
           </div>
         </div>
-        {Array.isArray(products) && products.length > 0 ? (
+        {Array.isArray(products) && products.some((product) => product.id) ? (
           productsToShow?.map((productsList: IMockProducts) => {
             return (
               <CardProduct key={productsList.id} productsList={productsList} />
@@ -379,8 +381,8 @@ const { PageData  } = usePagesManagement()
             <CardProduct key="empty-2" productsList={emptyProducts} />
             <CardProduct key="empty-3" productsList={emptyProducts} />
             <CardProduct key="empty-4" productsList={emptyProducts} />
-            <CardProduct key="empty-4" productsList={emptyProducts} />
-            <CardProduct key="empty-4" productsList={emptyProducts} />
+            <CardProduct key="empty-5" productsList={emptyProducts} />
+            <CardProduct key="empty-6" productsList={emptyProducts} />
           </>
         )}
 
