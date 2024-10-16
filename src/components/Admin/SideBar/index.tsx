@@ -404,24 +404,6 @@ function SideBar() {
                 }
               )}
             </Collapse>
-            <ListItemButton onClick={handleOpenListClick}>
-              <ListItemIcon>
-                <FolderCopyIcon />
-              </ListItemIcon>
-              <ListItemText primary="Componentes" />
-              {openList ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <Collapse in={openList} timeout="auto" unmountOnExit>
-              {componentManagement.map((component: IComponentManagement) => {
-                return (
-                  <List onClick={() => setPageName(component.detailPage)} component="div" disablePadding>
-                    <ListItemButton sx={{ pl: 4 }}>
-                      <ListItemText primary={component.label} />
-                    </ListItemButton>
-                  </List>
-                );
-              })}
-            </Collapse>
           </List>
           <Divider />
           {open ? (

@@ -82,7 +82,7 @@ function  Suppliers() {
       getListAllProductsToRender();
       getAllSuppliersByUserId();
     }
-  }, [id, suppliersArrData]);
+  }, [id, suppliersArrData, rows]);
 
   const deleteAllProductsAndPackageByDropCode = async (dropCode: any) => {
     const deletePackageAndAllProducts = await axiosInstance.get(
