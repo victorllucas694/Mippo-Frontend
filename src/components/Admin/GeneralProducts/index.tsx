@@ -69,11 +69,26 @@ function GeneralFunction() {
 
   const { axiosInstance } = useAxios();
 
-  async function filterComputersByItems() {
-    const req = await axiosInstance.get(`/filters/computer`);
-    console.log(req);
-  }
+  const handleCheckboxComputerChange = async (value: string) => {
+    console.log(value);
+    console.log(products);
 
+    const matchingProducts = products?.filter(
+      (product) =>
+        product.Marca_do_processador === value ||
+        product.Tecnologia_da_memoria === value ||
+        product.Tipo_de_conexao === value ||
+        product.Sistema_operacional.includes(value) ||
+        product.Marca_do_chipset_de_video.includes(value)
+    );
+
+    if (matchingProducts !== undefined && matchingProducts.length > 0) {
+      setFilteredProducts(matchingProducts);
+      console.log("Produtos encontrados:", matchingProducts);
+    } else {
+      setFilteredProducts([]);
+    }
+  };
   const [filteredProducts, setFilteredProducts] = useState<
     IMockProducts[] | null
   >(null);
@@ -96,10 +111,8 @@ function GeneralFunction() {
     );
 
     if (matchingProducts !== undefined && matchingProducts.length > 0) {
-      console.log("Produtos encontrados:", matchingProducts);
       setFilteredProducts(matchingProducts);
     } else {
-      console.log("Nenhum produto encontrado.");
       setFilteredProducts([]);
     }
   };
@@ -117,10 +130,25 @@ function GeneralFunction() {
     );
 
     if (matchingProducts !== undefined && matchingProducts.length > 0) {
-      console.log("Produtos encontrados:", matchingProducts);
       setFilteredProducts(matchingProducts);
     } else {
-      console.log("Nenhum produto encontrado.");
+      setFilteredProducts([]);
+    }
+  };
+
+  const handleCheckboxAcessoriesChange = async (value: string) => {
+    console.log(value);
+    console.log(products);
+
+    const matchingProducts = products?.filter(
+      (product) =>
+        product.Fornecedor === value ||
+        product.montagem_necessaria === value
+    );
+
+    if (matchingProducts !== undefined && matchingProducts.length > 0) {
+      setFilteredProducts(matchingProducts);
+    } else {
       setFilteredProducts([]);
     }
   };
@@ -146,7 +174,7 @@ function GeneralFunction() {
                             <input
                               value={value}
                               onChange={() =>
-                                handleCheckboxNotebookChange(value)
+                                handleCheckboxComputerChange(value)
                               }
                               style={{ marginRight: "1rem" }}
                               type="checkbox"
@@ -162,18 +190,6 @@ function GeneralFunction() {
             </div>
           );
         })}
-        <div className="button-apply">
-          <Button sx={{ margin: "0 1rem", width: "200px" }} variant="outlined">
-            Limpar
-          </Button>
-          <Button
-            onClick={filterComputersByItems}
-            sx={{ width: "300px" }}
-            variant="contained"
-          >
-            Aplicar filtro
-          </Button>
-        </div>
       </div>
     );
   }
@@ -257,7 +273,6 @@ function GeneralFunction() {
             </div>
           );
         })}
-
       </div>
     );
   }
@@ -282,6 +297,9 @@ function GeneralFunction() {
                         <div key={value}>
                           <p>
                             <input
+                              onChange={() =>
+                                handleCheckboxAcessoriesChange(value)
+                              }
                               style={{ marginRight: "1rem" }}
                               type="checkbox"
                             />
@@ -314,10 +332,11 @@ function GeneralFunction() {
     id: 4,
     Marca: "Adicionar",
     Fabricante: "Voce não possui produtos",
-    Formato: "",
+    Formato: "Nenhum",
     Tipo_de_Hardware: "Nenhum",
     Consumo_de_Energia: "Nenhum",
     Marca_do_processador: "Intel",
+    montagem_necessaria:"Não",
     Tipo_de_processador: "",
     Velocidade_do_processador: "4.0 GHz",
     Tipo_de_soquete_do_processador: "LGA 1200",

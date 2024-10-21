@@ -87,10 +87,6 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
           name: "Montagem necessária",
           valor: ["Sim", "Não"],
         },
-        {
-          name: "Carregamento",
-          valor: ["Pilha", "Bateria"],
-        },
       ],
     },
   ];
@@ -171,16 +167,12 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
           valor: ["DDR3", "DDR4", "DDR5"],
         },
         {
-          name: "Tipo de conexão",
-          valor: ["Wi-Fi", "Bluetooth"],
-        },
-        {
           name: "Sistema operacional",
           valor: ["Windows", "Linux"],
         },
         {
           name: "Placa de video",
-          valor: ["Nvidia", "AMD"],
+          valor: ["NVIDIA", "AMD"],
         },
       ],
     },

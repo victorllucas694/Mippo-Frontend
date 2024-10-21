@@ -12,6 +12,7 @@ export interface IMockProducts {
   Marca_do_processador: string;
   Tipo_de_Hardware: string;
   Consumo_de_Energia: string;
+  montagem_necessaria: string;
   Tipo_de_processador:string;
   Velocidade_do_processador: string;
   Tipo_de_soquete_do_processador: string;
