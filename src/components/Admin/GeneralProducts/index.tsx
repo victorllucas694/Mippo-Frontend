@@ -52,7 +52,7 @@ function GeneralFunction() {
     const category = getCategory();
     setCategory(category);
     console.log(products);
-  }, []);
+  }, [products]);
 
   function getCategory(): string {
     const currentURL = window.location.pathname;
@@ -69,8 +69,8 @@ function GeneralFunction() {
 
   const { axiosInstance } = useAxios();
 
-  async function filterByItems() {
-    const req = await axiosInstance.post(`/inventary-management/`);
+  async function filterComputersByItems() {
+    const req = await axiosInstance.get(`/filters/computer`);
     console.log(req);
   }
 
@@ -79,20 +79,24 @@ function GeneralFunction() {
   }>({});
   console.log(checkboxStates);
 
-  const handleCheckboxChange = async (subcategory: string, value: string) => {
-    setCheckboxStates((prevStates) => ({
-      ...prevStates,
-      [subcategory]: {
-        ...prevStates[subcategory],
-        [value]: !prevStates[subcategory]?.[value],
-      },
-    }));
+  const handleCheckboxChange = async (value: string) => {
+    console.log(value);
+    console.log(products);
+  
+    const matchingProducts = products?.filter((product) => 
+      product.Marca_do_processador === value ||
+      product.Tecnologia_da_memoria === value ||
+      product.Tipo_de_conexao === value ||
+      product.Sistema_operacional === value ||
+      product.Marca_do_chipset_de_video === value
+    );
+  
+    if (matchingProducts !== undefined && matchingProducts.length > 0) {
+      console.log("Produtos encontrados:", matchingProducts);
+    } else {
+      console.log("Nenhum produto encontrado.");
+    }
   };
-
-  const [selectedItems, setSelectedItems] = useState<{
-    [key: string]: string[];
-  }>({});
-
   function handleComputadores(): JSX.Element {
     return (
       <div className="category-item">
@@ -114,7 +118,7 @@ function GeneralFunction() {
                             <input
                               value={value}
                               onChange={() =>
-                                handleCheckboxChange(categories.name, value)
+                                handleCheckboxChange(value)
                               }
                               style={{ marginRight: "1rem" }}
                               type="checkbox"
@@ -135,7 +139,7 @@ function GeneralFunction() {
             Limpar
           </Button>
           <Button
-            onClick={filterByItems}
+            onClick={filterComputersByItems}
             sx={{ width: "300px" }}
             variant="contained"
           >
@@ -168,6 +172,9 @@ function GeneralFunction() {
                             <input
                               style={{ marginRight: "1rem" }}
                               value={value}
+                              onChange={() =>
+                                handleCheckboxChange(value)
+                              }
                               type="checkbox"
                             />
                             {value}

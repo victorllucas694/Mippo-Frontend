@@ -35,12 +35,12 @@ const Info: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("req",req)
       const productsData: Product[] = req.data;
       setProducts(productsData);
       const callBackData = productsData.map(product => product.getProductsByOrderId);
       setProductsCallBack(callBackData);
 
-      // Calculate total value
       const total = callBackData.reduce((acc, product) => {
         return acc + parseFloat(product.Valor_a_prazo.toString() || '0');
       }, 0);

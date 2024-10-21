@@ -117,19 +117,10 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
         },
         {
           name: "Placas de vídeo",
-          valor: ["Nvidia", "AMD"],
+          valor: ["Nvidia", "AMD", "Placa de vídeo integrada"],
         },
       ],
-    },
-    {
-      name: "Notebook",
-      subcategories: [
-        {
-          name: "Tipo de conexão",
-          valor: ["WI-FI", "Bluetooth"],
-        },
-      ],
-    },
+    }
   ];
 
   const HardwareDataCategory: Category[] = [
