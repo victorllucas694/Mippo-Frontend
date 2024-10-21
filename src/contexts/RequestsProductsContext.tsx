@@ -129,7 +129,7 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
       subcategories: [
         {
           name: "Fabricante",
-          valor: ["FutureTech", "InnoTech", "MegaForce"],
+          valor: ["FutureTech", "InnoTech", "MegaForce", "MSI", "Zotac", "Sapphire", "Gigabyte"],
         },
         {
           name: "Marca",
@@ -144,7 +144,7 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
           name: "Tipo do hardware",
           valor: [
             "Processador",
-            "Placa de video",
+            "Placa de Vídeo",
             "Armazenamento",
             "Monitores",
             "Impressoras",

@@ -74,29 +74,57 @@ function GeneralFunction() {
     console.log(req);
   }
 
+  const [filteredProducts, setFilteredProducts] = useState<
+    IMockProducts[] | null
+  >(null);
   const [checkboxStates, setCheckboxStates] = useState<{
     [subcategory: string]: { [value: string]: boolean };
   }>({});
   console.log(checkboxStates);
 
-  const handleCheckboxChange = async (value: string) => {
+  const handleCheckboxNotebookChange = async (value: string) => {
     console.log(value);
     console.log(products);
-  
-    const matchingProducts = products?.filter((product) => 
-      product.Marca_do_processador === value ||
-      product.Tecnologia_da_memoria === value ||
-      product.Tipo_de_conexao === value ||
-      product.Sistema_operacional === value ||
-      product.Marca_do_chipset_de_video === value
+
+    const matchingProducts = products?.filter(
+      (product) =>
+        product.Marca_do_processador === value ||
+        product.Tecnologia_da_memoria === value ||
+        product.Tipo_de_conexao === value ||
+        product.Sistema_operacional === value ||
+        product.Marca_do_chipset_de_video === value
     );
-  
+
     if (matchingProducts !== undefined && matchingProducts.length > 0) {
       console.log("Produtos encontrados:", matchingProducts);
+      setFilteredProducts(matchingProducts);
     } else {
       console.log("Nenhum produto encontrado.");
+      setFilteredProducts([]);
     }
   };
+
+  const handleCheckboxHardwareChange = async (value: string) => {
+    console.log(value);
+    console.log(products);
+
+    const matchingProducts = products?.filter(
+      (product) =>
+        product.Fabricante === value ||
+        product.Marca.includes(value) ||
+        product.Tipo_de_Hardware === value ||
+        product.Consumo_de_Energia === value
+    );
+
+    if (matchingProducts !== undefined && matchingProducts.length > 0) {
+      console.log("Produtos encontrados:", matchingProducts);
+      setFilteredProducts(matchingProducts);
+    } else {
+      console.log("Nenhum produto encontrado.");
+      setFilteredProducts([]);
+    }
+  };
+
   function handleComputadores(): JSX.Element {
     return (
       <div className="category-item">
@@ -118,7 +146,7 @@ function GeneralFunction() {
                             <input
                               value={value}
                               onChange={() =>
-                                handleCheckboxChange(value)
+                                handleCheckboxNotebookChange(value)
                               }
                               style={{ marginRight: "1rem" }}
                               type="checkbox"
@@ -173,7 +201,7 @@ function GeneralFunction() {
                               style={{ marginRight: "1rem" }}
                               value={value}
                               onChange={() =>
-                                handleCheckboxChange(value)
+                                handleCheckboxNotebookChange(value)
                               }
                               type="checkbox"
                             />
@@ -188,14 +216,6 @@ function GeneralFunction() {
             </div>
           );
         })}
-        <div className="button-apply">
-          <Button sx={{ margin: "0 1rem", width: "200px" }} variant="outlined">
-            Limpar
-          </Button>
-          <Button sx={{ width: "300px" }} variant="contained">
-            Aplicar filtro
-          </Button>
-        </div>
       </div>
     );
   }
@@ -220,6 +240,9 @@ function GeneralFunction() {
                         <div key={value}>
                           <p>
                             <input
+                              onChange={() =>
+                                handleCheckboxHardwareChange(value)
+                              }
                               style={{ marginRight: "1rem" }}
                               type="checkbox"
                             />
@@ -235,14 +258,6 @@ function GeneralFunction() {
           );
         })}
 
-        <div className="button-apply">
-          <Button sx={{ margin: "0 1rem", width: "200px" }} variant="outlined">
-            Limpar
-          </Button>
-          <Button sx={{ width: "300px" }} variant="contained">
-            Aplicar filtro
-          </Button>
-        </div>
       </div>
     );
   }
@@ -281,14 +296,6 @@ function GeneralFunction() {
             </div>
           );
         })}
-        <div className="button-apply">
-          <Button sx={{ margin: "0 1rem", width: "200px" }} variant="outlined">
-            Limpar
-          </Button>
-          <Button sx={{ width: "300px" }} variant="contained">
-            Aplicar filtro
-          </Button>
-        </div>
       </div>
     );
   }
@@ -308,6 +315,8 @@ function GeneralFunction() {
     Marca: "Adicionar",
     Fabricante: "Voce não possui produtos",
     Formato: "",
+    Tipo_de_Hardware: "Nenhum",
+    Consumo_de_Energia: "Nenhum",
     Marca_do_processador: "Intel",
     Tipo_de_processador: "",
     Velocidade_do_processador: "4.0 GHz",
@@ -376,7 +385,18 @@ function GeneralFunction() {
             </Select>
           </div>
         </div>
-        {Array.isArray(products) && products.some((product) => product.id) ? (
+        {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
+          filteredProducts.map((productsList: IMockProducts) => {
+            return (
+              <CardProduct key={productsList.id} productsList={productsList} />
+            );
+          })
+        ) : Array.isArray(filteredProducts) && filteredProducts.length === 0 ? (
+          <>
+            <CardProduct key="empty-1" productsList={emptyProducts} />
+          </>
+        ) : Array.isArray(products) &&
+          products.some((product) => product.id) ? (
           productsToShow?.map((productsList: IMockProducts) => {
             return (
               <CardProduct key={productsList.id} productsList={productsList} />
@@ -392,7 +412,6 @@ function GeneralFunction() {
             <CardProduct key="empty-6" productsList={emptyProducts} />
           </>
         )}
-
         <div className="pagination-data">
           <Pagination
             count={totalPages}
