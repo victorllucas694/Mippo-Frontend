@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import GlobalStyles from "./styles/GlobalStyles";
 import HomePage from "./pages/Home";
 import { ProductContextProvider } from "./contexts/CardContexts";
@@ -17,6 +22,7 @@ import { PaymentContextProvider } from "./contexts/payment";
 import { FilterContextProvider } from "./contexts/FilterToProducts";
 import Purchase from "./pages/Purchase";
 import ProductsFiltred from "./pages/ProductsFiltred";
+import UserSettings from "./pages/UserSettings";
 
 function App() {
   return (
@@ -49,37 +55,63 @@ function AppContent() {
   const { axiosInstance } = useAxios();
   const { setUserId } = useAuth();
   const [userAllowed, setUserAllowed] = useState<boolean>(false);
-  const navigate = useNavigate(); 
+  const [userCommonAllowed, setUserCommonAllowed] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function callEndpointToVerifyJwt() {
       const c_tokenData = localStorage.getItem("c__token");
       if (c_tokenData) {
-       try {
-        const req = await axiosInstance.get("/authenticate/token-verify", {
-          headers: {
-            Authorization: `Bearer ${c_tokenData}`,
-          },
-        });
+        try {
+          const req = await axiosInstance.get("/authenticate/token-verify", {
+            headers: {
+              Authorization: `Bearer ${c_tokenData}`,
+            },
+          });
 
-        if (req.data.admin === "true") {
-          setUserAllowed(true);
-        } else {
+          if (req.data.admin === "true") {
+            setUserAllowed(true);
+          } else {
+            setUserAllowed(false);
+          }
+
+          setUserId(req.data.id);
+        } catch (error) {
+          console.error("Token inválido, removendo do localStorage.", error);
+          localStorage.removeItem("c__token");
           setUserAllowed(false);
+          navigate("/");
         }
-
-        setUserId(req.data.id);
-      } catch (error) {
-        // Se houver um erro, remover o token do localStorage
-        console.error("Token inválido, removendo do localStorage.", error);
-        localStorage.removeItem("c__token");
-        setUserAllowed(false);
-        navigate('/');
       }
     }
+    async function callEndpointToVerifyJwtToCommonUser() {
+      const c_tokenData = localStorage.getItem("c__token");
+      if (c_tokenData) {
+        try {
+          const req = await axiosInstance.get("/authenticate/token-verify", {
+            headers: {
+              Authorization: `Bearer ${c_tokenData}`,
+            },
+          });
+
+          if (req.data.admin === "false") {
+            setUserCommonAllowed(true);
+          } else {
+            setUserCommonAllowed(false);
+          }
+
+          setUserId(req.data.id);
+        } catch (error) {
+          console.error("Token inválido, removendo do localStorage.", error);
+          localStorage.removeItem("c__token");
+          setUserAllowed(false);
+          navigate("/");
+        }
+      }
     }
 
     callEndpointToVerifyJwt();
+    callEndpointToVerifyJwtToCommonUser();
   }, []);
 
   const PrivateRoutes = () => {
@@ -101,11 +133,21 @@ function AppContent() {
           <Route
             path="/product/:category/:code/:id"
             element={<ProductDescription />}
-          />  
+          />
           <Route path="/:category" element={<ProductByCategory />} />
           <Route path="/purchase/:id" element={<Purchase />} />
-          <Route path="/founded" element={<ProductsFiltred></ProductsFiltred>} />
-          <Route path="/product/:category/:code/payment/:id" element={<Purchase />} />
+          <Route
+            path="/founded"
+            element={<ProductsFiltred></ProductsFiltred>}
+          />
+          <Route
+            path="/product/:category/:code/payment/:id"
+            element={<Purchase />}
+          />
+          <Route
+            path="/settings"
+            element={userCommonAllowed ? <UserSettings />: <h1>404</h1> }
+          />
         </Routes>
       </>
     );

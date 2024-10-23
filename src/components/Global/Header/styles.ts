@@ -22,7 +22,6 @@ export const HeaderPaper = styled.div`
       display: flex;
       height: 100%;
 
-
       @media (max-width: 1280px) {
         width: 50%;
       }
@@ -36,22 +35,22 @@ export const HeaderPaper = styled.div`
     }
 
     .account-data {
-      width: 30%;
+      width: 50%;
       align-items: center;
       height: 100%;
       display: flex;
       justify-content: center;
 
       @media (max-width: 1280px) {
-        width: 30%;
+        width: 60%;
       }
 
       @media (max-width: 780px) {
-        width: 50%;
+        width: 80%;
       }
 
       p {
-        font-family: 'Open Sans';
+        font-family: "Open Sans";
       }
 
       .box-button {
@@ -61,7 +60,7 @@ export const HeaderPaper = styled.div`
         width: 60%;
         height: 2rem;
         margin: auto;
-        gap: 3rem;
+        gap: 2rem;
 
         a {
           text-decoration: none;
