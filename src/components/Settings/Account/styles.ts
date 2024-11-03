@@ -27,27 +27,79 @@ export const AccountBox = styled.div`
     border: 1px solid rgb(230, 230, 230);
     padding: 2rem;
 
-    h2 {
-      font-family: "Open Sans";
-      color: rgb(80, 80, 80);
-      font-weight: 300;
-      font-size: 1.2rem;
+    .header-personal {
+      width: 100%;
+      align-items: center;
+      display: flex;
+      height: 4rem;
+      justify-content: space-between;
+    
+      h2 {
+        font-family: "Open Sans";
+        color: rgb(80, 80, 80);
+        font-weight: 300;
+        font-size: 1.2rem;
+      }
     }
 
+
     .inputs-info {
-        width: 70%;
+        width: 100%;
         height: auto;
         min-height: 24vh;
         margin: 1rem 0;
         display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: flex-start;
 
 
         .col-6 {
-            width: 48%;
-            height: 24vh;
-            border: 1px solid;
+            width: 30%;
+            height: auto;
+            border-radius: 5px;
+
+            .data-info {
+              width: 100%;
+              height: auto;
+              padding: 2rem;
+
+              h3 {
+                font-family: "Open Sans";
+                color: rgb(80, 80, 80);
+                font-weight: 600;
+                font-size: 1rem;
+              }
+
+              p {
+                font-family: "Open Sans";
+                color: rgb(80, 80, 80);
+                font-weight: 500;
+                margin: .5rem 0;
+                font-size: 1rem;
+              }
+            }
         }
     }
   }
+`;
+
+export const BoxInputsWrapper = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 5rem;
+  margin: 1rem 0;
+`;
+
+export const BoxButtonWrapper = styled.div`
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-end;
+  min-height: 5rem;
+  margin: 1rem 0;
 `;
