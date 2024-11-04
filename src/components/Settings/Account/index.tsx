@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useAuth } from "../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { AccountBox, BoxButtonWrapper, BoxInputsWrapper } from "./styles";
-import { useNavigate } from "react-router-dom";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 
 interface UserSettings {
@@ -15,18 +14,18 @@ interface UserSettings {
 interface Address {
   address: string | boolean;
   city: string | boolean;
-  details: string | boolean;
+  address_other: string | boolean;
   country: string | boolean;
-  postal_code: string | boolean;
+  CEP: string | boolean;
   state: string | boolean;
 }
 
 const initialAddress: Address = {
   address: false,
   city: false,
-  details: false,
+  address_other: false,
   country: false,
-  postal_code: false,
+  CEP: false,
   state: false,
 };
 
@@ -62,7 +61,6 @@ function Account() {
             },
           });
           setUserSettings(req.data);
-          console.log("User data:", req.data);
         } catch (error) {
           console.error("Error fetching user settings:", error);
         }
@@ -82,7 +80,7 @@ function Account() {
             }
           );
           setAddress(req.data || initialAddress);
-          console.log("Address data:", req.data);
+          console.log(req.data)
         } catch (error) {
           console.error("Error fetching address:", error);
         }
@@ -92,6 +90,40 @@ function Account() {
     getUserData();
     getUserAddressData();
   }, [axiosInstance, id]);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setAddress((prevAddress) => ({
+      ...prevAddress,
+      [name]: value,
+    }));
+  };
+
+  async function handleSendData() {
+    const c_tokenData = localStorage.getItem("c__token");
+    if (c_tokenData) {
+      console.log({ ...address })
+      try {
+        const req = await axiosInstance.post(
+          `/user-settings/create/${id}`,
+          { 
+            ...address,
+            User_Id: id
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${c_tokenData}`,
+            },
+          }
+        );
+        console.log("data:", req.data);
+      } catch (error) {
+        console.error("Error sending address data:", error);
+      }
+    }
+  }
 
   return (
     <>
@@ -121,86 +153,88 @@ function Account() {
           </Typography>
           <br />
           <TextField
+            label="Endereço"
+            name="address"
             sx={{
               width: "100%",
             }}
-            id="outlined-basic"
-            name="name"
-            required
-            label="Endereço - Rua de exemplo"
             helperText="Rua do peixe, 1234"
-            variant="outlined"
+            value={address.address || ""}
+            onChange={handleChange}
           />
           <BoxInputsWrapper>
             <TextField
               sx={{
-                width: "45%",
+                width: "47%",
               }}
-              required
-              id="outlined-basic"
-              name="name"
-              label="cidade - Cidade de exemplo"
-              variant="outlined"
+              label="Cidade"
+              name="city"
+              value={address.city || ""}
+              onChange={handleChange}
             />
             <TextField
               sx={{
-                width: "45%",
+                width: "47%",
               }}
-              required
-              id="outlined-basic"
-              name="name"
-              label="país de exemplo"
-              variant="outlined"
+              label="País"
+              name="country"
+              value={address.country || ""}
+              onChange={handleChange}
             />
           </BoxInputsWrapper>
           <TextField
             sx={{
               width: "100%",
             }}
-            required
-            id="outlined-basic"
-            name="name"
-            label="detalhes - Apartamento, bloco"
+            label="Detalhes"
+            name="address_other"
+            value={address.address_other || ""}
             helperText="Apartamento número 123"
-            variant="outlined"
+            onChange={handleChange}
           />
           <BoxInputsWrapper>
             <TextField
               sx={{
-                width: "45%",
+                width: "47%",
               }}
-              required
-              id="outlined-basic"
-              name="name"
-              label="CEP - 1231-123"
-              variant="outlined"
+              label="CEP"
+              name="CEP"
+              helperText="13453-123"
+              value={address.CEP || ""}
+              onChange={handleChange}
             />
             <TextField
               sx={{
-                width: "45%",
+                width: "47%",
               }}
-              required
-              id="outlined-basic"
-              name="name"
-              label="Estado - Estado de exemplo"
-              variant="outlined"
+              helperText="São Paulo"
+              label="Estado"
+              name="state"
+              value={address.state || ""}
+              onChange={handleChange}
             />
           </BoxInputsWrapper>
+
           <BoxButtonWrapper>
-          <Button
-                sx={{ height: "2.8rem", minWidth: "10rem" }}
-                onClick={() => { handleOpen();  handleClose();}}
-                variant="outlined"
-              >
-                cancelar
-              </Button>
-          <Button
-                sx={{ height: "2.8rem", minWidth: "10rem" }}
-                onClick={handleOpen}
-                variant="contained"
-              >
-                Adicionar
-              </Button>
+            <Button
+              sx={{ height: "2.8rem", minWidth: "10rem" }}
+              onClick={() => {
+                handleOpen();
+                handleClose();
+              }}
+              variant="outlined"
+            >
+              cancelar
+            </Button>
+            <Button
+              sx={{ height: "2.8rem", minWidth: "10rem" }}
+              onClick={() => {
+                handleSendData();
+              }}
+              variant="contained"
+            >
+              Adicionar
+            </Button>
           </BoxButtonWrapper>
         </Box>
       </Modal>
@@ -282,7 +316,7 @@ function Account() {
                   <p>{address.country || "adicionar o país"}</p>
                   <br />
                   <h3>Detalhes:</h3>
-                  <p>{address.details || "adicionar os detalhes"}</p>
+                  <p>{address.address_other || "adicionar os detalhes"}</p>
                 </div>
               )}
             </div>
@@ -290,7 +324,7 @@ function Account() {
               {userSettings && (
                 <div className="data-info">
                   <h3>Código Postal:</h3>
-                  <p>{address.postal_code || "adicionar o Código Postal"}</p>
+                  <p>{address.CEP || "adicionar o Código Postal"}</p>
                   <br />
                   <h3>Estado:</h3>
                   <p>{address.state || "adicionar o estado"}</p>
