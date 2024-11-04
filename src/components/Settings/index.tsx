@@ -10,6 +10,7 @@ import { useDemoRouter } from "@toolpad/core/internal";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Account from "./Account";
+import OrdersUser from "./OrdersUser";
 
 const NAVIGATION: Navigation = [
   {
@@ -20,11 +21,6 @@ const NAVIGATION: Navigation = [
     segment: "account",
     title: "Minha conta",
     icon: <PersonIcon />,
-  },
-  {
-    segment: "settings",
-    title: "Configuração",
-    icon: <SettingsIcon />,
   },
   {
     kind: "divider",
@@ -40,12 +36,12 @@ const NAVIGATION: Navigation = [
     children: [
       {
         segment: "sales",
-        title: "Rastrear pedido",
+        title: "Lista de pedidos",
         icon: <DescriptionIcon />,
       },
       {
         segment: "traffic",
-        title: "Meus pedidos",
+        title: "Status de entregas",
         icon: <DescriptionIcon />,
       },
     ],
@@ -74,8 +70,8 @@ function PageContent({ pathname }: { pathname: string }) {
     <>
       {pathname === "/account" ? (
         <Account />
-      ) : pathname === "/settings" ? (
-        <h1>settings</h1>
+      ) : pathname === "/orders/sales" ? (
+        <OrdersUser />
       ) : (
         <Account />
       )}

@@ -11,6 +11,13 @@ interface UserSettings {
   phone: string;
 }
 
+const initialUserSettings: UserSettings = {
+  email: "",
+  last_name: "",
+  name: "",
+  phone: "",
+};
+
 interface Address {
   address: string | boolean;
   city: string | boolean;
@@ -32,11 +39,22 @@ const initialAddress: Address = {
 function Account() {
   const { axiosInstance } = useAxios();
   const { id } = useAuth();
-  const [userSettings, setUserSettings] = useState<UserSettings | null>(null);
+  const [userSettings, setUserSettings] = useState<UserSettings>(initialUserSettings);
   const [address, setAddress] = useState<Address>(initialAddress);
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const [openUserSettings, setOpenUserSettings] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+
+  const handleOpen = (editMode: boolean) => {
+    setIsEditMode(editMode);
+    setOpen(true);
+  };
+
+  const handleOpenUserSettings = () => {
+    setOpenUserSettings(true);
+  };
   const handleClose = () => setOpen(false);
+  const handleCloseUserSettings = () => setOpenUserSettings(false);
 
   const style = {
     position: "absolute",
@@ -80,7 +98,7 @@ function Account() {
             }
           );
           setAddress(req.data || initialAddress);
-          console.log(req.data)
+          console.log(req.data);
         } catch (error) {
           console.error("Error fetching address:", error);
         }
@@ -91,9 +109,15 @@ function Account() {
     getUserAddressData();
   }, [axiosInstance, id]);
 
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChangeUser = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setUserSettings((prevUserSettings) => ({
+      ...prevUserSettings,
+      [name]: value,
+    }));
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setAddress((prevAddress) => ({
       ...prevAddress,
@@ -104,13 +128,41 @@ function Account() {
   async function handleSendData() {
     const c_tokenData = localStorage.getItem("c__token");
     if (c_tokenData) {
-      console.log({ ...address })
+      console.log({ ...address });
       try {
+        const endpoint = isEditMode
+          ? `/user-settings/update/${id}`
+          : `/user-settings/create/${id}`;
         const req = await axiosInstance.post(
-          `/user-settings/create/${id}`,
-          { 
+          endpoint,
+          {
             ...address,
-            User_Id: id
+            User_Id: id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${c_tokenData}`,
+            },
+          }
+        );
+        console.log("data:", req.data);
+      } catch (error) {
+        console.error("Error sending address data:", error);
+      }
+    }
+  }
+
+  async function handleUpdateUser() {
+    const c_tokenData = localStorage.getItem("c__token");
+    if (c_tokenData) {
+      console.log({ ...userSettings });
+      try {
+        const endpoint = `/user-settings/update/user/${id}`
+        const req = await axiosInstance.post(
+          endpoint,
+          {
+            ...userSettings,
+            id: id,
           },
           {
             headers: {
@@ -127,6 +179,90 @@ function Account() {
 
   return (
     <>
+    <Modal
+        open={openUserSettings}
+        onClose={handleCloseUserSettings}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        sx={{ display: "flex", justifyContent: "flex-end", border: "none" }}
+      >
+        <Box
+          sx={{
+            width: "45%",
+            height: "100vh",
+            position: "absolute",
+            backgroundColor: "white",
+            padding: "3rem",
+            border: "none",
+          }}
+        >
+          <Typography id="modal-modal-title" variant="h5" component="h1">
+            Editar informações de usuário 
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            edite suas informações pessoais aqui
+          </Typography>
+          <br />
+          <TextField
+            label="Nome"
+            name="name"
+            sx={{
+              width: "100%",
+            }}
+            value={userSettings.name || ""}
+            onChange={handleChangeUser}
+          />
+          <BoxInputsWrapper>
+            <TextField
+              sx={{
+                width: "47%",
+              }}
+              label="Sobrenome"
+              name="last_name"
+              value={userSettings.last_name || ""}
+              onChange={handleChangeUser}
+            />
+            <TextField
+              sx={{
+                width: "47%",
+              }}
+              label="Email"
+              name="email"
+              value={userSettings.email || ""}
+              onChange={handleChangeUser}
+            />
+          </BoxInputsWrapper>
+          <BoxInputsWrapper>
+            <TextField
+              sx={{
+                width: "100%",
+              }}
+              label="Telefone"
+              name="phone"
+              helperText="(11)12345-1234"
+              value={userSettings.phone || ""}
+              onChange={handleChangeUser}
+            />
+          </BoxInputsWrapper>
+
+          <BoxButtonWrapper>
+            <Button
+              sx={{ height: "2.8rem", minWidth: "10rem" }}
+              onClick={handleCloseUserSettings}
+              variant="outlined"
+            >
+              Cancelar
+            </Button>
+            <Button
+              sx={{ height: "2.8rem", minWidth: "10rem" }}
+              onClick={handleUpdateUser}
+              variant="contained"
+            >
+              Salvar
+            </Button>
+          </BoxButtonWrapper>
+        </Box>
+      </Modal>
       <Modal
         open={open}
         onClose={handleClose}
@@ -145,11 +281,12 @@ function Account() {
           }}
         >
           <Typography id="modal-modal-title" variant="h5" component="h1">
-            Adicionar ou editar Endereço
+            {isEditMode ? "Editar Endereço" : "Adicionar Endereço"}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Edite ou adicione seu endereço de entrega para a compra de seus
-            produtos
+            {isEditMode
+              ? "Edite seu endereço de entrega."
+              : "Adicione seu endereço de entrega."}
           </Typography>
           <br />
           <TextField
@@ -182,16 +319,6 @@ function Account() {
               onChange={handleChange}
             />
           </BoxInputsWrapper>
-          <TextField
-            sx={{
-              width: "100%",
-            }}
-            label="Detalhes"
-            name="address_other"
-            value={address.address_other || ""}
-            helperText="Apartamento número 123"
-            onChange={handleChange}
-          />
           <BoxInputsWrapper>
             <TextField
               sx={{
@@ -218,22 +345,17 @@ function Account() {
           <BoxButtonWrapper>
             <Button
               sx={{ height: "2.8rem", minWidth: "10rem" }}
-              onClick={() => {
-                handleOpen();
-                handleClose();
-              }}
+              onClick={handleClose}
               variant="outlined"
             >
-              cancelar
+              Cancelar
             </Button>
             <Button
               sx={{ height: "2.8rem", minWidth: "10rem" }}
-              onClick={() => {
-                handleSendData();
-              }}
+              onClick={handleSendData}
               variant="contained"
             >
-              Adicionar
+              {isEditMode ? "Salvar" : "Adicionar"}
             </Button>
           </BoxButtonWrapper>
         </Box>
@@ -247,6 +369,7 @@ function Account() {
             <Button
               sx={{ height: "2.8rem", minWidth: "8rem" }}
               variant="contained"
+              onClick={() => handleOpenUserSettings()}
             >
               Editar
             </Button>
@@ -283,14 +406,14 @@ function Account() {
             <div style={{ display: "flex", gap: "1rem" }}>
               <Button
                 sx={{ height: "2.8rem", minWidth: "8rem" }}
-                onClick={handleOpen}
+                onClick={() => handleOpen(false)} // Adicionar
                 variant="outlined"
               >
                 Adicionar
               </Button>
               <Button
                 sx={{ height: "2.8rem", minWidth: "8rem" }}
-                onClick={handleOpen}
+                onClick={() => handleOpen(true)} // Editar
                 variant="contained"
               >
                 Editar
