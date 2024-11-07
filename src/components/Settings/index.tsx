@@ -39,16 +39,11 @@ const NAVIGATION: Navigation = [
         title: "Lista de pedidos",
         icon: <DescriptionIcon />,
       },
-      {
-        segment: "traffic",
-        title: "Status de entregas",
-        icon: <DescriptionIcon />,
-      },
     ],
   },
   {
     segment: "Support",
-    title: "Suporte",
+    title: "Configurações",
     icon: <LayersIcon />,
   },
 ];
@@ -72,6 +67,8 @@ function PageContent({ pathname }: { pathname: string }) {
         <Account />
       ) : pathname === "/orders/sales" ? (
         <OrdersUser />
+      ) : pathname === "/Support" ? (
+        <h1>suporte</h1>
       ) : (
         <Account />
       )}

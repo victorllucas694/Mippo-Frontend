@@ -24,7 +24,7 @@ export const AccountBox = styled.div`
     margin: 2rem auto;
     height: auto;
     min-height: 35vh;
-    border: 1px solid rgb(230, 230, 230);
+    box-shadow:0px 1px 8px -1px rgb(220, 220, 220);
     padding: 2rem;
 
     .header-personal {
@@ -47,7 +47,6 @@ export const AccountBox = styled.div`
         width: 100%;
         height: auto;
         min-height: 24vh;
-        margin: 1rem 0;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
@@ -61,7 +60,7 @@ export const AccountBox = styled.div`
             .data-info {
               width: 100%;
               height: auto;
-              padding: 2rem;
+              padding: 1rem;
 
               h3 {
                 font-family: "Open Sans";
