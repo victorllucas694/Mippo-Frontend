@@ -19,12 +19,92 @@ export const AccountBox = styled.div`
     font-size: 1.5rem;
   }
 
+  .box-graphics {
+    width: 100%;
+    height: auto;
+    min-height: 35vh;
+    display: flex;
+    justify-content: space-between;
+
+    .graphic-body {
+      width: 45%;
+      height: auto;
+      max-height: 35vh;
+      box-shadow: 0px 1px 8px -1px rgb(220, 220, 220);
+      min-height: 35vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .personal-info-layer {
+      max-height: 35vh;
+      width: 45%;
+      min-width: 30rem;
+      height: auto;
+      min-height: 35vh;
+      box-shadow: 0px 1px 8px -1px rgb(220, 220, 220);
+      padding: 2rem;
+
+      .header-personal {
+        width: 100%;
+        align-items: center;
+        display: flex;
+        height: 4rem;
+        justify-content: space-between;
+
+        h2 {
+          font-family: "Open Sans";
+          color: rgb(80, 80, 80);
+          font-weight: 300;
+          font-size: 1.2rem;
+        }
+      }
+
+      .inputs-info {
+        width: 100%;
+        height: auto;
+        min-height: 24vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .col-6 {
+          width: 50%;
+          height: auto;
+          border-radius: 5px;
+
+          .data-info {
+            width: 100%;
+            height: auto;
+            padding: 1rem;
+
+            h3 {
+              font-family: "Open Sans";
+              color: rgb(80, 80, 80);
+              font-weight: 600;
+              font-size: 1rem;
+            }
+
+            p {
+              font-family: "Open Sans";
+              color: rgb(80, 80, 80);
+              font-weight: 500;
+              margin: 0.5rem 0;
+              font-size: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .personal-info {
     width: 100%;
     margin: 2rem auto;
     height: auto;
     min-height: 35vh;
-    box-shadow:0px 1px 8px -1px rgb(220, 220, 220);
+    box-shadow: 0px 1px 8px -1px rgb(220, 220, 220);
     padding: 2rem;
 
     .header-personal {
@@ -33,7 +113,7 @@ export const AccountBox = styled.div`
       display: flex;
       height: 4rem;
       justify-content: space-between;
-    
+
       h2 {
         font-family: "Open Sans";
         color: rgb(80, 80, 80);
@@ -42,42 +122,40 @@ export const AccountBox = styled.div`
       }
     }
 
-
     .inputs-info {
-        width: 100%;
+      width: 100%;
+      height: auto;
+      min-height: 24vh;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+
+      .col-6 {
+        width: 30%;
         height: auto;
-        min-height: 24vh;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-start;
+        border-radius: 5px;
 
+        .data-info {
+          width: 100%;
+          height: auto;
+          padding: 1rem;
 
-        .col-6 {
-            width: 30%;
-            height: auto;
-            border-radius: 5px;
+          h3 {
+            font-family: "Open Sans";
+            color: rgb(80, 80, 80);
+            font-weight: 600;
+            font-size: 1rem;
+          }
 
-            .data-info {
-              width: 100%;
-              height: auto;
-              padding: 1rem;
-
-              h3 {
-                font-family: "Open Sans";
-                color: rgb(80, 80, 80);
-                font-weight: 600;
-                font-size: 1rem;
-              }
-
-              p {
-                font-family: "Open Sans";
-                color: rgb(80, 80, 80);
-                font-weight: 500;
-                margin: .5rem 0;
-                font-size: 1rem;
-              }
-            }
+          p {
+            font-family: "Open Sans";
+            color: rgb(80, 80, 80);
+            font-weight: 500;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+          }
         }
+      }
     }
   }
 `;

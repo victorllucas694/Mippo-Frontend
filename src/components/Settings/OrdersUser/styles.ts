@@ -4,60 +4,90 @@ export const BoxOrderUser = styled.div`
   width: 100%;
   height: auto;
   min-height: 90vh;
-  padding: 2rem;
   margin: 1rem auto;
+  padding: 1rem;
 
-  .data-statistic {
-    width: 100%;
-    height: 7rem;
+  .header-data-orders {
     display: flex;
+    width: 100%;
+    height: 5rem;
+    justify-content: space-between;
+
+    h1 {
+      font-family: "Open Sans";
+      font-weight: 400;
+      margin: 0 1rem;
+      display: flex;
+      font-size: 1.5rem;
+    }
+
+    .date-layer {
+      width: auto;
+      min-width: 25rem;
+      border-radius: 5px;
+      height: 4rem;
+      border: 1px solid rgb(180, 180, 180);
+    }
+  }
+
+  .items-statiscs {
+    width: 100%;
+    height: auto;
+    min-height: 12rem;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
 
     .box-statistic {
-      width: 24%;
-      height: 7rem;
+      width: 23%;
+      height: 8rem;
       min-width: 20rem;
-      box-shadow: 0px 1px 8px -1px rgb(220, 220, 220);
       border-radius: 5px;
+      border: 1px solid rgb(220, 220, 220);
       padding: 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      align-items: center;
 
-      .box-icon {
-        width: 3.5rem;
-        height: 3.5rem;
+      .message {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 5px;
+        height: auto;
+        min-height: 3rem;
       }
 
-      .body-statistic {
-        width: 70%;
-        height: auto;
-        padding: .7rem;
+      .body-box-statistic {
+        width: 100%;
+        height: 5rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
 
-        h1 {
-          font-family: "Open Sans";
-          font-weight: 400;
-          color: rgb(160, 160, 160);
-          font-size: 1.1rem;
+        .icon-box {
+          width: 3.5rem;
+          margin: 0 1rem;
+          height: 3.5rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 5px;
         }
 
         h2 {
           font-family: "Open Sans";
           font-weight: 400;
-          color: rgb(60, 60, 60);
-          font-size: 1.25rem;
+          color: rgb(80, 80, 80);
+          display: flex;
+          font-size: 1.2rem;
         }
       }
 
-      @media (max-width: 1100px) {
-        display: none;
+      h1 {
+        font-family: "Open Sans";
+        font-weight: 400;
+        color: rgb(160, 160, 160);
+        display: flex;
+        font-size: 1rem;
       }
     }
   }

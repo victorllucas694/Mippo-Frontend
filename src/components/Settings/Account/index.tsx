@@ -3,7 +3,7 @@ import { useAuth } from "../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../providers/AxiosProvider";
 import { AccountBox, BoxButtonWrapper, BoxInputsWrapper } from "./styles";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
-
+import CircleChart from './CircleChart';
 interface UserSettings {
   email: string;
   last_name: string;
@@ -39,7 +39,8 @@ const initialAddress: Address = {
 function Account() {
   const { axiosInstance } = useAxios();
   const { id } = useAuth();
-  const [userSettings, setUserSettings] = useState<UserSettings>(initialUserSettings);
+  const [userSettings, setUserSettings] =
+    useState<UserSettings>(initialUserSettings);
   const [address, setAddress] = useState<Address>(initialAddress);
   const [open, setOpen] = useState(false);
   const [openUserSettings, setOpenUserSettings] = useState(false);
@@ -109,7 +110,9 @@ function Account() {
     getUserAddressData();
   }, [axiosInstance, id]);
 
-  const handleChangeUser = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChangeUser = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setUserSettings((prevUserSettings) => ({
       ...prevUserSettings,
@@ -117,7 +120,9 @@ function Account() {
     }));
   };
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setAddress((prevAddress) => ({
       ...prevAddress,
@@ -157,7 +162,7 @@ function Account() {
     if (c_tokenData) {
       console.log({ ...userSettings });
       try {
-        const endpoint = `/user-settings/update/user/${id}`
+        const endpoint = `/user-settings/update/user/${id}`;
         const req = await axiosInstance.post(
           endpoint,
           {
@@ -179,7 +184,7 @@ function Account() {
 
   return (
     <>
-    <Modal
+      <Modal
         open={openUserSettings}
         onClose={handleCloseUserSettings}
         aria-labelledby="modal-modal-title"
@@ -197,7 +202,7 @@ function Account() {
           }}
         >
           <Typography id="modal-modal-title" variant="h5" component="h1">
-            Editar informações de usuário 
+            Editar informações de usuário
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             edite suas informações pessoais aqui
@@ -363,57 +368,64 @@ function Account() {
       <AccountBox>
         <h1>Perfil de usuário</h1>
 
-        <div className="personal-info">
-          <div className="header-personal">
-            <h2>Informações pessoais</h2>
-            <Button
-              sx={{ height: "2.8rem", minWidth: "8rem" }}
-              variant="contained"
-              onClick={() => handleOpenUserSettings()}
-            >
-              Editar
-            </Button>
+        <div className="box-graphics">
+          <div className="personal-info-layer">
+            <div className="header-personal">
+              <h2>Informações pessoais</h2>
+              <Button
+                sx={{ height: "2.8rem", minWidth: "8rem" }}
+                variant="contained"
+                onClick={() => handleOpenUserSettings()}
+              >
+                Editar
+              </Button>
+            </div>
+
+            <div className="inputs-info">
+              <div className="col-6">
+                {userSettings && (
+                  <div className="data-info">
+                    <h3>Primeiro Nome:</h3>
+                    <p>{userSettings.name}</p>
+                    <br />
+                    <h3>Email:</h3>
+                    <p>{userSettings.email}</p>
+                  </div>
+                )}
+              </div>
+              <div className="col-6">
+                {userSettings && (
+                  <div className="data-info">
+                    <h3>Sobrenome:</h3>
+                    <p>{userSettings.last_name}</p>
+                    <br />
+                    <h3>Telefone:</h3>
+                    <p>{userSettings.phone}</p>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
-          <div className="inputs-info">
-            <div className="col-6">
-              {userSettings && (
-                <div className="data-info">
-                  <h3>Primeiro Nome:</h3>
-                  <p>{userSettings.name}</p>
-                  <br />
-                  <h3>Email:</h3>
-                  <p>{userSettings.email}</p>
-                </div>
-              )}
-            </div>
-            <div className="col-6">
-              {userSettings && (
-                <div className="data-info">
-                  <h3>Sobrenome:</h3>
-                  <p>{userSettings.last_name}</p>
-                  <br />
-                  <h3>Telefone:</h3>
-                  <p>{userSettings.phone}</p>
-                </div>
-              )}
-            </div>
+          <div className="graphic-body">
+            <CircleChart />
           </div>
         </div>
+
         <div className="personal-info">
           <div className="header-personal">
             <h2>Endereço de entregas</h2>
             <div style={{ display: "flex", gap: "1rem" }}>
               <Button
                 sx={{ height: "2.8rem", minWidth: "8rem" }}
-                onClick={() => handleOpen(false)} // Adicionar
+                onClick={() => handleOpen(false)}
                 variant="outlined"
               >
                 Adicionar
               </Button>
               <Button
                 sx={{ height: "2.8rem", minWidth: "8rem" }}
-                onClick={() => handleOpen(true)} // Editar
+                onClick={() => handleOpen(true)}
                 variant="contained"
               >
                 Editar
