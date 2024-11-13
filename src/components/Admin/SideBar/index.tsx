@@ -50,6 +50,10 @@ import {
   TitleAdmin,
 } from "./styles";
 import BannerEdition from "../Dashboard/BannerEdition";
+import { useMemo } from "react";
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
+import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
+import AddAlertIcon from '@mui/icons-material/AddAlert';
 
 const drawerWidth = 240;
 
@@ -149,10 +153,6 @@ function SideBar() {
     {
       label: "Lista de fornecedores",
       detailPage: "SupplierList",
-    },
-    {
-      label: "Etiquetas de remessa",
-      detailPage: "ProductTicket",
     },
   ];
 
@@ -417,7 +417,7 @@ function SideBar() {
           ) : null}
 
           <List>
-            {["Avisos", "Listagem", "Modificações"].map((text, index) => (
+            {["Avisos", "Banner", "Card"].map((text, index) => (
               <ListItem key={text} disablePadding sx={{ display: "block" }}>
                 <ListItemButton
                   sx={{
@@ -427,31 +427,34 @@ function SideBar() {
                   }}
                 >
                   {text === "Avisos" ? (
-                    <Badge
-                      onClick={() => setPageName("lowerStock")}
-                      badgeContent={4}
-                      color="error"
-                    >
-                      <ListItemIcon
-                        onClick={() => setPageName("lowerStock")}
-                        sx={{
-                          minWidth: 0,
-                          justifyContent: "center",
-                        }}
-                      >
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    <Badge color="error">
+                    <ListItemButton onClick={() => {
+                      setPageName("Avisos");
+                    }}>
+                      <ListItemIcon sx={{ minWidth: 0, justifyContent: "center" }}>
+                        <AddAlertIcon />
                       </ListItemIcon>
+                    </ListItemButton>
+                  </Badge>
+                  ) : text === "Banner" ? (
+                    <Badge color="error">
+                      <ListItemButton onClick={() => {
+                        setPageName("Banner");
+                      }}>
+                        <ListItemIcon sx={{ minWidth: 0, justifyContent: "center" }}>
+                          <ViewCarouselIcon />
+                        </ListItemIcon>
+                      </ListItemButton>
                     </Badge>
-                  ) : text === "Listagem" ? (
-                    <Badge badgeContent={1} color="error">
-                      <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          justifyContent: "center",
-                        }}
-                      >
-                        {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                      </ListItemIcon>
+                  ) : text === "Card" ? (
+                    <Badge color="error">
+                      <ListItemButton onClick={() => {
+                        setPageName("Card");
+                      }}>
+                        <ListItemIcon sx={{ minWidth: 0, justifyContent: "center" }}>
+                          <SpaceDashboardIcon />
+                        </ListItemIcon>
+                      </ListItemButton>
                     </Badge>
                   ) : (
                     <Badge badgeContent={0} color="error">
@@ -474,76 +477,59 @@ function SideBar() {
             ))}
           </List>
         </Drawer>
-        <Box
-          component="main"
-          sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}
-        >
+        <Box component="main" sx={{ flexGrow: 1, bgcolor: "background.default", p: 3 }}>
           <Toolbar />
-          {pageName === "Main" ? (
-            <>
-              <ContainerWrapperFlex>
-                <div className="flex-col-4">
-                  <BoxDashPanel>
-                    <Events />
-                  </BoxDashPanel>
-                </div>
-                <div className="flex-col-8">
-                  <BoxDashPanel>
-                    <Goals />
-                  </BoxDashPanel>
-                </div>
-              </ContainerWrapperFlex>
-              <ContainerWrapperFlex>
-                <div className="flex-col-12">
-                  <Members />
-                </div>
-              </ContainerWrapperFlex>
-            </>
-          ) : pageName === "AddProduct" ? (
-            <>
-              <CreateNewProduct />
-            </>
-          ) : pageName === "SupplierList" ? (
-            <Suppliers />
-          ) : pageName === "UpdateProduct" ? (
-            <UpdateProduct />
-          ) : pageName === "OpenProduct" ? (
-            <GeneralPackageList />
-          ) : pageName === "ProductTicket" ? (
-            <ProductsOrderTickets />
-          ) : pageName === "AddNewUser" ? (
-            <PanelAddNewUser />
-          ) : pageName === "ComputadoresStock" ? (
-            <InventaryByCategory
-              productName={categoryName}
-              pageName={pageName}
-            />
-          ) : pageName === "NotebooksStock" ? (
-            <InventaryByCategory
-              productName={categoryName}
-              pageName={pageName}
-            />
-          ) : pageName === "AcessoriosStock" ? (
-            <InventaryByCategory
-              productName={categoryName}
-              pageName={pageName}
-            />
-          ) : pageName === "HardwareStock" ? (
-            <InventaryByCategory
-              productName={categoryName}
-              pageName={pageName}
-            />
-          ) : pageName === "lowerStock" ? (
-            <AlertLowerStock />
-          ) : pageName === "Employee" ? (
-            <TableEmployee />
-          ) : pageName === "getLocaleProduct" ? (
-            <OrderTracking />
-          ) : pageName === "Banner" ? (
-            <BannerEdition />
-          ) : (
-            <AdminPagesManagement />
-          )}
+
+          {useMemo(() => {
+            const pageComponents: { [key: string]: React.ReactNode } = {
+              Main: (
+                <>
+                  <ContainerWrapperFlex>
+                    <div className="flex-col-4">
+                      <BoxDashPanel>
+                        <Events />
+                      </BoxDashPanel>
+                    </div>
+                    <div className="flex-col-8">
+                      <BoxDashPanel>
+                        <Goals />
+                      </BoxDashPanel>
+                    </div>
+                  </ContainerWrapperFlex>
+                  <ContainerWrapperFlex>
+                    <div className="flex-col-12">
+                      <Members />
+                    </div>
+                  </ContainerWrapperFlex>
+                </>
+              ),
+              AddProduct: <CreateNewProduct />,
+              SupplierList: <Suppliers />,
+              UpdateProduct: <UpdateProduct />,
+              OpenProduct: <GeneralPackageList />,
+              ProductTicket: <ProductsOrderTickets />,
+              AddNewUser: <PanelAddNewUser />,
+              lowerStock: <AlertLowerStock />,
+              Employee: <TableEmployee />,
+              getLocaleProduct: <OrderTracking />,
+              Banner: <BannerEdition />,
+              ComputadoresStock: (
+                <InventaryByCategory productName={categoryName} pageName={pageName} />
+              ),
+              NotebooksStock: (
+                <InventaryByCategory productName={categoryName} pageName={pageName} />
+              ),
+              AcessoriosStock: (
+                <InventaryByCategory productName={categoryName} pageName={pageName} />
+              ),
+              HardwareStock: (
+                <InventaryByCategory productName={categoryName} pageName={pageName} />
+              ),
+            };
+
+            // Renderiza o componente baseado no pageName ou o componente de administração por padrão
+            return pageComponents[pageName] || <AdminPagesManagement />;
+          }, [pageName, categoryName])}
         </Box>
       </Box>
     </>
