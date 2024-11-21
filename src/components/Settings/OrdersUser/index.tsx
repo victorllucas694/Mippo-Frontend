@@ -55,19 +55,19 @@ function createData(
 }
 
 const rows = [
-  createData(1, 'Cupcake', 305, 3.7, 67, 4.3),
-  createData(2, 'Donut', 452, 25.0, 51, 4.9),
-  createData(3, 'Eclair', 262, 16.0, 24, 6.0),
-  createData(4, 'Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData(5, 'Gingerbread', 356, 16.0, 49, 3.9),
-  createData(6, 'Honeycomb', 408, 3.2, 87, 6.5),
-  createData(7, 'Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData(8, 'Jelly Bean', 375, 0.0, 94, 0.0),
-  createData(9, 'KitKat', 518, 26.0, 65, 7.0),
-  createData(10, 'Lollipop', 392, 0.2, 98, 0.0),
-  createData(11, 'Marshmallow', 318, 0, 81, 2.0),
-  createData(12, 'Nougat', 360, 19.0, 9, 37.0),
-  createData(13, 'Oreo', 437, 18.0, 63, 4.0),
+  createData(1, 'Dell Inspiron 15', 4, 8, 512, 3500),
+  createData(2, 'HP Pavilion 14', 4, 16, 256, 4200),
+  createData(3, 'Lenovo IdeaPad 3', 6, 8, 1024, 3300),
+  createData(4, 'Acer Aspire 5', 8, 16, 512, 5000),
+  createData(5, 'MacBook Air M1', 8, 8, 256, 8000),
+  createData(6, 'Asus VivoBook 15', 4, 16, 512, 3800),
+  createData(7, 'Samsung Galaxy Book', 6, 8, 256, 4600),
+  createData(8, 'Microsoft Surface Laptop', 4, 8, 128, 7500),
+  createData(9, 'LG Gram 16', 8, 16, 1024, 9400),
+  createData(10, 'Razer Blade 15', 12, 32, 1024, 14000),
+  createData(11, 'MSI GF63 Thin', 8, 16, 512, 6300),
+  createData(12, 'Alienware m15', 16, 32, 2048, 15000),
+  createData(13, 'Gigabyte Aero 15', 8, 16, 1024, 12000),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -100,37 +100,36 @@ interface HeadCell {
   label: string;
   numeric: boolean;
 }
-
 const headCells: readonly HeadCell[] = [
   {
     id: 'name',
     numeric: false,
     disablePadding: true,
-    label: 'Dessert (100g serving)',
+    label: 'Modelo do Computador',
   },
   {
     id: 'calories',
     numeric: true,
     disablePadding: false,
-    label: 'Calories',
+    label: 'CPU Cores',
   },
   {
     id: 'fat',
     numeric: true,
     disablePadding: false,
-    label: 'Fat (g)',
+    label: 'RAM (GB)',
   },
   {
     id: 'carbs',
     numeric: true,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Armazenamento (GB)',
   },
   {
     id: 'protein',
     numeric: true,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Preço (R$)',
   },
 ];
 
@@ -224,7 +223,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
           id="tableTitle"
           component="div"
         >
-          Nutrition
+          Tabela de pedidos
         </Typography>
       )}
       {numSelected > 0 ? (
