@@ -11,6 +11,10 @@ import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Account from "./Account";
 import OrdersUser from "./OrdersUser";
+import GradeIcon from '@mui/icons-material/Grade';
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import SecurityIcon from '@mui/icons-material/Security';
 
 const NAVIGATION: Navigation = [
   {
@@ -37,7 +41,17 @@ const NAVIGATION: Navigation = [
       {
         segment: "sales",
         title: "Lista de pedidos",
-        icon: <DescriptionIcon />,
+        icon: <GradeIcon />,
+      },
+      {
+        segment: "timer",
+        title: "Entregas Em andamento",
+        icon: <AccessTimeFilledIcon />,
+      },
+      {
+        segment: "success",
+        title: "Entregas concluídas",
+        icon: <CheckCircleIcon />,
       },
     ],
   },
@@ -46,6 +60,12 @@ const NAVIGATION: Navigation = [
     title: "Configurações",
     icon: <LayersIcon />,
   },
+  {
+    segment: "security",
+    title: "Segurança",
+    icon: <SecurityIcon />,
+  },
+  
 ];
 
 const demoTheme = createTheme({
