@@ -34,7 +34,6 @@ export const BoxOrderUser = styled.div`
     width: 100%;
     height: auto;
     min-height: 12rem;
-    flex-wrap: wrap;
     display: flex;
     justify-content: space-around;
     gap: 2rem;
@@ -42,7 +41,7 @@ export const BoxOrderUser = styled.div`
     .box-statistic {
       width: 23%;
       height: 8rem;
-      min-width: 20rem;
+      min-width: 15rem;
       border-radius: 5px;
       border: 1px solid rgb(220, 220, 220);
       padding: 1rem;
