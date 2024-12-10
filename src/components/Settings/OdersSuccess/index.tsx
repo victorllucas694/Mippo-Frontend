@@ -1,5 +1,4 @@
 import { Button } from "@mui/material";
-import { BoxOrderUser } from "./styles";
 import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -26,6 +25,7 @@ import CreditScoreIcon from '@mui/icons-material/CreditScore';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import SellIcon from '@mui/icons-material/Sell';
 import AssuredWorkloadIcon from '@mui/icons-material/AssuredWorkload';
+import { BoxOrderUser } from "../OrdersUser/styles";
 
 interface Data {
   id: number;
@@ -243,7 +243,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
   );
 }
 
-function OrdersUser() {
+function OrdersSuccess() {
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
   const [selected, setSelected] = React.useState<readonly number[]>([]);
@@ -301,7 +301,6 @@ function OrdersUser() {
     setDense(event.target.checked);
   };
 
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -330,7 +329,7 @@ function OrdersUser() {
   return (
     <BoxOrderUser>
       <div className="header-data-orders">
-        <h1>Lista de pedidos</h1>
+        <h1>Compras concluídas</h1>
 
         <div style={{ display: 'flex', gap:'1rem' }}>
           <Button
@@ -358,28 +357,28 @@ function OrdersUser() {
           <h1>Total a pagar</h1>
           <div className="body-box-statistic">
             <div className="icon-box"><CreditScoreIcon sx={{ width: '1.6rem', height: '1.6r2m', color: 'rgb(120, 120, 120)' }} /></div>
-            <h2>R$ 5.000,00</h2>
+            <h2>R$ 0.000,00</h2>
           </div>
         </div>
         <div className="box-statistic">
           <h1>items no carrinho</h1>
           <div className="body-box-statistic">
             <div className="icon-box"><ShoppingCartIcon sx={{ width: '1.6rem', height: '1.6r2m', color: 'rgb(120, 120, 120)' }} /></div>
-            <h2>2 items</h2>
+            <h2>0 items</h2>
           </div>
         </div>
         <div className="box-statistic">
           <h1>Compras Em andamento</h1>
           <div className="body-box-statistic">
             <div className="icon-box"><SellIcon sx={{ width: '1.6rem', height: '1.6r2m', color: 'rgb(120, 120, 120)' }} /></div>
-            <h2>3 compras</h2>
+            <h2>0 compras</h2>
           </div>
         </div>
         <div className="box-statistic">
           <h1>Compras finalizadas</h1>
           <div className="body-box-statistic">
             <div className="icon-box"><AssuredWorkloadIcon sx={{ width: '1.6rem', height: '1.6r2m', color: 'rgb(120, 120, 120)' }} /></div>
-            <h2>3 compras</h2>
+            <h2>0 compras</h2>
           </div>
         </div>
       </div>
@@ -471,4 +470,4 @@ function OrdersUser() {
   );
 }
 
-export default OrdersUser;
+export default OrdersSuccess;

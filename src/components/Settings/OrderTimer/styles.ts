@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BoxOrderUser = styled.div`
+export const OrderTimerBox = styled.div`
   width: 100%;
   height: auto;
   min-height: 90vh;
@@ -36,13 +36,13 @@ export const BoxOrderUser = styled.div`
     min-height: 12rem;
     display: flex;
     justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 2rem;
+      flex-wrap: wrap;
+      gap: 2rem;
 
     .box-statistic {
       width: 23%;
       height: 8rem;
-      min-width: 15rem;
+      min-width: 18rem;
       border-radius: 5px;
       border: 1px solid rgb(220, 220, 220);
       padding: 1rem;
