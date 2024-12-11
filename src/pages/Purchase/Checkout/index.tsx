@@ -20,9 +20,9 @@ import AddressForm from "./../AddressForm";
 import getCheckoutTheme from "./../GetCheckoutTheme";
 import Info from "./../Info";
 import InfoMobile from "./../InfoMobile";
-import PaymentForm from "./../PaymentForm";
 import Review from "./../Review";
 import ToggleColorMode from "./../ToggleColorMode";
+import { useNavigate } from "react-router-dom";
 
 interface ToggleCustomThemeProps {
   showCustomTheme: Boolean;
@@ -62,7 +62,7 @@ function ToggleCustomTheme({
   );
 }
 
-const steps = ["Endereço de entrega", "Detalhes de pagamento", "Review pagamento"];
+const steps = ["Endereço de entrega"];
 
 const logoStyle = {
   width: "140px",
@@ -75,10 +75,6 @@ function getStepContent (step: number) {
   switch (step) {
     case 0:
       return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    case 2:
-      return <Review />;
     default:
       throw new Error("Unknown step");
   }
@@ -90,7 +86,12 @@ export default function Checkout() {
   const checkoutTheme = createTheme(getCheckoutTheme(mode));
   const defaultTheme = createTheme({ palette: { mode } });
   const [activeStep, setActiveStep] = React.useState(0);
+  const navigate = useNavigate();
 
+  function openSettings() {
+    navigate("/settings");
+  }
+  
   const toggleColorMode = () => {
     setMode((prev) => (prev === "dark" ? "light" : "dark"));
   };
@@ -305,19 +306,20 @@ export default function Checkout() {
             {activeStep === steps.length ? (
               <Stack spacing={2} useFlexGap>
                 <Typography variant="h1">📦</Typography>
-                <Typography variant="h5">Comentarios sobre o produto</Typography>
+                <Typography variant="h5">Realizar pagamento na loja presencialmente</Typography>
                 <Typography variant="body1" color="text.secondary">
-                  Seu código de projeto é:
-                  <strong>&nbsp;#140396</strong>. Agradecemos pela compra e esperamos que tenha gostado da plataforma.
+                  Seu pedido está reservado com a validade de 7 dias para retirada. O código do pedido é:
+                  <strong>&nbsp;#140396</strong>. Realize o pagamento na loja e retire seu produto a pronta entrega
                 </Typography>
                 <Button
+                onClick={openSettings}
                   variant="contained"
                   sx={{
                     alignSelf: "start",
                     width: { xs: "100%", sm: "auto" },
                   }}
                 >
-                  Voltar ao inicio
+                  Meus produtos
                 </Button>
               </Stack>
             ) : (
@@ -370,7 +372,7 @@ export default function Checkout() {
                       width: { xs: "100%", sm: "fit-content" },
                     }}
                   >
-                    {activeStep === steps.length - 1 ? "Place order" : "Avançar"}
+                    {activeStep === steps.length - 1 ? "Reservar Produto" : "Avançar"}
                   </Button>
                 </Box>
               </React.Fragment>

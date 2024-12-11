@@ -104,34 +104,8 @@ const payments = [
       >
         <div>
           <Typography variant="subtitle2" gutterBottom>
-            detalhes da entrega
+            Buscar produto na loja
           </Typography>
-          <Typography gutterBottom>{addressBody}</Typography>
-          <Typography color="text.secondary" gutterBottom>
-            {cityBody + " " + countryBody}
-          </Typography>
-        </div>
-        <div>
-          <Typography variant="subtitle2" gutterBottom>
-            Informações de pagamento
-          </Typography>
-          <Grid container>
-            {payments.map((payment) => (
-              <React.Fragment key={payment.name}>
-                <Stack
-                  direction="row"
-                  spacing={1}
-                  useFlexGap
-                  sx={{ width: "100%", mb: 1 }}
-                >
-                  <Typography variant="body1" color="text.secondary">
-                    {payment.name}
-                  </Typography>
-                  <Typography variant="body2">{payment.detail}</Typography>
-                </Stack>
-              </React.Fragment>
-            ))}
-          </Grid>
         </div>
       </Stack>
     </Stack>

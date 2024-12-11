@@ -1,28 +1,20 @@
-import React from "react";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { createTheme } from "@mui/material/styles";
 import { AppProvider, type Navigation } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { useDemoRouter } from "@toolpad/core/internal";
-
-// Ícones
 import PersonIcon from "@mui/icons-material/Person";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LayersIcon from "@mui/icons-material/Layers";
 import GradeIcon from "@mui/icons-material/Grade";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import SecurityIcon from "@mui/icons-material/Security";
-
-// Componentes
 import Account from "./Account";
 import OrdersUser from "./OrdersUser";
 import OrderTimer from "./OrderTimer";
 import OrdersSuccess from "./OdersSuccess";
 import Options from "./Options";
 
-// Navegação
 const NAVIGATION: Navigation = [
   { kind: "header", title: "Usuário" },
   { segment: "account", title: "Minha conta", icon: <PersonIcon /> },
@@ -30,7 +22,7 @@ const NAVIGATION: Navigation = [
   { kind: "header", title: "Análise" },
   {
     segment: "orders",
-    title: "Pedidos",
+    title: "Meus Pedidos",
     icon: <ShoppingCartIcon />,
     children: [
       { segment: "sales", title: "Lista de pedidos", icon: <GradeIcon /> },
@@ -49,7 +41,6 @@ const NAVIGATION: Navigation = [
   { segment: "settings", title: "Configurações", icon: <LayersIcon /> },
 ];
 
-// Tema personalizado
 const demoTheme = createTheme({
   breakpoints: {
     values: {
@@ -62,7 +53,6 @@ const demoTheme = createTheme({
   },
 });
 
-// Conteúdo da página com base no pathname
 function PageContent({ pathname }: { pathname: string }) {
   switch (pathname) {
     case "/account":
@@ -82,7 +72,6 @@ function PageContent({ pathname }: { pathname: string }) {
   }
 }
 
-// Componente principal
 interface SettingsProps {
   window?: () => Window;
 }

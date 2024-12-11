@@ -70,13 +70,13 @@ export default function AddressForm() {
         />
       </FormGrid>
       <FormGrid item xs={12}>
-        <FormLabel htmlFor="address2">Complemento</FormLabel>
+        <FormLabel htmlFor="address2">CPF</FormLabel>
         <OutlinedInput
           id="address2"
           onChange={(e: any) => setDetailsBody(e.target.value)}
           name="address2"
           type="address2"
-          placeholder="Apartamento, Hotel, casas, etc. (Não obrigatorio)"
+          placeholder="123.123.123-81"
           autoComplete="shipping address-line2"
           required
         />

@@ -26,49 +26,35 @@ import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
+import { useAxios } from "../../../providers/AxiosProvider";
+import { useAuth } from "../../../contexts/AuthenticateContext";
 
 interface Data {
   id: number;
-  calories: number;
-  carbs: number;
-  fat: number;
-  name: string;
-  protein: number;
+  quantidade: number;
+  valor_a_vista: number;
+  fabricante: number;
+  produto: string;
+  valor_a_prazo: number;
 }
 
 function createData(
   id: number,
-  name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
+  produto: string,
+  quantidade: number,
+  fabricante: number,
+  valor_a_vista: number,
+  valor_a_prazo: number
 ): Data {
   return {
     id,
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    produto,
+    quantidade,
+    fabricante,
+    valor_a_vista,
+    valor_a_prazo,
   };
 }
-
-const rows = [
-  createData(1, "Cupcake", 305, 3.7, 67, 4.3),
-  createData(2, "Donut", 452, 25.0, 51, 4.9),
-  createData(3, "Eclair", 262, 16.0, 24, 6.0),
-  createData(4, "Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData(5, "Gingerbread", 356, 16.0, 49, 3.9),
-  createData(6, "Honeycomb", 408, 3.2, 87, 6.5),
-  createData(7, "Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData(8, "Jelly Bean", 375, 0.0, 94, 0.0),
-  createData(9, "KitKat", 518, 26.0, 65, 7.0),
-  createData(10, "Lollipop", 392, 0.2, 98, 0.0),
-  createData(11, "Marshmallow", 318, 0, 81, 2.0),
-  createData(12, "Nougat", 360, 19.0, 9, 37.0),
-  createData(13, "Oreo", 437, 18.0, 63, 4.0),
-];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   if (b[orderBy] < a[orderBy]) {
@@ -103,34 +89,34 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
   {
-    id: "name",
+    id: "produto",
     numeric: false,
     disablePadding: true,
-    label: "Dessert (100g serving)",
+    label: "Descrição do produto",
   },
   {
-    id: "calories",
+    id: "fabricante",
     numeric: true,
     disablePadding: false,
-    label: "Calories",
+    label: "Fabricante",
   },
   {
-    id: "fat",
+    id: "quantidade",
     numeric: true,
     disablePadding: false,
-    label: "Fat (g)",
+    label: "Quantidade",
   },
   {
-    id: "carbs",
+    id: "valor_a_vista",
     numeric: true,
     disablePadding: false,
-    label: "Carbs (g)",
+    label: "Valor a vista",
   },
   {
-    id: "protein",
+    id: "valor_a_prazo",
     numeric: true,
     disablePadding: false,
-    label: "Protein (g)",
+    label: "Valor a prazo",
   },
 ];
 
@@ -257,11 +243,75 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
 }
 function OrderTimer() {
   const [order, setOrder] = React.useState<Order>("asc");
-  const [orderBy, setOrderBy] = React.useState<keyof Data>("calories");
+  const [orderBy, setOrderBy] = React.useState<keyof Data>("produto");
   const [selected, setSelected] = React.useState<readonly number[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rows, setRows] = React.useState<Data[]>([]);
+  const { axiosInstance } = useAxios();
+  const { id } = useAuth();
+  const [totalValorAVista, setTotalValorAVista] = React.useState<number>(0);
+  const [totalItems, setTotalItems] = React.useState<number>(0);
+  const [formattedTotalData, setFormattedTotalData] =
+    React.useState<string>("");
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("c__token");
+
+    async function getAllOrdersByUserId() {
+      try {
+        const response = await axiosInstance.get(
+          `/order-management/get/all/user/orders/${id}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        const orders = response.data || [];
+
+        const formattedOrders = orders.map((order: any) => ({
+          id: order.id,
+          produto:
+            order.additionalOrders?.Descricao_final_sobre_o_produto ||
+            "Descrição não disponível",
+          quantidade: order.id_pedido || 0,
+          fabricante:
+            order.additionalOrders?.Fabricante || "Fabricante desconhecido",
+          valor_a_vista: parseFloat(
+            order.additionalOrders?.Valor_a_vista || "0"
+          ),
+          valor_a_prazo: order.additionalOrders?.Valor_a_prazo,
+        }));
+
+        setRows(formattedOrders);
+        setTotalItems(formattedOrders.length);
+        console.log(totalItems);
+        let total = 0;
+        formattedOrders.forEach((order: any) => {
+          total += order.valor_a_vista;
+          setTotalValorAVista((prev) => {
+            const updatedTotal = prev + order.valor_a_vista;
+            return updatedTotal;
+          });
+        });
+
+        const formattedTotal = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(total);
+        setFormattedTotalData(formattedTotal);
+        console.log("Soma total formatada:", formattedTotalData);
+      } catch (error: any) {
+        console.error(
+          "Erro ao buscar pedidos do usuário:",
+          error.message || error
+        );
+      }
+    }
+
+    getAllOrdersByUserId();
+  }, [axiosInstance, id]);
 
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
@@ -377,7 +427,7 @@ function OrderTimer() {
                 }}
               />
             </div>
-            <h2>R$ 0.000,00</h2>
+            <h2>{formattedTotalData}</h2>
           </div>
         </div>
         <div className="box-statistic">
@@ -392,7 +442,7 @@ function OrderTimer() {
                 }}
               />
             </div>
-            <h2>0 items</h2>
+            <h2>{totalItems} items</h2>
           </div>
         </div>
         <div className="box-statistic">
@@ -407,7 +457,7 @@ function OrderTimer() {
                 }}
               />
             </div>
-            <h2>0 compras</h2>
+            <h2>{totalItems} compras</h2>
           </div>
         </div>
         <div className="box-statistic">
@@ -428,7 +478,13 @@ function OrderTimer() {
       </div>
 
       <Box sx={{ width: "100%" }}>
-        <Paper sx={{ width: "100%", mb: 2 }}>
+        <Paper
+          sx={{
+            width: "100%",
+            mb: 2,
+            boxShadow: "0px 1px 8px -1px rgb(220, 220, 220)",
+          }}
+        >
           <EnhancedTableToolbar numSelected={selected.length} />
           <TableContainer>
             <Table
@@ -445,7 +501,7 @@ function OrderTimer() {
                 rowCount={rows.length}
               />
               <TableBody>
-                {visibleRows.map((row, index) => {
+                {rows.map((row, index) => {
                   const isItemSelected = selected.includes(row.id);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -460,7 +516,7 @@ function OrderTimer() {
                       selected={isItemSelected}
                       sx={{ cursor: "pointer" }}
                     >
-                      <TableCell padding="checkbox">
+                      <TableCell sx={{ padding: "1rem" }} padding="checkbox">
                         <Checkbox
                           color="primary"
                           checked={isItemSelected}
@@ -475,24 +531,15 @@ function OrderTimer() {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {row.produto}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.fabricante}</TableCell>
+                      <TableCell align="right">{row.quantidade}</TableCell>
+                      <TableCell align="right">{row.valor_a_vista}</TableCell>
+                      <TableCell align="right">{row.valor_a_prazo}</TableCell>
                     </TableRow>
                   );
                 })}
-                {emptyRows > 0 && (
-                  <TableRow
-                    style={{
-                      height: (dense ? 33 : 53) * emptyRows,
-                    }}
-                  >
-                    <TableCell colSpan={6} />
-                  </TableRow>
-                )}
               </TableBody>
             </Table>
           </TableContainer>
@@ -506,10 +553,6 @@ function OrderTimer() {
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
         </Paper>
-        <FormControlLabel
-          control={<Switch checked={dense} onChange={handleChangeDense} />}
-          label="Dense padding"
-        />
       </Box>
     </OrderTimerBox>
   );

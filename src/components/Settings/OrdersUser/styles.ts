@@ -42,7 +42,7 @@ export const BoxOrderUser = styled.div`
     .box-statistic {
       width: 23%;
       height: 8rem;
-      min-width: 15rem;
+      min-width: 18rem;
       border-radius: 5px;
       border: 1px solid rgb(220, 220, 220);
       padding: 1rem;
