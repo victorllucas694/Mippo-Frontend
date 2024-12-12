@@ -4,8 +4,6 @@ export const EventsAndProjectsBox = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  box-shadow: 3px 3px 16px -8px rgb(220, 220, 220);
-  border: 1px solid rgb(230, 230, 230);
   justify-content: space-between;
 
   @media (max-width: 1690px) {

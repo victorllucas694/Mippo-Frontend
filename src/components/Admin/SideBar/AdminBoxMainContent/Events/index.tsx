@@ -3,27 +3,6 @@ import { useAuth } from "../../../../../contexts/AuthenticateContext";
 import { useAxios } from "../../../../../providers/AxiosProvider";
 import { useEffect, useState } from "react";
 
-// interface ICardProject {
-//   image: string;
-//   title: string;
-//   updatedAt: string;
-// }
-
-// const cardProject: ICardProject[] = [
-//   {
-//     image:
-//       "https://img.freepik.com/psd-gratuitas/fundo-de-banner-de-sexta-feira-negra-com-efeito-de-texto-editavel_47987-11753.jpg?w=2000",
-//     title: "Evento de Black Friday",
-//     updatedAt: "Atualizado a 3 horas atrás",
-//   },
-//   {
-//     image:
-//       "https://magis5.com.br/wp-content/uploads/2020/09/dia-das-criancas-ecommerce-scaled.jpg",
-//     title: "Evento dia das crianças",
-//     updatedAt: "Atualizado a 3 horas atrás",
-//   },
-// ];
-
 function Events() {
   const { id } = useAuth();
   const { axiosInstance } = useAxios();

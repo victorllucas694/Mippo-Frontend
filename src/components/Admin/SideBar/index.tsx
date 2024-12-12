@@ -21,7 +21,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import Typography from "@mui/material/Typography";
 import Events from "./AdminBoxMainContent/Events";
 import Goals from "./AdminBoxMainContent/Goals";
-import Members from "./AdminBoxMainContent/Members";
+import Members from "./AdminBoxMainContent/CollapsibleTable";
 import { usePagesManagement } from "../../../contexts/PagesManagementContext";
 import AdminPagesManagement from "../AdminPagesManagement";
 import { ExpandLess } from "@mui/icons-material";

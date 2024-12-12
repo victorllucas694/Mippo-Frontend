@@ -21,10 +21,8 @@ export const GoalsContainer = styled.div`
       min-width: 18rem;
       margin: auto;
       padding: 1rem;
-      box-shadow: 3px 3px 16px -8px rgb(220, 220, 220);
       height: 10rem;
       border-radius: 3px;
-      border: 1px solid rgb(220, 220, 220);
       display: flex;
       justify-content: space-between;
 
