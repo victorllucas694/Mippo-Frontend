@@ -87,9 +87,10 @@ function ProductDescriptionPresentation() {
     const sendData = {
       id_pedido: productSelected.id,
       categoria_pedido: category,
-      codigo_do_pedido: productSelected.Codigo,
+      codigo_do_pedido: productSelected.Codigo_das_Imagens,
       User_Id: id,
-      pagamento: 'not_paid'
+      pagamento: 'not_paid',
+      retirado: 'false'
     };
 
     
@@ -98,6 +99,7 @@ function ProductDescriptionPresentation() {
         `/payment-shipping-cart/purchase/products/${category}/${productSelected.id}`,
         sendData
       );
+      console.log(productSelected)
       
       if (response.data.error === "Produto esgotado") {
         setOpen(true);

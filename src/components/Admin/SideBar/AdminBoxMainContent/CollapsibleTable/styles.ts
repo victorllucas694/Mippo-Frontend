@@ -67,3 +67,34 @@ export const MemberContainer = styled.div`
     }
   }
 `;
+
+export const BoxCollapse = styled.div`
+  width: 100%;
+  height: 5rem;
+  align-self: start;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(230, 230, 230);
+
+  .box-header {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 5rem;
+
+    h1 {
+      font-family: 'Roboto';
+      font-weight: 400;
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-family: 'Roboto';
+      font-weight: 400;
+      color: rgb(120, 120, 120);
+      font-size: 1rem;
+    }
+  }
+`;

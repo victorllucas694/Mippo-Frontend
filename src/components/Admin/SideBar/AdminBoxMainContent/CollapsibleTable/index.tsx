@@ -14,13 +14,59 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useAxios } from "../../../../../providers/AxiosProvider";
 import { useAuth } from "../../../../../contexts/AuthenticateContext";
-import { Chip } from "@mui/material";
+import { Button, Chip } from "@mui/material";
+import { BoxCollapse } from "./styles";
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 function Row(props: {
-  row: { product: string; name: string; history: any[] };
+  row: {
+    product: string;
+    name: string;
+    history: any[];
+    id_pedido: number;
+    pagamento: string;
+  };
 }) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [dialogProductOpen, setDialogProductOpen] = React.useState(false);
+  const { axiosInstance } = useAxios();
+  const { id } = useAuth();
+  const token = localStorage.getItem("c__token");
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleSendPaymentSuccess = async () => {
+    const reqDataAllProducts = await axiosInstance.get(
+      `/payment-shipping-cart/success/payment/product/${id}/${row.id_pedido}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    console.log(reqDataAllProducts);
+  };
+
+  const handleDialogProductOpen = () => {
+    setDialogProductOpen(true);
+  };
+  const handleDialogProductClose = () => {
+    setDialogProductOpen(false);
+  }; 
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
 
   return (
     <React.Fragment>
@@ -38,10 +84,10 @@ function Row(props: {
         <TableCell>{row.name}</TableCell>
         <TableCell>
           <Chip
-            label="Não pago"
+            label={row.pagamento === "paid" ? "Pago" : "Não pago"}
             variant="outlined"
             sx={{ border: "none" }}
-            color="error"
+            color={row.pagamento === "paid" ? "success" : "error"}
           />
         </TableCell>
         <TableCell>
@@ -57,31 +103,84 @@ function Row(props: {
         <TableCell colSpan={6} style={{ paddingBottom: 0, paddingTop: 0 }}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
-              <Typography variant="h6" gutterBottom>
-                Histórico
-              </Typography>
               <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Data</TableCell>
-                    <TableCell>Cliente</TableCell>
-                    <TableCell align="center">Quantidade</TableCell>
-                  </TableRow>
-                </TableHead>
                 <TableBody>
-                  {row.history.map((historyRow, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{historyRow.date}</TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
-                    </TableRow>
-                  ))}
+                  <TableRow>
+                    <BoxCollapse>
+                      <div className="box-header">
+                        <h1>Pagamento</h1>
+                        <p>
+                          Aprove a retirada do produto na plataforma para melhor
+                          gestão de estoque
+                        </p>
+                      </div>
+                      <Button
+                        sx={{ width: "10rem" }}
+                        variant="outlined"
+                        onClick={handleDialogOpen}
+                      >
+                        Pagamento
+                      </Button>
+                    </BoxCollapse>
+                  </TableRow>
+                  <TableRow>
+                    <BoxCollapse>
+                      <div className="box-header">
+                        <h1>Retirada</h1>
+                        <p>
+                          Aprove a retirada do produto na plataforma para melhor
+                          gestão de estoque
+                        </p>
+                      </div>
+                      <Button onClick={handleDialogProductOpen} sx={{ width: "10rem" }} variant="outlined">
+                        Retirada
+                      </Button>
+                    </BoxCollapse>
+                  </TableRow>
                 </TableBody>
               </Table>
             </Box>
           </Collapse>
         </TableCell>
       </TableRow>
+      <Dialog
+        open={dialogOpen}
+        onClose={handleDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Confirmar Pagamento</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Você tem certeza que deseja confirmar o pagamento deste pedido?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogClose}>Cancelar</Button>
+          <Button onClick={handleSendPaymentSuccess} autoFocus>
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={dialogProductOpen}
+        onClose={handleDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Confirmar Retirada</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Você tem certeza que deseja confirmar a retirada deste pedido?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDialogProductClose}>Cancelar</Button>
+          <Button onClick={handleSendPaymentSuccess} autoFocus>
+            Confirmar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </React.Fragment>
   );
 }
@@ -142,6 +241,8 @@ export default function CollapsibleTable() {
               <Row
                 key={index}
                 row={{
+                  pagamento: row.order.pagamento,
+                  id_pedido: row.order.id,
                   product: row.product.Marca,
                   name: `${row.user.name} ${row.user.last_name}`,
                   history: [],

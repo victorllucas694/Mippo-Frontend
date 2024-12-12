@@ -308,8 +308,7 @@ export default function Checkout() {
                 <Typography variant="h1">📦</Typography>
                 <Typography variant="h5">Realizar pagamento na loja presencialmente</Typography>
                 <Typography variant="body1" color="text.secondary">
-                  Seu pedido está reservado com a validade de 7 dias para retirada. O código do pedido é:
-                  <strong>&nbsp;#140396</strong>. Realize o pagamento na loja e retire seu produto a pronta entrega
+                  Seu pedido está reservado com a validade de 7 dias para retirada. Realize o pagamento na loja e retire seu produto a pronta entrega
                 </Typography>
                 <Button
                 onClick={openSettings}

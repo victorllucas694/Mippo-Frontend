@@ -43,11 +43,9 @@ export const GridMicroBannersBoxes = styled.div`
     
     .md-banner {
       width: 40%;
-      border: 1px solid rgb(240, 240, 240);
       border-radius: 3px;
       min-width: 20rem;
       margin: 0 auto;
-      box-shadow: 3px 3px 20px -8px rgb(200, 200, 200);
       min-height: 30rem;
       height: auto;
       padding: 4rem;
@@ -60,7 +58,7 @@ export const GridMicroBannersBoxes = styled.div`
       }
 
       &:hover {
-        box-shadow: 3px 3px 30px -8px rgb(100, 100, 100);
+        box-shadow: 3px 3px 30px -8px rgb(220, 220, 220);
         transition: 1s;
       }
     }

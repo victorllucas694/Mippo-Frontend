@@ -21,9 +21,7 @@ interface IProductData {
 function CardProduct({ productsList }: IProductData) {
   const { id } = useAuth();
 
-  const [productCode] = React.useState<string | null>(
-    productsList.Codigo
-  );
+  const [productCode] = React.useState<string | null>(productsList.Codigo);
   const [productId, setProductId] = React.useState<number | null>(0);
 
   const currentURL = window.location.pathname;
@@ -143,41 +141,52 @@ function CardProduct({ productsList }: IProductData) {
     <>
       <Card
         sx={{
-          minWidth: '18rem',
-          width: category ? '25%' : "21%",
+          minWidth: "18rem",
+          width: category ? "25%" : "21%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          border: "1px solid rgb(230, 230, 230)",
           borderRadius: "3px",
+          height: 'auto',
+          minHeight: '35rem',
           backgroundColor: "transparent",
           ":hover": {
             boxShadow: "xl",
           },
           "@media (max-width: 1600px)": {
-            width: category ? '30%' : "20%",
+            width: category ? "30%" : "20%",
           },
           "@media (max-width: 1490px)": {
-            width: category ? '30%' : "25%",
+            width: category ? "30%" : "25%",
           },
         }}
       >
-        <CardOverflow>
-          <AspectRatio sx={{ minWidth: "100%", }}>
-            {imageData.largeImages.map((largeImg, index) => (
-              <img
-                key={index}
-                src={`http://localhost:3000/${largeImg.large_image}`}
-                loading="lazy"
-                alt=""
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
-            ))}
-          </AspectRatio>
-        </CardOverflow>
+        <AspectRatio
+          sx={{
+            minWidth: "100%",
+            height: "auto",
+            backgroundColor: "white",
+            display: "block",
+          }}
+        >
+          {imageData.largeImages.map((largeImg, index) => (
+            <img
+              key={index}
+              src={`http://localhost:3000/${largeImg.large_image}`}
+              loading="lazy"
+              alt={`Image ${index}`}
+              style={{
+                maxWidth: "100%",
+                display: "block",
+                height: "100%",
+                objectFit: "contain",
+                imageRendering: "auto",
+                backgroundColor: "white",
+              }}
+            />
+          ))}
+        </AspectRatio>
         <CardContent>
           <Typography level="body-xs">{productsList.Fabricante}</Typography>
           <Link
@@ -185,8 +194,8 @@ function CardProduct({ productsList }: IProductData) {
             href={
               category !== ""
                 ? `/product/${category}/${productCode}/${productId}`
-                // : `/product/Hardware/${productCode}/${productId}`
-                : `/`
+                : // : `/product/Hardware/${productCode}/${productId}`
+                  `/`
             }
             fontWeight="md"
             color="neutral"
@@ -227,7 +236,10 @@ function CardProduct({ productsList }: IProductData) {
               },
             }}
           >
-            R$ {productsList.Valor_a_prazo}
+            {new Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(parseFloat(productsList.Valor_a_vista))}
           </Typography>
           <Typography
             level="body-sm"
@@ -237,8 +249,12 @@ function CardProduct({ productsList }: IProductData) {
               },
             }}
           >
-            Ou R$ {productsList.Valor_a_prazo} em até 12 vezes no boleto sem
-            juros.
+            Ou{" "}
+            {new Intl.NumberFormat("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            }).format(parseFloat(productsList.Valor_a_vista) / 12)}{" "}
+            em até 12 vezes no boleto sem juros.
           </Typography>
         </CardContent>
         <CardOverflow>
