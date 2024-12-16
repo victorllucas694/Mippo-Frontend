@@ -47,6 +47,8 @@ function SearchPanel() {
       }
     );
 
+    console.log("response", response)
+
     const getTotalAmount = await axiosInstance.get(
       `/order-management/get/total/amount/${id}`,
       {
@@ -55,6 +57,8 @@ function SearchPanel() {
         },
       }
     );
+    console.log("getTotalAmount", getTotalAmount);
+
 
     getTotalAmount.data.map((getProducts: any) => {
       console.log(getProducts);

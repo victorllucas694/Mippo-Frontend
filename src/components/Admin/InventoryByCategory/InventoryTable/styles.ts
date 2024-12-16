@@ -46,3 +46,11 @@ export const StatusProduct = styled.div`
         font-size: .9rem;
     }
 `;
+
+export const BoxDetailProduct = styled.div`
+    width: 100%;
+    min-height: 10rem;
+    padding: 1rem;
+    height: auto;
+    border: 1px solid;
+`;

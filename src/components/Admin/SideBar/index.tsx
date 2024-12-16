@@ -28,7 +28,6 @@ import { ExpandLess } from "@mui/icons-material";
 import Collapse from "@mui/material/Collapse";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import CategoryIcon from "@mui/icons-material/Category";
-import FolderCopyIcon from "@mui/icons-material/FolderCopy";
 import PeopleIcon from "@mui/icons-material/People";
 import SettingsIcon from "@mui/icons-material/Settings";
 import CreateNewProduct from "../Dashboard/Products/CreateNewProduct";
@@ -134,22 +133,7 @@ function SideBar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const componentManagement: IComponentManagement[] = [
-    {
-      label: "Banner",
-      detailPage: "Banner",
-    },
-    {
-      label: "Logo",
-      detailPage: "brand",
-    },
-  ];
-
   const componentOrderManagement: IComponentManagement[] = [
-    {
-      label: "Pedidos dos clientes",
-      detailPage: "ProductTicket",
-    },
     {
       label: "Lista de fornecedores",
       detailPage: "SupplierList",
@@ -201,11 +185,7 @@ function SideBar() {
     setOpen(false);
   };
 
-  const [openList, setOpenLits] = React.useState(false);
 
-  const handleOpenListClick = () => {
-    setOpenLits(!openList);
-  };
 
   const [openListProducts, setOpenLitsProducts] = React.useState(false);
 

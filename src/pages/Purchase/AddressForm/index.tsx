@@ -5,7 +5,6 @@ import Grid from "@mui/material/Grid";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled } from "@mui/system";
 import { usePaymentContext } from "../../../contexts/payment";
-import { useAxios } from "../../../providers/AxiosProvider";
 
 const FormGrid = styled(Grid)(() => ({
   display: "flex",

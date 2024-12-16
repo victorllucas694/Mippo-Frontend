@@ -70,8 +70,9 @@ export const MemberContainer = styled.div`
 
 export const BoxCollapse = styled.div`
   width: 100%;
-  height: 5rem;
+  height: auto;
   align-self: start;
+  padding: 1rem;
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -82,7 +83,7 @@ export const BoxCollapse = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    height: 5rem;
+    height: auto;
 
     h1 {
       font-family: 'Roboto';

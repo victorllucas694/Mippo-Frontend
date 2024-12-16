@@ -1,4 +1,4 @@
-import { Button, Pagination } from "@mui/material";
+import { Pagination } from "@mui/material";
 import { useRequestsProductsContext } from "../../../contexts/RequestsProductsContext";
 import { MainComponentOnPage } from "./styles";
 import { useEffect, useState } from "react";
@@ -9,8 +9,6 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Select, { selectClasses } from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
-import { useAxios } from "../../../providers/AxiosProvider";
-import { usePagesManagement } from "../../../contexts/PagesManagementContext";
 
 export interface Category {
   name: string;
@@ -47,11 +45,11 @@ function GeneralFunction() {
     null
   );
   const [category, setCategory] = useState<string | null>("");
-  const { PageData } = usePagesManagement();
+  // const { PageData } = usePagesManagement();
+  console.log(category);
   useEffect(() => {
     const category = getCategory();
     setCategory(category);
-    console.log(products);
   }, [products]);
 
   function getCategory(): string {
@@ -67,7 +65,7 @@ function GeneralFunction() {
     return category;
   }
 
-  const { axiosInstance } = useAxios();
+  // const { axiosInstance } = useAxios();
 
   const handleCheckboxComputerChange = async (value: string) => {
     console.log(value);
@@ -92,10 +90,10 @@ function GeneralFunction() {
   const [filteredProducts, setFilteredProducts] = useState<
     IMockProducts[] | null
   >(null);
-  const [checkboxStates, setCheckboxStates] = useState<{
-    [subcategory: string]: { [value: string]: boolean };
-  }>({});
-  console.log(checkboxStates);
+  // const [checkboxStates, setCheckboxStates] = useState<{
+  //   [subcategory: string]: { [value: string]: boolean };
+  // }>({});
+  // console.log(checkboxStates);
 
   const handleCheckboxNotebookChange = async (value: string) => {
     console.log(value);
@@ -379,7 +377,6 @@ function GeneralFunction() {
       <div className="space"></div>
       <div className="body-content">
         <div className="header-dody-filter">
-          <h1>{category}</h1>
           <div className="filter-by">
             <p>Ordenar por </p>
             <Select

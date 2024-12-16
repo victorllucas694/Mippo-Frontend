@@ -17,8 +17,6 @@ import Paper from "@mui/material/Paper";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch from "@mui/material/Switch";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { visuallyHidden } from "@mui/utils";
@@ -36,24 +34,6 @@ interface Data {
   fabricante: number;
   produto: string;
   valor_a_prazo: number;
-}
-
-function createData(
-  id: number,
-  produto: string,
-  quantidade: number,
-  fabricante: number,
-  valor_a_vista: number,
-  valor_a_prazo: number
-): Data {
-  return {
-    id,
-    produto,
-    quantidade,
-    fabricante,
-    valor_a_vista,
-    valor_a_prazo,
-  };
 }
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -79,6 +59,7 @@ function getComparator<Key extends keyof any>(
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
+console.log(getComparator);
 
 interface HeadCell {
   disablePadding: boolean;
@@ -103,19 +84,19 @@ const headCells: readonly HeadCell[] = [
     id: "quantidade",
     numeric: true,
     disablePadding: false,
-    label: "Quantidade",
+    label: "Id",
   },
   {
     id: "valor_a_vista",
     numeric: true,
     disablePadding: false,
-    label: "Valor a vista",
+    label: "Valor à vista",
   },
   {
     id: "valor_a_prazo",
     numeric: true,
     disablePadding: false,
-    label: "Valor a prazo",
+    label: "Valor à prazo",
   },
 ];
 
@@ -253,13 +234,13 @@ function OrdersUser() {
   const { id } = useAuth();
   const [totalValorAVista, setTotalValorAVista] = React.useState<number>(0);
   const [totalItems, setTotalItems] = React.useState<number>(0);
-  const [totalSum, setTotalSum] = React.useState<number>(0);
-  const [formattedTotalData, setFormattedTotalData] = React.useState<string>("");
-
+  const [formattedTotalData, setFormattedTotalData] =
+    React.useState<string>("");
 
   React.useEffect(() => {
+    console.log(setDense);
     const token = localStorage.getItem("c__token");
-
+    console.log(totalValorAVista);
     async function getAllOrdersByUserId() {
       try {
         const response = await axiosInstance.get(
@@ -318,6 +299,7 @@ function OrdersUser() {
     event: React.MouseEvent<unknown>,
     property: keyof Data
   ) => {
+    console.log(event);
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
@@ -333,6 +315,7 @@ function OrdersUser() {
   };
 
   const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+    console.log(event);
     const selectedIndex = selected.indexOf(id);
     let newSelected: readonly number[] = [];
 
@@ -352,6 +335,7 @@ function OrdersUser() {
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
+    console.log(event);
     setPage(newPage);
   };
 
@@ -361,21 +345,6 @@ function OrdersUser() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-
-  const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDense(event.target.checked);
-  };
-
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  const visibleRows = React.useMemo(
-    () =>
-      [...rows]
-        .sort(getComparator(order, orderBy))
-        .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
-    [order, orderBy, page, rowsPerPage]
-  );
 
   const obterDataPorExtenso = (): string => {
     const dataAtual = new Date();
@@ -509,37 +478,47 @@ function OrdersUser() {
 
                   return (
                     <TableRow
-                    hover
-                    onClick={(event) => handleClick(event, row.id)}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    key={row.id}
-                    selected={isItemSelected}
-                    sx={{ cursor: "pointer" }}
-                  >
-                    <TableCell sx={{ padding: "1rem" }} padding="checkbox">
-                      <Checkbox
-                        color="primary"
-                        checked={isItemSelected}
-                        inputProps={{
-                          "aria-labelledby": labelId,
-                        }}
-                      />
-                    </TableCell>
-                    <TableCell
-                      component="th"
-                      id={labelId}
-                      scope="row"
-                      padding="none"
+                      hover
+                      onClick={(event) => handleClick(event, row.id)}
+                      role="checkbox"
+                      aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={row.id}
+                      selected={isItemSelected}
+                      sx={{ cursor: "pointer" }}
                     >
-                      {row.produto}
-                    </TableCell>
-                    <TableCell align="right">{row.fabricante}</TableCell>
-                    <TableCell align="right">{row.quantidade}</TableCell>
-                    <TableCell align="right">{row.valor_a_vista}</TableCell>
-                    <TableCell align="right">{row.valor_a_prazo}</TableCell>
-                  </TableRow>
+                      <TableCell sx={{ padding: "1rem" }} padding="checkbox">
+                        <Checkbox
+                          color="primary"
+                          checked={isItemSelected}
+                          inputProps={{
+                            "aria-labelledby": labelId,
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell
+                        component="th"
+                        id={labelId}
+                        scope="row"
+                        padding="none"
+                      >
+                        {row.produto}
+                      </TableCell>
+                      <TableCell align="right">{row.fabricante}</TableCell>
+                      <TableCell align="right">{row.quantidade}</TableCell>
+                      <TableCell align="right">
+                        {new Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(parseFloat(row.valor_a_vista.toString()))}
+                      </TableCell>
+                      <TableCell align="right">
+                        {new Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(parseFloat(row.valor_a_prazo.toString()))}
+                      </TableCell>
+                    </TableRow>
                   );
                 })}
               </TableBody>

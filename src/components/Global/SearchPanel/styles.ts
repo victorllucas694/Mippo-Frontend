@@ -15,7 +15,7 @@ export const SearchPanelContainer = styled.div`
   .box-main-content {
     width: 80%;
     margin: auto;
-    height: 5rem;
+    height: auto;
     display: flex;
     justify-content: space-between;
 
@@ -32,7 +32,7 @@ export const SearchPanelContainer = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 80%;
+      height: 100%;
 
       img {
         object-fit: cover;
@@ -48,7 +48,7 @@ export const SearchPanelContainer = styled.div`
     }
 
     .search-panel {
-      width: 48%;
+      width: 45%;
       height: 70%;
       margin: auto;
 
@@ -61,12 +61,12 @@ export const SearchPanelContainer = styled.div`
     }
 
     .contact-box {
-      width: 25%;
-      height: 70%;
+      width: 30%;
+      height: 3.5rem;
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       margin: auto;
-      gap: 4px;
+      gap: 5px;
 
       .favorite-box {
         display: flex;
@@ -94,18 +94,18 @@ export const SearchPanelContainer = styled.div`
         flex-direction: column;
         width: 200px;
         height: 100%;
-        padding: .7rem;
+        padding: 0.7rem;
         border-radius: 3px;
         border: 1px solid rgb(220, 220, 220);
 
         h1 {
-          font-family: 'Open Sans';
-          font-size: .8rem;
+          font-family: "Open Sans";
+          font-size: 0.8rem;
         }
-        
+
         p {
-          font-family: 'Roboto';
-          font-size: .9rem;
+          font-family: "Roboto";
+          font-size: 0.9rem;
         }
       }
 

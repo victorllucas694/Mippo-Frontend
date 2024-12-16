@@ -30,7 +30,6 @@ export const PresentationBox = styled.div`
       }
 
       .box-primary-image {
-        border: 1px solid rgb(240, 240, 240);
         border-radius: 5px;
         width: 80%;
         border-radius: 5px;
@@ -50,6 +49,7 @@ export const PresentationBox = styled.div`
 
         .box-image {
           border-radius: 3px;
+          border: 1px solid rgb(230, 230, 230);
           width: 5rem;
           background-color: rgb(245, 245, 245);
           height: 5rem;

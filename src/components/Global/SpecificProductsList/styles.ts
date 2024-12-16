@@ -29,7 +29,7 @@ export const SpecificProductsListBoxWrapper = styled.div`
     width: 90%;
     margin: auto;
     flex-wrap: wrap;
-    gap: 4rem;
+    gap: 2rem;
     justify-content: center;
     height: auto;
 

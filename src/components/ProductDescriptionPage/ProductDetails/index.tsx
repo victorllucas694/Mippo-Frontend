@@ -1,10 +1,9 @@
-import { BoxProductReview, ContainerProductListDetails } from "./styles";
+import { ContainerProductListDetails } from "./styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { useState } from "react";
-import { Rating } from "@mui/material";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -39,70 +38,12 @@ function a11yProps(index: number) {
   };
 }
 
-interface IReviews {
-  name: string;
-  rating: number;
-  reviewDate: string;
-  title: string;
-  comment: string;
-  like: number;
-}
-
-interface IRating {
-  label: string;
-  reviewsTotalUser: string;
-}
-
 function ProductDetails({ product }: any) {
   const [value, setValue] = useState(0);
 
   const handleChange = (__event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
-  const IRating: IRating[] = [
-    {
-      label: "5 estrelas",
-      reviewsTotalUser: "8k",
-    },
-    {
-      label: "4 estrelas",
-      reviewsTotalUser: "7k",
-    },
-    {
-      label: "3 estrelas",
-      reviewsTotalUser: "1.8k",
-    },
-    {
-      label: "2 estrelas",
-      reviewsTotalUser: "1.5k",
-    },
-    {
-      label: "1 estrelas",
-      reviewsTotalUser: "1.1k",
-    },
-  ];
-
-  const reviews: IReviews[] = [
-    {
-      name: "Mephistopholes",
-      rating: 4,
-      reviewDate: "10/11/2023",
-      title: "Ótimo produto, qualiade e entrega no prazo",
-      comment:
-        "Veio embalado certinho, um dia antes do prazo. Super recomendo galerinha! Achei legal que enviaram um produto Y de brinde ",
-      like: 1,
-    },
-    {
-      name: "Mephistopholes",
-      rating: 4,
-      reviewDate: "10/11/2023",
-      title: "Ótimo produto, qualiade e entrega no prazo",
-      comment:
-        "Veio embalado certinho, um dia antes do prazo. Super recomendo galerinha!! Achei legal que enviaram um produto Y de brinde ",
-      like: 1,
-    },
-  ];
 
   return (
     <ContainerProductListDetails>
@@ -114,60 +55,21 @@ function ProductDetails({ product }: any) {
               onChange={handleChange}
               aria-label="basic tabs example"
             >
-              <Tab label="Avaliações" {...a11yProps(0)} />
-              <Tab label="Descrição do produto" {...a11yProps(1)} />
+              <Tab label="Descrição do produto" {...a11yProps(0)} />
             </Tabs>
           </Box>
           <CustomTabPanel value={value} index={0}>
-            <BoxProductReview>
-              <div className="reviews">
-                {reviews.map((userRating: IReviews) => {
-                  return (
-                    <div className="box-review">
-                      <h1>{userRating.name}</h1>
-                      <Rating
-                        sx={{ margin: ".5rem 0rem" }}
-                        name="simple-controlled"
-                        value={5}
-                      />
-                      <h2>Avaliado em {userRating.reviewDate}</h2>
-                      <h3>{userRating.comment}</h3>
-                      <button id="like-comment"></button>
-                    </div>
-                  );
-                })}
-              </div>
-              <div className="final-reviews">
-                <h1>Avaliações gerais</h1>
-                <h1>4/5</h1>
-                <Rating name="simple-controlled" size="large" value={4} />
-                <br />
-                {IRating.map((levelDataRating: IRating) => {
-                  return (
-                    <div className="rating-wrapper">
-                      <h1>{levelDataRating.label}</h1>
-                      <div className="percent-data">
-                        <div className="percent-color"></div>
-                      </div>
-                      <h4>80k</h4>
-                    </div>
-                  );
-                })}
-              </div>
-            </BoxProductReview>
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={1}>
             <h1 style={{ fontFamily: 'Open Sans' }}>Informações do Produto</h1>
             <ul>
               {product?.Descricao_da_placa_de_video && (
                 <li>
-                  Descrição da Placa de Vídeo:{" "}
+                  Descrição da Placa de Vídeo: {" "}
                   {product.Descricao_da_placa_de_video}
                 </li>
               )}
               {product?.Descricao_final_sobre_o_produto && (
                 <li>
-                  Descrição Final sobre o Produto:{" "}
+                  Descrição Final sobre o Produto: {" "}
                   {product.Descricao_final_sobre_o_produto}
                 </li>
               )}
@@ -239,7 +141,7 @@ function ProductDetails({ product }: any) {
               )}
               {product?.Tipo_de_soquete_do_processador && (
                 <li>
-                  Tipo de Soquete do Processador:{" "}
+                  Tipo de Soquete do Processador: {" "}
                   {product.Tipo_de_soquete_do_processador}
                 </li>
               )}
@@ -280,7 +182,7 @@ function ProductDetails({ product }: any) {
               )}
               {product?.Leitor_de_cartoes_de_memoria && (
                 <li>
-                  Leitor de Cartões de Memória:{" "}
+                  Leitor de Cartões de Memória: {" "}
                   {product.Leitor_de_cartoes_de_memoria}
                 </li>
               )}
@@ -329,7 +231,7 @@ function ProductDetails({ product }: any) {
               )}
               {product?.Capacidade_de_Armazenamento && (
                 <li>
-                  Capacidade de Armazenamento:{" "}
+                  Capacidade de Armazenamento: {" "}
                   {product.Capacidade_de_Armazenamento}
                 </li>
               )}
@@ -339,9 +241,6 @@ function ProductDetails({ product }: any) {
                 </li>
               )}
             </ul>
-          </CustomTabPanel>
-          <CustomTabPanel value={value} index={2}>
-            Item Three
           </CustomTabPanel>
         </Box>
       </div>

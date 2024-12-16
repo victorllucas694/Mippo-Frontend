@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const OptionsPanelWrapper = styled.div`
   width: 100%;
   height: 4rem;
-  border-bottom: 1px solid rgb(240, 240, 240);
-  box-shadow: 0 5px 8px -3px rgba(200, 200, 200, 0.5);
+  border-bottom: 1px solid rgb(230, 230, 230);
   
   .all-categories {
     width: 90%;

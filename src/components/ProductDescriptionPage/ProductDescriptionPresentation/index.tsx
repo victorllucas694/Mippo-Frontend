@@ -6,7 +6,12 @@ import {
 import PaymentIcon from "@mui/icons-material/Payment";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import { useRequestsProductsContext } from "../../../contexts/RequestsProductsContext";
-import { Alert, Button, Rating, Snackbar, SnackbarCloseReason, Typography } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Snackbar,
+  Typography,
+} from "@mui/material";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useState, useEffect } from "react";
@@ -70,6 +75,7 @@ function ProductDescriptionPresentation() {
           tableName,
           imageCodes,
         });
+        console.log(imageData);
       }
     });
   };
@@ -89,26 +95,23 @@ function ProductDescriptionPresentation() {
       categoria_pedido: category,
       codigo_do_pedido: productSelected.Codigo_das_Imagens,
       User_Id: id,
-      pagamento: 'not_paid',
-      retirado: 'false'
+      pagamento: "not_paid",
+      retirado: "false",
     };
 
-    
-    if(id) {
+    if (id) {
       const response = await axiosInstance.post(
         `/payment-shipping-cart/purchase/products/${category}/${productSelected.id}`,
         sendData
       );
-      console.log(productSelected)
-      
+      console.log(productSelected);
+
       if (response.data.error === "Produto esgotado") {
         setOpen(true);
+      } else if (response.data && id) {
+        window.location.href = `/purchase/${id}`;
       }
-      else if(response.data && id) {
-        window.location.href = `/purchase/${id}`
-      }
-    }
-    else {
+    } else {
       window.location.href = "/login";
     }
   };
@@ -131,18 +134,8 @@ function ProductDescriptionPresentation() {
     }
   }, [productSelected]);
 
-  const handleClick = () => {
-    setOpen(true);
-  };
-
   const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: SnackbarCloseReason
   ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
     setOpen(false);
   };
   return (
@@ -161,10 +154,74 @@ function ProductDescriptionPresentation() {
         <div className="content-presentation">
           <div className="image-presentation-product">
             <div className="sub-boxes-images">
-              <div className="box-image"></div>
-              <div className="box-image"></div>
-              <div className="box-image"></div>
-              <div className="box-image"></div>
+              {imageData.sideImages.map((image: any) => {
+                return (
+                  <div className="box-image">
+                    <img
+                      style={{
+                        objectFit: "contain",
+                        margin: "auto",
+                        height: "100%",
+                        width: "100%",
+                      }}
+                      src={`http://localhost:3000/${image.first_image}`}
+                      loading="lazy"
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
+              {imageData.sideImages.map((image: any) => {
+                return (
+                  <div className="box-image">
+                    <img
+                      style={{
+                        objectFit: "contain",
+                        margin: "auto",
+                        height: "100%",
+                        width: "100%",
+                      }}
+                      src={`http://localhost:3000/${image.second_image}`}
+                      loading="lazy"
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
+               {imageData.sideImages.map((image: any) => {
+                return (
+                  <div className="box-image">
+                    <img
+                      style={{
+                        objectFit: "contain",
+                        margin: "auto",
+                        height: "100%",
+                        width: "100%",
+                      }}
+                      src={`http://localhost:3000/${image.third_image}`}
+                      loading="lazy"
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
+               {imageData.sideImages.map((image: any) => {
+                return (
+                  <div className="box-image">
+                    <img
+                      style={{
+                        objectFit: "contain",
+                        margin: "auto",
+                        height: "100%",
+                        width: "100%",
+                      }}
+                      src={`http://localhost:3000/${image.fourth_image}`}
+                      loading="lazy"
+                      alt=""
+                    />
+                  </div>
+                );
+              })}
             </div>
             <div className="box-primary-image">
               {imageData.largeImages.map((largeImg, index) => (
@@ -189,10 +246,7 @@ function ProductDescriptionPresentation() {
             </div>
             <div className="title-product">
               <h1>{productSelected?.Marca}</h1>
-              <p>
-                {productSelected?.Fornecedor}: (1) Avaliação sobre esse
-                produto/fornecedor
-              </p>
+              <p>Fornecedor: {productSelected?.Fornecedor}</p>
               <Typography>
                 <span>
                   <strong>Processador: </strong>
@@ -232,7 +286,14 @@ function ProductDescriptionPresentation() {
             </div>
             <PurchaseInstallment>
               <p>
-                por <span>R$ {productSelected?.Valor_a_prazo}</span>
+                por{" "}
+                <span>
+                  {productSelected?.Valor_a_prazo &&
+                    new Intl.NumberFormat("pt-BR", {
+                      style: "currency",
+                      currency: "BRL",
+                    }).format(parseFloat(productSelected.Valor_a_prazo))}
+                </span>
               </p>
               <div className="payment-method">
                 <div className="icon-payment">
@@ -240,7 +301,16 @@ function ProductDescriptionPresentation() {
                 </div>
                 <div className="info-payment">
                   <h3>
-                    Até <span>12x</span> de <span>R$ 30,33</span>
+                    Até <span>12x</span> de{" "}
+                    <span>
+                      {productSelected?.Valor_a_prazo &&
+                        new Intl.NumberFormat("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        }).format(
+                          parseFloat(productSelected.Valor_a_prazo) / 12
+                        )}
+                    </span>
                   </h3>
                   <a href="">Outros métodos de pagamentos</a>
                 </div>
@@ -250,8 +320,26 @@ function ProductDescriptionPresentation() {
                   <ReceiptIcon sx={{ width: "50%", height: "50%" }} />
                 </div>
                 <div className="info-payment">
-                  <p>{productSelected?.Valor_a_vista} à vista</p>
-                  <h3>Economize: R$ 100,00</h3>
+                  <p>
+                    {productSelected?.Valor_a_vista &&
+                      new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(parseFloat(productSelected.Valor_a_vista))}{" "}
+                    à vista
+                  </p>
+                  <h3>
+                    Economize:{" "}
+                    {productSelected?.Valor_a_prazo &&
+                      productSelected?.Valor_a_vista &&
+                      new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(
+                        parseFloat(productSelected.Valor_a_prazo) -
+                          parseFloat(productSelected.Valor_a_vista)
+                      )}
+                  </h3>
                 </div>
               </div>
             </PurchaseInstallment>

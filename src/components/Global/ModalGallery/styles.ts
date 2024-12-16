@@ -89,7 +89,7 @@ export const BoxDropImage = styled(Box)`
     justify-content: space-between;
 
     .image-drop-box {
-      background-color: rgb(244, 244, 244);
+      background-color: rgb(250, 250, 250);
       width: 90%;
       margin: auto;
       border: 2px dashed rgb(220, 220, 220);
@@ -110,7 +110,7 @@ export const BoxDropImage = styled(Box)`
     align-items: center;
     border: 2px dashed rgb(220, 220, 220);
     border-radius: 5px;
-    background-color: rgb(244, 244, 244);
+    background-color: rgb(250, 250, 250);
     height: 100%;
 
     p {

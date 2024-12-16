@@ -42,21 +42,6 @@ interface Column {
   render?: (value: number, row: any) => JSX.Element;
 }
 
-
-// interface IPackageDataType {
-//   User_Id: number;
-//   drop_brand: string;
-//   drop_categories: string;
-//   drop_code: string;
-//   drop_description: string;
-//   drop_products_state: string;
-//   drop_seller: string;
-//   id: number;
-//   min_price: string;
-//   model_product: string;
-//   product_name: string;
-// }
-
 interface ISupplierTable {
   NIF: string;
   name: string;
@@ -64,8 +49,6 @@ interface ISupplierTable {
   shipping_method: string;
   status: string;
 }
-
-let rows: ISupplierTable[] = [];
 
 function  Suppliers() {
   const [page, setPage] = React.useState(0);
@@ -76,60 +59,45 @@ function  Suppliers() {
   const token = localStorage.getItem("c__token");
   const { axiosInstance } = useAxios();
   const { id } = useAuth();
+  const [rows, setRows] = React.useState<ISupplierTable[]>([]);
 
   React.useEffect(() => {
-    if (rows.length <= 0) {
-      getListAllProductsToRender();
-      getAllSuppliersByUserId();
-    }
+    getListAllProductsToRender()
   }, [id, suppliersArrData, rows]);
 
-  const deleteAllProductsAndPackageByDropCode = async (dropCode: any) => {
-    const deletePackageAndAllProducts = await axiosInstance.get(
-      `products-management/delete/all/products/package/${id}/${dropCode}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-    console.log(deletePackageAndAllProducts)
-  };
-  console.log(deleteAllProductsAndPackageByDropCode)
 
   const [activeSuppliers, setActiveSuppliers] = React.useState<number>(0);
-
   const getListAllProductsToRender = async () => {
-    const foundedAllProductsByCategory = await axiosInstance(
-      `/suppliers-management/get/all/suppliers/${id}`,
-      {
+    try {
+      const foundedAllProductsByCategory = await axiosInstance(`/suppliers-management/get/all/suppliers/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-      }
-    );
+      });
 
-    console.log(foundedAllProductsByCategory.data);
-    setActiveSuppliers(foundedAllProductsByCategory.data.length);
-    console.log(activeSuppliers);
-    setSuppliersArrData(foundedAllProductsByCategory.data);
+      console.log(foundedAllProductsByCategory.data);
+      setSuppliersArrData(foundedAllProductsByCategory.data);
 
-    if (foundedAllProductsByCategory.data) {
-      foundedAllProductsByCategory.data.map((suppliersData: ISupplierTable) => {
+      const newRows = foundedAllProductsByCategory.data.map((suppliersData: ISupplierTable) => {
         if (suppliersData.NIF) {
-          rows.push(
-            createData(
-              suppliersData.name,
-              suppliersData.phone,
-              suppliersData.NIF,
-              suppliersData.shipping_method,
-              "Ativo"
-            )
+          return createData(
+            suppliersData.name,
+            suppliersData.phone,
+            suppliersData.NIF,
+            suppliersData.shipping_method,
+            "Ativo"
           );
         }
+        return null;
       });
+
+      setRows(newRows as ISupplierTable[]); // Atualiza o estado de rows
+      setActiveSuppliers(foundedAllProductsByCategory.data.length);
+    } catch (error) {
+      console.error("Erro ao buscar fornecedores", error);
     }
   };
+
   const columns: readonly Column[] = [
     { id: "name", label: "Nome do fornecedor", minWidth: 170 },
     {
@@ -226,12 +194,7 @@ function  Suppliers() {
     number: number;
     percent: number;
   }
-  const getAllSuppliersByUserId = async () => {
-    const sendSupplierBasicDataPayload = await axiosInstance.get(
-      `/suppliers-management/get/all/suppliers/${id}`
-    );
-    console.log(sendSupplierBasicDataPayload)
-  };
+
   const TicketsData: TicketsData[] = [
     {
       label: "Fornecedores ativos",
@@ -240,12 +203,12 @@ function  Suppliers() {
     },
     {
       label: "Participação dos fornecedores",
-      number: 4,
+      number: 0,
       percent: 0,
     },
     {
       label: "Custos totais sobre os fornecedores",
-      number: 9000.99,
+      number: 0.00,
       percent: 0,
     },
   ];

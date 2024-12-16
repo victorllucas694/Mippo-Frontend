@@ -1,6 +1,5 @@
 import * as React from "react";
 import Divider from "@mui/material/Divider";
-import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
@@ -28,12 +27,6 @@ export default function Review() {
     paymentType,
   } = usePaymentContext();
   
-const payments = [
-  { name: "Card type:", detail: "Visa" },
-  { name: "Card holder:", detail: nameBody },
-  { name: "Card number:", detail: cardNumber },
-  { name: "Expiry date:", detail: expirationDate },
-];
   console.log(
     addressBody,
     cardNumber,

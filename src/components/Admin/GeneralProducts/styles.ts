@@ -119,7 +119,7 @@ export const MainComponentOnPage = styled.div`
       width: 100%;
       height: 4rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
 
       h1 {
         font-weight: 300;

@@ -32,27 +32,27 @@ interface Column {
 }
 
 const columns: readonly Column[] = [
-  { id: "id", label: "ID" },
-  { id: "name", label: "Name" },
-  { id: "last_name", label: "Last Name" },
+  { id: "id", label: "Identificador" },
+  { id: "name", label: "Nome" },
+  { id: "last_name", label: "Sobrenome" },
   { id: "email", label: "Email" },
-  { id: "phone", label: "Phone" },
-  { id: "admin", label: "Admin" },
+  { id: "phone", label: "Telefone" },
+  { id: "admin", label: "Administrador" },
   {
     id: "create_date_time",
-    label: "Created At",
+    label: "Criado em",
     minWidth: 200,
     format: (value: string) => new Date(value).toLocaleString(),
   },
   {
     id: "last_changed_date_time",
-    label: "Last Changed At",
+    label: "Ultima Alteração",
     minWidth: 200,
     format: (value: string) => new Date(value).toLocaleString(),
   },
   {
     id: "actions",
-    label: "Actions",
+    label: "Deletar",
     minWidth: 100,
     format: () => "",
   },

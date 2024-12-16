@@ -30,7 +30,6 @@ function InventaryByCategory({ productName }: Inventary) {
         },
       }
     );
-
     setInventoryProducts(foundedProducts.data);
   };
 

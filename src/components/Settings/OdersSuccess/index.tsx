@@ -135,7 +135,6 @@ const headCells: readonly HeadCell[] = [
 
 interface EnhancedTableProps {
   numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
   onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
   order: Order;
   orderBy: string;
@@ -143,12 +142,8 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+  const { order, orderBy, numSelected, rowCount } =
     props;
-  const createSortHandler =
-    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
-      onRequestSort(event, property);
-    };
 
   return (
     <TableHead>
@@ -158,7 +153,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
             inputProps={{
               'aria-label': 'select all desserts',
             }}
@@ -174,7 +168,6 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             <TableSortLabel
               active={orderBy === headCell.id}
               direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
@@ -251,15 +244,7 @@ function OrdersSuccess() {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const handleRequestSort = (
-    event: React.MouseEvent<unknown>,
-    property: keyof Data,
-  ) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
-
+  console.log(setOrder, setOrderBy);
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const newSelected = rows.map((n) => n.id);
@@ -270,6 +255,7 @@ function OrdersSuccess() {
   };
 
   const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+    console.log(event)
     const selectedIndex = selected.indexOf(id);
     let newSelected: readonly number[] = [];
 
@@ -289,6 +275,7 @@ function OrdersSuccess() {
   };
 
   const handleChangePage = (event: unknown, newPage: number) => {
+    console.log(event)
     setPage(newPage);
   };
 
@@ -396,7 +383,6 @@ function OrdersSuccess() {
               order={order}
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
               rowCount={rows.length}
             />
             <TableBody>

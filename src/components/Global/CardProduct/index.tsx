@@ -43,7 +43,6 @@ function CardProduct({ productsList }: IProductData) {
   const getProduct = () => {};
 
   const {
-    addItemToShoppingCart,
     isUserLoggedIn,
     calcPriceByShoppingCart,
     verifyUserLoggedByAddProductToShoppingCart,
@@ -80,16 +79,6 @@ function CardProduct({ productsList }: IProductData) {
   };
 
   const [imageData, setImageData] = useState<ImageData>(initialState);
-  const [productInInventory, setProductInInventory] = useState<boolean>(false);
-
-  const verifyInventary = () => {
-    if (productsList.Quantidade_em_estoque <= 1) {
-      setProductInInventory(true);
-      console.log(productInInventory);
-    } else {
-      setProductInInventory(false);
-    }
-  };
 
   const getProductImageByCategoryAndProductId = async (
     category: string,
@@ -148,12 +137,9 @@ function CardProduct({ productsList }: IProductData) {
           justifyContent: "space-between",
           border: "1px solid rgb(230, 230, 230)",
           borderRadius: "3px",
-          height: 'auto',
-          minHeight: '35rem',
+          height: "auto",
+          minHeight: "35rem",
           backgroundColor: "transparent",
-          ":hover": {
-            boxShadow: "xl",
-          },
           "@media (max-width: 1600px)": {
             width: category ? "30%" : "20%",
           },
@@ -187,15 +173,21 @@ function CardProduct({ productsList }: IProductData) {
             />
           ))}
         </AspectRatio>
-        <CardContent>
+        <CardContent
+          sx={{
+            minHeight: "20rem",
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: "column",
+          }}
+        >
           <Typography level="body-xs">{productsList.Fabricante}</Typography>
           <Link
             onClick={getProduct}
             href={
               category !== ""
                 ? `/product/${category}/${productCode}/${productId}`
-                : // : `/product/Hardware/${productCode}/${productId}`
-                  `/`
+                : `/`
             }
             fontWeight="md"
             color="neutral"
@@ -208,8 +200,9 @@ function CardProduct({ productsList }: IProductData) {
             }}
             endDecorator={<ArrowOutwardIcon />}
           >
-            {productsList.Marca}
+            {productsList.Marca.trim().replace(/['"]+/g, "")}
           </Link>
+
           <Typography
             level="body-sm"
             lineHeight={2}
@@ -224,7 +217,10 @@ function CardProduct({ productsList }: IProductData) {
               },
             }}
           >
-            {productsList.Descricao_final_sobre_o_produto}
+            {productsList.Descricao_final_sobre_o_produto.trim().replace(
+              /['"]+/g,
+              ""
+            )}
           </Typography>
           <Rating name="simple-controlled" value={4} />
           <Typography
@@ -261,8 +257,7 @@ function CardProduct({ productsList }: IProductData) {
           <Button
             sx={{ backgroundColor: "none" }}
             onClick={() => {
-              verifyInventary();
-              addItemToShoppingCart();
+              // verifyInventary();
               calcPriceByShoppingCart(productsList.Valor_a_vista);
               isUserLoggedIn();
               verifyUserLoggedByAddProductToShoppingCart(id, productsList);

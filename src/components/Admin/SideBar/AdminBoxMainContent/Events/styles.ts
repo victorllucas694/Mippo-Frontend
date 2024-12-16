@@ -54,8 +54,9 @@ export const EventsAndProjectsBox = styled.div`
 
     h1 {
       font-family: "Roboto";
-      color: #4e97fd;
+      color: rgb(80, 80,80);
       font-size: 1.5rem;
+      font-weight: 400;
 
       @media (max-width: 1510px) {
           font-size: 1.2rem;

@@ -20,7 +20,6 @@ import AddressForm from "./../AddressForm";
 import getCheckoutTheme from "./../GetCheckoutTheme";
 import Info from "./../Info";
 import InfoMobile from "./../InfoMobile";
-import Review from "./../Review";
 import ToggleColorMode from "./../ToggleColorMode";
 import { useNavigate } from "react-router-dom";
 

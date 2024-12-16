@@ -25,7 +25,9 @@ const Info: React.FC = () => {
   const { axiosInstance } = useAxios();
   const token = localStorage.getItem("c__token");
   const [__products, setProducts] = React.useState<Product[]>([]);
-  const [productsCallBack, setProductsCallBack] = React.useState<ProductCallBack[]>([]);
+  const [productsCallBack, setProductsCallBack] = React.useState<
+    ProductCallBack[]
+  >([]);
   const [totalValue, setTotalValue] = React.useState<number>(0);
 
   const getProductsByUserId = async () => {
@@ -35,14 +37,16 @@ const Info: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("req",req)
+      console.log("req", req);
       const productsData: Product[] = req.data;
       setProducts(productsData);
-      const callBackData = productsData.map(product => product.getProductsByOrderId);
+      const callBackData = productsData.map(
+        (product) => product.getProductsByOrderId
+      );
       setProductsCallBack(callBackData);
 
       const total = callBackData.reduce((acc, product) => {
-        return acc + parseFloat(product.Valor_a_prazo.toString() || '0');
+        return acc + parseFloat(product.Valor_a_prazo.toString() || "0");
       }, 0);
       setTotalValue(total);
     } catch (error) {
@@ -60,10 +64,13 @@ const Info: React.FC = () => {
         Total
       </Typography>
       <Typography variant="h4" gutterBottom>
-        {totalValue}
+        {new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(parseFloat(totalValue.toString()))}
       </Typography>
       <List
-        sx={{ width: "100%", maxWidth: 450, bgcolor: "background.paper" }}
+        sx={{ width: "90%", bgcolor: "background.paper" }}
         aria-label="contacts"
       >
         {productsCallBack.map((product, index) => (
@@ -73,13 +80,18 @@ const Info: React.FC = () => {
               <Typography variant="body1" fontWeight="medium">
                 {product.price}
               </Typography>
-              <ListItemText primary={product.Valor_a_prazo} />
+              <ListItemText
+                primary={new Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(parseFloat(product.Valor_a_prazo.toString()))}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
     </>
   );
-}
+};
 
 export default Info;

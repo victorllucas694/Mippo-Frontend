@@ -30,7 +30,7 @@ function ProductRecommendation() {
     );
 
     if (reqByGetProducts.data) {
-      const limitedData = reqByGetProducts.data.slice(0, 4);
+      const limitedData = reqByGetProducts.data.slice(0, 3);
       setProductsRecommendation(limitedData);
     }
 

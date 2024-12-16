@@ -31,11 +31,6 @@ const NAVIGATION: Navigation = [
         title: "Entregas em andamento",
         icon: <AccessTimeFilledIcon />,
       },
-      {
-        segment: "success",
-        title: "Entregas concluídas",
-        icon: <CheckCircleIcon />,
-      },
     ],
   },
   { segment: "settings", title: "Configurações", icon: <LayersIcon /> },

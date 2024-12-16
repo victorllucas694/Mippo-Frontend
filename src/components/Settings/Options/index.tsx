@@ -1,7 +1,6 @@
 import { Alert, Button, Checkbox, FormControlLabel, Switch } from "@mui/material";
 import { BoxOrderUser } from "../OrdersUser/styles";
 import { BoxOptions } from "./styles";
-import { CheckBox } from "@mui/icons-material";
 
 function Options() {
   const obterDataPorExtenso = (): string => {
@@ -57,15 +56,6 @@ function Options() {
             <FormControlLabel required control={<Checkbox />} label="Notificação mensal" />
             <FormControlLabel required control={<Checkbox />} label="Notificação de entrega" />
 
-        </div>
-      </BoxOptions>
-      <BoxOptions>
-        <div className="header-notify">
-            <div>
-                <h1>Autenticação de dois fatores</h1>
-                <h2>Ativar ou desativar autenticação de dois fatores ao entrar em sua conta</h2>
-            </div>
-            <Switch defaultChecked />
         </div>
       </BoxOptions>
       <BoxOptions>

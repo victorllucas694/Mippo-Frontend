@@ -30,6 +30,7 @@ function Row(props: {
     history: any[];
     id_pedido: number;
     pagamento: string;
+    retirado: string;
   };
 }) {
   const { row } = props;
@@ -53,6 +54,21 @@ function Row(props: {
         },
       }
     );
+    setDialogOpen(false);
+
+    console.log(reqDataAllProducts);
+  };
+
+  const handleSendProductSuccess = async () => {
+    const reqDataAllProducts = await axiosInstance.get(
+      `/payment-shipping-cart/success/get/product/${id}/${row.id_pedido}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    setDialogProductOpen(false);
 
     console.log(reqDataAllProducts);
   };
@@ -92,20 +108,20 @@ function Row(props: {
         </TableCell>
         <TableCell>
           <Chip
-            label="Nao retirado"
+            label={row.retirado === "true" ? "Retirado" : "Não Retirado"}
             variant="outlined"
             sx={{ border: "none" }}
-            color="error"
+            color={row.retirado === "true" ? "success" : "error"}
           />
         </TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow sx={{ boxShadow: 'none', border: 'none' }} >
         <TableCell colSpan={6} style={{ paddingBottom: 0, paddingTop: 0 }}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Table size="small">
-                <TableBody>
-                  <TableRow>
+                <TableBody sx={{ boxShadow: 'none', border: 'none' }}>
+                  <TableRow >
                     <BoxCollapse>
                       <div className="box-header">
                         <h1>Pagamento</h1>
@@ -176,7 +192,7 @@ function Row(props: {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleDialogProductClose}>Cancelar</Button>
-          <Button onClick={handleSendPaymentSuccess} autoFocus>
+          <Button onClick={handleSendProductSuccess} autoFocus>
             Confirmar
           </Button>
         </DialogActions>
@@ -211,7 +227,7 @@ export default function CollapsibleTable() {
 
   return (
     <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
+      <Table sx={{ boxShadow: 'none', border: 'none' }} aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell />
@@ -245,6 +261,7 @@ export default function CollapsibleTable() {
                   id_pedido: row.order.id,
                   product: row.product.Marca,
                   name: `${row.user.name} ${row.user.last_name}`,
+                  retirado: row.order.retirado,
                   history: [],
                 }}
               />

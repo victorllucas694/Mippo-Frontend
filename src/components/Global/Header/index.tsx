@@ -47,7 +47,7 @@ function Header() {
         {id ? (
           <div className="account-data">
             <div className="box-button">
-              bem vindo(a) - {name + " " + lastname}{" "}
+              Bem vindo(a) novamente, {name + " " + lastname}{" "}
               <div>
                 <PersonIcon sx={{ cursor: "pointer", color: "rgb(80,80,80)" }} />{" "}
                 <SettingsIcon onClick={() => navigate('/settings')} sx={{ cursor: "pointer", color: "rgb(80,80,80)" }} />

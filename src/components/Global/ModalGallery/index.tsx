@@ -309,7 +309,7 @@ function ModalGallery() {
                 sx={{
                   width: "120px",
                   height: "120px",
-                  color: "rgb(130, 130, 130)",
+                  color: "rgb(150, 150, 150)",
                 }}
               />
             )}
@@ -332,7 +332,7 @@ function ModalGallery() {
                 <span>
                   <strong>Clique aqui</strong>
                 </span>{" "}
-                para enviar a imagem
+                para enviar a imagem  
               </p>
             )}
           </div>

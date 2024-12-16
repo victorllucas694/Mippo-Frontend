@@ -18,11 +18,12 @@ function Goals() {
   useEffect(() => {
     findAllOrders();
   }, [totalOrders]);
-
+  const [totalRetirados, setTotalRetirados] = useState<number>(0);
   const token = localStorage.getItem("c__token");
   const [totalPriceData, setTotalPriceData] = useState<number>(0);
   let totalPrice: number = 0;
-
+  let totalRetiradosCount: number = 0;
+  
   const findAllOrders = async () => {
     try {
       const foundedAllOrders = await axiosInstance.get(
@@ -34,17 +35,21 @@ function Goals() {
         }
       );
       foundedAllOrders.data.map((orders: any) => {
-        const { product } = orders;
+        const { product, order } = orders;
+        console.log('orders', order )
+        if (order.retirado === "true") {
+          totalRetiradosCount += 1;
+        }
 
         totalPrice += parseFloat(product.Valor_a_prazo);
       });
       setTotalPriceData(totalPrice);
+      setTotalRetirados(totalRetiradosCount);
       setTotalOrders(foundedAllOrders.data.length);
     } catch (error) {
       console.error("Error fetching orders:", error);
     }
   };
-
 
   return (
     <GoalsContainer>
@@ -55,7 +60,7 @@ function Goals() {
             <h3>
               <strong>{totalOrders}</strong> Pedidos em aberto
             </h3>
-            <p>{totalOrders / totalOrders} Pedidos em cancelados</p>
+            <p>Pedidos totais</p>
           </div>
           <div className="image">
             <img
@@ -69,9 +74,9 @@ function Goals() {
             <h1>Produtos Vendidos</h1>
             <h3>
               {" "}
-              <strong>{0} </strong>Vendas Finalizadas
+              <strong>{totalRetirados} </strong>Vendas Finalizadas
             </h3>
-            <p>{"1980"} Vendas em aberto</p>
+            <p> Vendas em Finalizadas</p>
           </div>
           <div className="image">
             <img
@@ -84,11 +89,17 @@ function Goals() {
       <div className="items-section">
         <div className="item-body">
           <div className="text">
-            <h1>Vendas a vista</h1>
+            <h1>Total em vendas</h1>
             <h3>
-              <strong>R$ {totalPriceData.toFixed(2)}</strong> em vendas
+              <strong>
+                {new Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                }).format(totalPriceData)}
+              </strong>{" "}
+              em vendas
             </h3>
-            <p>R$ {totalPriceData * 0.98} em lucro</p>
+            <p>Valores em lucro</p>
           </div>
           <div className="image">
             <img
@@ -99,12 +110,12 @@ function Goals() {
         </div>
         <div className="item-body">
           <div className="text">
-            <h1>Custo total de envio</h1>
+            <h1>total de retiradas</h1>
             <h3>
               {" "}
-              <strong>{"R$ 8.090"}</strong> em vendas
+              <strong>{totalRetirados}</strong> Retiradas
             </h3>
-            <p>{"R$ 8.099,00"} a pagar</p>
+            <p>Retiradas totais</p>
           </div>
           <div className="image">
             <img

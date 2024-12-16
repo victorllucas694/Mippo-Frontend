@@ -3,7 +3,6 @@ import Header from "../../components/Global/Header";
 import OptionsHeader from "../../components/Global/OptionsPanel";
 import SearchPanel from "../../components/Global/SearchPanel";
 import ProductDescriptionPage from "../../components/ProductDescriptionPage";
-import GeneralFunction from "../../components/Admin/GeneralProducts";
 import { useRequestsProductsContext } from "../../contexts/RequestsProductsContext";
 import { Alert, Snackbar } from "@mui/material";
 import * as React from "react";
@@ -20,8 +19,7 @@ function ProductsFiltred() {
 
   const [categoryBySearchProductPage, setCategoryBySearchProductPage] =
     useState<string | null>(null);
-  const currentURL = window.location.pathname;
-
+    console.log(setCategoryBySearchProductPage)
   const getURLCategory = () => {
     console.log(PageData);
   };

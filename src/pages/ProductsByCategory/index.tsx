@@ -6,9 +6,7 @@ import ProductDescriptionPage from "../../components/ProductDescriptionPage";
 import GeneralFunction from "../../components/Admin/GeneralProducts";
 import { useRequestsProductsContext } from "../../contexts/RequestsProductsContext";
 import { Alert, Snackbar } from "@mui/material";
-import * as React from "react";
 import Footer from "../../components/Global/Footer";
-import { usePagesManagement } from "../../contexts/PagesManagementContext";
 
 function ProductByCategory() {
   useEffect(() => {
@@ -48,20 +46,12 @@ function ProductByCategory() {
     },
   ];
 
-  const { created, alertlogin } = useRequestsProductsContext();
+  const { alertlogin } = useRequestsProductsContext();
   console.log(alertlogin);
 
-  const { PageData } = usePagesManagement();
-
-  const handleClose = (
-    __event: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-  };
-
+  const { stock } = useRequestsProductsContext();
+  console.log(alertlogin)
+  
   return (
     <>
       <Header />
@@ -71,26 +61,15 @@ function ProductByCategory() {
         categoryBySearchProductPage={categoryBySearchProductPage}
       />
       <GeneralFunction />
-
-      {created ? (
-        <Snackbar open={created} autoHideDuration={500} onClose={handleClose}>
-          <Alert
-            severity="success"
-            onClose={handleClose}
-            sx={{ width: "100%" }}
-          >
-            Produto adicionado ao carrinho
-          </Alert>
-        </Snackbar>
-      ) : null}
-
-      {alertlogin ? (
-        <Snackbar open={true} autoHideDuration={500} onClose={handleClose}>
-          <Alert severity="error" onClose={handleClose} sx={{ width: "100%" }}>
-            Erro ao adicionar Produto ao carrinho
-          </Alert>
-        </Snackbar>
-      ) : null}
+        <Snackbar open={stock} autoHideDuration={6000}>
+        <Alert
+          severity="error"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Erro: Esse produto está esgotado
+        </Alert>
+      </Snackbar>
 
       <br />
       <br />

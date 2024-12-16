@@ -4,18 +4,13 @@ import { Button, IconButton } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import SearchIcon from "@mui/icons-material/Search";
-import CategoryIcon from "@mui/icons-material/Category";
 import UsersTable from "./UsersTable";
 import React from "react";
 import ModalAddUser from "./ModalAddUser";
 
 function PanelAddNewUser() {
-
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
-
   return (
     <>
     <ModalAddUser open={open} handleClose={handleClose} />
@@ -53,16 +48,6 @@ function PanelAddNewUser() {
           }}
         >
           Filtrar por ID
-        </Button>
-        <Button
-          onClick={handleOpen}
-          startIcon={<CategoryIcon />}
-          variant="contained"
-          sx={{
-            height: "3rem",
-          }}
-        >
-          Adicionar novo usuário
         </Button>
       </div>
 

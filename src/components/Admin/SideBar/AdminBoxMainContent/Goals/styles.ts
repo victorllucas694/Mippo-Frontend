@@ -53,6 +53,7 @@ export const GoalsContainer = styled.div`
           font-size: 1rem;
           font-family: "Open Sans";
           color: rgb(140, 140, 140);
+          font-weight: 300;
         }
         h3 {
           font-size: 1rem;

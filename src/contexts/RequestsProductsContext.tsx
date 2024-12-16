@@ -53,6 +53,8 @@ interface RequestsProductsContextType {
   created: boolean;
   searchInput: string;
   HardwareDataCategory: Category[];
+  stock: boolean;
+  setStock: (stock: boolean) => void;
   NotebookDataCategory: Category[];
   filterArrayByProductInput: (search: string) => void;
 }
@@ -69,6 +71,7 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
   const [globalCategory, setGlobalCategory] = useState<string | null>(null);
   const [_countdown, setCountdown] = useState<number | null>(null);
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [stock, setStock] = useState<boolean>(false);
 
   const accessoriesDataCategory: Category[] = [
     {
@@ -208,15 +211,12 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
           setCreated(true);
         } else {
           setAlertLogin("precisa logar");
-          console.log(alertlogin);
         }
       } catch (error) {
         setAlertLogin("precisa logar");
-        console.log(alertlogin);
       }
     } else {
       setAlertLogin("precisa logar");
-      console.log(alertlogin);
     }
   };
 
@@ -300,6 +300,14 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
         },
       }
     );
+
+    if(response.data === 'produto esgotado') {
+      setStock(true);
+    }
+    else {
+      setStock(false)
+    }
+    
     console.log(response)
   };
 
@@ -312,6 +320,8 @@ export function RequestsProductsProvider({ children }: RequestsProductsProviderP
       value={{
         productSelected,
         setterProductSelected,
+        setStock,
+        stock,
         addItemToShoppingCart,
         shoppingCart,
         alertlogin,

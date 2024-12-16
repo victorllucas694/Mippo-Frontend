@@ -6,11 +6,11 @@ export const HeaderPaper = styled.div`
   background-color: rgb(240, 240, 240);
 
   .box-content {
-    width: 80%;
+    width: 100%;
     height: 3rem;
     margin: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 
     @media (max-width: 780px) {
       width: 99%;
@@ -35,7 +35,7 @@ export const HeaderPaper = styled.div`
     }
 
     .account-data {
-      width: 50%;
+      width: 25%;
       align-items: center;
       height: 100%;
       display: flex;
@@ -57,7 +57,7 @@ export const HeaderPaper = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 60%;
+        width: 100%;
         height: 2rem;
         margin: auto;
         gap: 2rem;
